@@ -10,7 +10,8 @@ module OpAmp(
     assign Vout = Gain * Vin;
 
 endmodule
-``` [^1]
+```
+[^1]
 
 [^1]: I chose to represent an arbitrary amount of bits with variable $x$. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.  
 

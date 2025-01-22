@@ -6,7 +6,7 @@ Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Quotes of Note](./quotes.md)
 
-[Blog](/blog/indexblon.md)
+[Blog](/blog/indexblog.md)
 
 [Other](./another-page.html)
 

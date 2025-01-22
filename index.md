@@ -4,11 +4,11 @@ layout: default
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Quotes of Note](./quotes.md).
+[Quotes of Note](./quotes.html)
 
-[Blog](./another-page.html).
+[Blog](./another-page.html)
 
-[Other](./another-page.html).
+[Other](./another-page.html)
 
 
 There should be whitespace between paragraphs.

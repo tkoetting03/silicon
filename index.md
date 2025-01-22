@@ -6,6 +6,6 @@ layout: default
 
 # [Quotes of Note](./quotes.md)
 
-# [Other](./other.md)
+# [Favorite Media](./other.md)
 
 

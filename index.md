@@ -4,7 +4,7 @@ layout: default
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Quotes of Note](./another-page.html).
+[Quotes of Note](./quotes.html).
 
 [Blog](./another-page.html).
 

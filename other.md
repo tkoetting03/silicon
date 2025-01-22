@@ -1,4 +1,4 @@
-#News and Current Events
+### News and Current Events
 
 [Naked Capitalism](https://www.nakedcapitalism.com/)
 
@@ -8,7 +8,7 @@
 
 [Phys.org](https://phys.org/)
 
-#Blogs and Newsletters
+### Blogs and Newsletters
 
 [Scope of Work](https://www.scopeofwork.net/)
 
@@ -18,7 +18,7 @@
 
 [Ken Shirriff's Blog](https://www.righto.com/)
 
-#Youtube Channels
+### Youtube Channels
 
 [Asianometry](https://www.youtube.com/@Asianometry)
 

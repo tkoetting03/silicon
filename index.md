@@ -6,6 +6,6 @@ layout: default
 
 # [Quotes of Note](./quotes.md)
 
-# [Other](./another-page.html)
+# [Other](./other.md)
 
 

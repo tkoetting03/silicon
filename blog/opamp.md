@@ -2,15 +2,17 @@ In my quest to make verilog models out of a multitude of different SSI and MSI s
 
 ```verilog
 module OpAmp(
-    input wire [15:0] Vin,
-    output wire [15:0] Vout,
-    input wire [15:0] Gain
+    input wire [x:0] Vin,
+    output wire [x:0] Vout,
+    input wire [x:0] Gain
 );
 
     assign Vout = Gain * Vin;
 
 endmodule
-```
+``` [^1]
+
+[^1]: I chose to represent an arbitrary amount of bits with variable $x$. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.  
 
 This is an _ideal_ and _general_ opamp that has no resistance, slew, feedback, or added complexity to achieve specific results. During creation I asked myself whether I wanted an opamp that would be created in perfect immitation of the real deal or one which is the _perfect abstract model_. I settled upon the latter, as immitating real world constraints with test benches and design features was not my goal in creating the verilog opamp. 
 

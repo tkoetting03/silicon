@@ -8,5 +8,5 @@ layout: default
 
 ## [Favorite Media](./other.md)
 
-## [Resume/CV](./resume.md)
+## [Resumé/CV](./resume.md)
 

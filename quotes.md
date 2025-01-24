@@ -15,4 +15,10 @@ layout: default
 
 “Nobody ever figures out what life is all about, and it doesn't matter. Explore the world. Nearly everything is really interesting if you go into it deeply enough.” - **Richard Feynman**
 
+"Are you righteous? Kind? Does your confidence lie in this? Are you loved by all? Know that I was, too. Do you imagine your suffering will be any less because you loved goodness and truth?" -**Takamitsu Ôkubo, The Thin Red Line**
+
+"All the western nations are caught in a lie, the lie of their pretended humanism: this means that their history has no moral justification, and that the West has no moral authority.” - **James Baldwin**
+
+
+
 [back](./)

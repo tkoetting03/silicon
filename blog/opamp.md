@@ -19,7 +19,7 @@ This is an _ideal_ and _general_ opamp that has no resistance, slew, feedback, o
 
 We have to consider, then, ideal variables for the opamp as to create the _perfect abstract model_ as I have discussed. Finding the characteristics and specifications turned out to be easier than I thought thanks to documentation from many different power semiconductor manufacturers like [Texas Instruments](https://www.ti.com.cn/cn/lit/an/slaa068b/slaa068b.pdf) and [Toshiba](https://toshiba.semicon-storage.com/us/semiconductor/knowledge/faq/linear_opamp/what-is-the-ideal-op-amp.html), along with my very own [University of Kansas](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=http://www.ittc.ku.edu/~jstiles/412/handouts/2.1%2520The%2520ideal%2520op-amp/The%2520Ideal%2520Operational%2520Amplifier%2520lecture.pdf&ved=2ahUKEwihno_t1omLAxXgHzQIHSn5FbgQFnoECA4QAQ&usg=AOvVaw190cbAOtlScLv1mi2fzOeu).
 
-In order to get closer to the real silicon in my design abstraction, I shall remove the * multiplication operator and replace it with an always loop which  
+In order to get closer to the real silicon in my design abstraction, I shall remove the * multiplication operator and replace it with an always loop which takes a particularly inneficient but easy to design in terms of understanding. Essentially working as any formulaic loop, it takes an iterative variable i, and compares it to the maximum gain outlined as a constant parameter. If i is less than the maximum gain, the output voltage is increased by the input voltage, and this is repeated until i reaches its threshold of eight iterations, essentially replicating multiplication through brute force addition.
 
 ```verilog
 module OpAmp(
@@ -28,7 +28,7 @@ module OpAmp(
     output reg Vout  
 );
 
-    parameter MAX_GAIN = 8; 
+    parameter GAINMAX = 8; 
     integer i;               
 
     always @(*) begin
@@ -42,7 +42,7 @@ module OpAmp(
 endmodule
 ```
 
-Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but with the help of the amazing ![MinecraftHDL](https://github.com/itsfrank/MinecraftHDL) project.
+Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but due to the help of the amazing ![MinecraftHDL](https://github.com/itsfrank/MinecraftHDL) project.
 
 ![Example image](https://github.com/tkoetting03/silicon/blob/3ea6f186e02e4839c1d01a38d0031f976f487901/blog/2025-01-26_15.25.32%20copy.png "This is an example image")
 

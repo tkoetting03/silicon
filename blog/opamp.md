@@ -47,7 +47,7 @@ endmodule
 The ![yosys](https://github.com/YosysHQ/yosys) digital logic diagram is given below:
 
 <div align="center">
-    <img src="https://github.com/tkoetting03/silicon/blob/30e98f15450e1c6b89c6840adaf86303cd33a36c/blog/Untitled.svg" alt="Description of the image" width="600">
+    <img src="https://github.com/tkoetting03/silicon/blob/30e98f15450e1c6b89c6840adaf86303cd33a36c/blog/Untitled.svg" alt="Description of the image" width="200">
 </div>
 
 The iterative variables are given by the memory blocks 0x0-7, with the multiplexer selectors being the comparison 0xA $$<$$ Gain (A representing any value 0-7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage. The final product that goes to the output voltage register being the last mux output
@@ -57,5 +57,5 @@ Of course, we could not create a verilog circuit if we didn't also model it with
 
 
 <div align="center">
-    <img src="https://github.com/tkoetting03/silicon/blob/3ea6f186e02e4839c1d01a38d0031f976f487901/blog/2025-01-26_15.25.32%20copy.png" alt="Description of the image" width="600">
+    <img src="https://github.com/tkoetting03/silicon/blob/3ea6f186e02e4839c1d01a38d0031f976f487901/blog/2025-01-26_15.25.32%20copy.png" alt="Description of the image" width="200">
 </div>

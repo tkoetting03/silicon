@@ -1,9 +1,4 @@
-
----
-layout: default
----
-
-## Welcome to another page
+## Quotes of Note
 
 “The truth which makes men free is for the most part the truth which men prefer not to hear.“ - **Herbert Agar**
 

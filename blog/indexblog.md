@@ -1,4 +1,4 @@
-###[Op Amp](./opamp.md)
+### [Op Amp](./opamp.md)
 
 
 

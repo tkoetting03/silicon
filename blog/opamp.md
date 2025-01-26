@@ -1,6 +1,6 @@
 In my quest to make verilog models out of a multitude of different SSI and MSI semiconductor products, I have now gotten to the operational amplifier. My primary inspiration for this design is the OPA4H199-SP from Texas Instruments. First I started with the basic function of an opamp which is the amplification of a signal by multiplying the voltage by the gain. 
 
-_'''_ verilog
+_' ' '_ verilog
 module OpAmp(
     input wire [x:0] Vin,
     output wire [x:0] Vout,
@@ -10,7 +10,7 @@ module OpAmp(
     assign Vout = Gain * Vin;
 
 endmodule
-_'''_
+_' ' '_
 
 [^1]
 

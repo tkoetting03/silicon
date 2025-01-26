@@ -19,8 +19,30 @@ This is an _ideal_ and _general_ opamp that has no resistance, slew, feedback, o
 
 We have to consider, then, ideal variables for the opamp as to create the _perfect abstract model_ as I have discussed. Finding the characteristics and specifications turned out to be easier than I thought thanks to documentation from many different power semiconductor manufacturers like [Texas Instruments](https://www.ti.com.cn/cn/lit/an/slaa068b/slaa068b.pdf) and [Toshiba](https://toshiba.semicon-storage.com/us/semiconductor/knowledge/faq/linear_opamp/what-is-the-ideal-op-amp.html), along with my very own [University of Kansas](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=http://www.ittc.ku.edu/~jstiles/412/handouts/2.1%2520The%2520ideal%2520op-amp/The%2520Ideal%2520Operational%2520Amplifier%2520lecture.pdf&ved=2ahUKEwihno_t1omLAxXgHzQIHSn5FbgQFnoECA4QAQ&usg=AOvVaw190cbAOtlScLv1mi2fzOeu).
 
-In order to get closer to the real silicon in my design abstraction, I shall remove the * multiplication operator and replace it with an always loop which 
+In order to get closer to the real silicon in my design abstraction, I shall remove the * multiplication operator and replace it with an always loop which  
+
+```verilog
+module OpAmp(
+    input wire Vin, 
+    input wire Gain,  
+    output reg Vout  
+);
+
+    parameter MAX_GAIN = 8; 
+    integer i;               
+
+    always @(*) begin
+        Vout = 0; 
+        for (i = 0; i < MAX_GAIN; i = i + 1) begin
+            if (i < Gain)  
+                Vout = Vout + Vin;
+        end
+    end
+
+endmodule
+'''
 
 Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. 
+
 
 

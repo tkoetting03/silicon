@@ -22,7 +22,7 @@ We have to consider, then, ideal variables for the opamp as to create the _perfe
 
 In order to get closer to the real silicon in my design abstraction, I shall remove the * multiplication operator and replace it with an always loop which takes a particularly inneficient but easy to design in terms of understanding. Essentially working as any formulaic loop, it takes an iterative variable i, and compares it to the maximum gain outlined as a constant parameter. If i is less than the maximum gain, the output voltage is increased by the input voltage, and this is repeated until i reaches its threshold of eight iterations, essentially replicating multiplication through brute force addition.
 
-verilog
+``` verilog
 module OpAmp(
     input wire Vin, 
     input wire Gain,  
@@ -41,7 +41,7 @@ module OpAmp(
     end
 
 endmodule
-
+```
 
 
 The [yosys](https://github.com/YosysHQ/yosys) digital logic diagram is given below:

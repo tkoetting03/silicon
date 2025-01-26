@@ -46,12 +46,12 @@ endmodule
 
 The ![yosys](https://github.com/YosysHQ/yosys) digital logic diagram is given below:
 
+![Branching](blog/Untitled.svg)
 
-![Branching](https://github.com/tkoetting03/silicon/blob/5b4a1d61058f8b032c0119c96a48a9e4778b6637/blog/Untitled.svg)
 
 The iterative variables are given by the memory blocks 0x0-7, with the multiplexer selectors being the comparison 0xA $$<$$ Gain (A representing any value 0-7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage. The final product that goes to the output voltage register being the last mux output
 
 
 Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but due to the help of the amazing ![MinecraftHDL](https://github.com/itsfrank/MinecraftHDL) project.
 
-![Branching](https://github.com/tkoetting03/silicon/blob/5b4a1d61058f8b032c0119c96a48a9e4778b6637/blog/2025-01-26_15.25.32%20copy.png)
+![Branching](blog/2025-01-26_15.25.32 copy.png)

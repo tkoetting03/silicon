@@ -44,7 +44,7 @@ endmodule
 
 Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. 
 
-![minecaftimg](blog/2025-01-26_15.25.32 copy.png)
+![minecaftimg](./blog/2025-01-26_15.25.32 copy.png)
 
 
 

@@ -5,5 +5,5 @@
 
 ## [Favorite Media](./other.md)
 
-## [Resumé/CV](./resume.md)
+## [Resumé/CV](https://www.linkedin.com/in/thomas-koetting-5a94b8239/)
 

@@ -54,7 +54,7 @@ The iterative variables are given by the memory blocks 0x0-7, with the multiplex
 
 Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but due to the help of the amazing [MinecraftHDL](https://github.com/itsfrank/MinecraftHDL) project.
 
-![redstone](/blog/redstone.jpg)
+![redstone](https://github.com/tkoetting03/silicon/blob/bf3bba60d02733edd2c508598677dd761c9c0e7a/blog/redstone.jpg)
 
 [Back](../indexblog.md)
 

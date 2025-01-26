@@ -2,4 +2,4 @@
 
 
 
-[Back](./)
+[Back](./blog)

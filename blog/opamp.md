@@ -44,7 +44,9 @@ endmodule
 
 The ![yosys](https://github.com/YosysHQ/yosys) digital logic diagram is given below:
 
-![yosys](https://github.com/tkoetting03/silicon/blob/b40ebdd2596abe023af5f6757e7de62e2d3a902e/blog/Untitled.svg)
+<body>  
+    <img src="https://github.com/tkoetting03/silicon/blob/30e98f15450e1c6b89c6840adaf86303cd33a36c/blog/Untitled.svg" alt="Description of the image" width="600">
+</body>
 
 The iterative variables are given by the memory blocks 0x0-7, with the multiplexer selectors being the comparison 0xA $$<$$ Gain (A representing any value 0-7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage. The final product that goes to the output voltage register being the last mux output
 

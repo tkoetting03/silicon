@@ -14,7 +14,7 @@ endmodule
 
 [^1]
 
-[^1]: I chose to represent an arbitrary amount of bits with variable $x$. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.  
+[^1]: I chose to represent an arbitrary amount of bits with variable $$x$$. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.  
 
 This is an _ideal_ and _general_ opamp that has no resistance, slew, feedback, or added complexity to achieve specific results. During creation I asked myself whether I wanted an opamp that would be created in perfect immitation of the real deal or one which is the _perfect abstract model_. I settled upon the latter, as immitating real world constraints with test benches and design features was not my goal in creating the verilog opamp. 
 

@@ -1,5 +1,5 @@
 
-## [Blog](/blog/indexblog.md)
+## [Blog](/indexblog.md)
 
 ## [Quotes of Note](./quotes.md)
 

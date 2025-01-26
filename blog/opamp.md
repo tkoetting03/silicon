@@ -41,9 +41,9 @@ module OpAmp(
 
 endmodule
 ```
-
-
-
+\\
+\\
+\\
 The ![yosys](https://github.com/YosysHQ/yosys) digital logic diagram is given below:
 
 ![yosys](https://github.com/tkoetting03/silicon/blob/b40ebdd2596abe023af5f6757e7de62e2d3a902e/blog/Untitled.svg)

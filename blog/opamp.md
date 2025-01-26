@@ -56,5 +56,5 @@ Of course, we could not create a verilog circuit if we didn't also model it with
 
 ![Branching](/blog/redstone.png)
 
-[Back](../)
+[Back](../indexblog.md)
 

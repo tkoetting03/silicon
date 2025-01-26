@@ -1,4 +1,4 @@
-<iframe src="rssreader.com" width="600" height="400"></iframe>
+
 ### News and Current Events
 
 [Naked Capitalism](https://www.nakedcapitalism.com/)

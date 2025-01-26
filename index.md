@@ -1,6 +1,3 @@
----
-layout: default
----
 
 ## [Blog](/blog/indexblog.md)
 

@@ -40,7 +40,7 @@ module OpAmp(
     end
 
 endmodule
-'''
+```
 
 Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. 
 

@@ -46,7 +46,7 @@ The ![yosys](https://github.com/YosysHQ/yosys) digital logic diagram is given be
 
 ![yosys](https://github.com/tkoetting03/silicon/blob/b40ebdd2596abe023af5f6757e7de62e2d3a902e/blog/Untitled.svg)
 
-The iterative variables are given by the memory blocks 0x0-7, with the multiplexer selectors being the comparison 0xA $$<$$ Gain (A representing any value 0-7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage. 
+The iterative variables are given by the memory blocks 0x0-7, with the multiplexer selectors being the comparison 0xA $$<$$ Gain (A representing any value 0-7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage. The final product that goes to the output voltage register being the last mux output
 
 
 Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but due to the help of the amazing ![MinecraftHDL](https://github.com/itsfrank/MinecraftHDL) project.

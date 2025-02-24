@@ -16,5 +16,7 @@
 
 "Nothing in life is certain except death, taxes and the second law of thermodynamics" - **Seth Lloyd**
 
+"Lynch and Frost are saying that the new media and conspiracy theorists who claim to see beyond our surface level reality, are capitalizing on the fear in the air. Putting a price tag on false hope and false solutions. Garbage spray-painted fake gold." - **Twin Perfect**
+
 
 [Back](./)

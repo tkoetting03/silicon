@@ -1,0 +1,3 @@
+Technological progression has centered around making our lives easier for a long time, not only is that what people strive to discover the most but it is also the most profitable innovation. Therefore it comes as no surprise that something like artificial intelligence, an algorithm which can mimic conversation, critical thinking, image and video creation, and complex problem solving tasks has become the defining technology of the 2020s. If I want to, say, get the answer to a homework question, let's say
+A parallel resonant circuit has $ R = 100 \, \text{k}\Omega $, $ L = 20 \, \text{mH} $, and $ C = 5 \, \text{nF} $.  
+Calculate $ \omega_0, \, \omega_1, \, \omega_2, \, Q $, and $ B $.

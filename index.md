@@ -5,7 +5,7 @@
 
 ## [Favorite Media](./other.md)
 
-## [Resumé/CV](https://www.linkedin.com/in/thomas-koetting-5a94b8239/)
+## [Resumé/CV](./Thomas_Koetting_Resume.pdf)
 
 ## [Research Paper](./Can_Non-Cooperative_Game_Theory.pdf)
 

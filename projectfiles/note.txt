@@ -1,1 +1,6 @@
+Couple of things to be aware of;
+
+#1: I own none of the assets in the edit and therefore am not including them with the project file
+
+#2: The only plugins I used were from the Magic Bullet Looks Suite, everything else is vanilla AE or JSX scripts
 

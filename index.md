@@ -5,8 +5,6 @@
 
 ## [Favorite Media](./other.md)
 
-## [Resumé/CV](./Thomas_Koetting_Resume.pdf)
-
 ## [Research Paper](./Can_Non-Cooperative_Game_Theory.pdf)
 
 ## [Project Files](./projectfiles.md)

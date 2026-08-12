@@ -10,3 +10,5 @@
 ## [Project Files](./projectfiles.md)
 
 ## [Socials](./socials.md)
+
+## [Favorite Art](./art.md)

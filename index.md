@@ -3,7 +3,7 @@
 
 ## [Quotes of Note](./quotes.md)
 
-## [Favorite Media](./other.md)
+## [Favorites](./other.md)
 
 ## [Research Paper](./Can_Non-Cooperative_Game_Theory.pdf)
 

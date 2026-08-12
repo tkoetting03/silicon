@@ -1,3 +1,79 @@
+## Books
+
+[Ulysses](https://en.wikipedia.org/wiki/Ulysses_(novel))
+
+[Empire of the Summer Moon](https://www.goodreads.com/book/show/7648269-empire-of-the-summer-moon)
+
+[The Anarchy](https://en.wikipedia.org/wiki/The_Anarchy:_The_Relentless_Rise_of_the_East_India_Company)
+
+[The Road To Reality](https://en.wikipedia.org/wiki/The_Road_to_Reality)
+
+[Stalingrad](https://en.wikipedia.org/wiki/Stalingrad_(Beevor_book))
+
+[The Embarrassment of Riches](https://www.goodreads.com/en/book/show/21073.The_Embarrassment_of_Riches)
+
+[Alexander Hamilton](https://en.wikipedia.org/wiki/Alexander_Hamilton_(biography))
+
+### Music
+
+[Kid A](https://tidal.com/album/58990523/u)
+
+[In Rainbows][https://tidal.com/album/61799588/u]
+
+[Deathconsciousness](https://tidal.com/album/65229357/u)
+
+[Radio Amor](https://tidal.com/album/176533110/u)
+
+[Debussy: Estampes; Pour le piano; 6 épigraphes antiques](https://tidal.com/album/414065766/u)
+
+
+### Movies
+
+[Mishima: A Life in Four Chapters](https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters)
+
+[Hamnet](https://en.wikipedia.org/wiki/Hamnet_(film))
+
+[Children of Men](https://en.wikipedia.org/wiki/Children_of_Men)
+
+[Police Story](https://en.wikipedia.org/wiki/Police_Story_(1985_film))
+
+[The Thin Red Line](https://en.wikipedia.org/wiki/The_Thin_Red_Line_(1998_film))
+
+### Paintings
+
+[Saint John the Baptist in the Wilderness](https://art.nelson-atkins.org/objects/1130/saint-john-the-baptist-in-the-wilderness?ctx=f0e795ce19a6c901eafbe84aa2a93b837f6d07e0&idx=144)
+
+[The Death of Socrates](https://www.metmuseum.org/art/collection/search/436105)
+
+[The Dugout](https://www.artic.edu/artworks/282198/the-dugout-preliminary-work)
+
+[Landscape with Saint John on Patmos](https://www.artic.edu/artworks/5848/landscape-with-saint-john-on-patmos)
+
+[Mountain Brook](https://www.artic.edu/artworks/146701/mountain-brook)
+
+[View of Cotopaxi](https://www.artic.edu/artworks/76571/view-of-cotopaxi)
+
+[The Raft of the Medusa](https://collections.louvre.fr/en/ark:/53355/cl010059199)
+
+[Oath of the Horatii](https://collections.louvre.fr/en/ark:/53355/cl010062239)
+
+[The Night Watch](https://www.rijksmuseum.nl/en/collection/object/The-Night-Watch-Militia-Company-of-District-II-under-the-Command-of-Captain-Frans-Banninck-Cocq--3137deb45cd7765f9a76084a16c99544)
+
+[A Ship on the High Seas Caught by a Squall](https://www.rijksmuseum.nl/en/collection/object/A-Ship-on-the-High-Seas-Caught-by-a-Squall-Known-as-The-Gust--10ab6e851c892e484d4ad0ee96f78b37)
+
+
+### Architecture
+
+[Fallingwater](https://fallingwater.org/)
+
+[Sendai Mediatheque](https://www.archdaily.com/118627/ad-classics-sendai-mediatheque-toyo-ito-and-associates-architects)
+
+[The Shard](https://en.wikipedia.org/wiki/The_Shard)
+
+[10 & 30 Hudson Yards](https://www.kpf.com/project/10-30-hudson-yards)
+
+[Back](./)
+
 
 ### News and Current Events
 

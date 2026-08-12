@@ -16,7 +16,7 @@
 
 ### Music
 
-[Kid A](https://tidal.com/album/58990523/u) ⭐️
+[Kid A](https://tidal.com/album/58990523/u) ⭐️ [^1]
 
 [In Rainbows](https://tidal.com/album/61799588/u)
 
@@ -141,3 +141,5 @@
 
 [Back](./)
 
+
+[^1]: ⭐️ Entails a listed item is my favorite among the others

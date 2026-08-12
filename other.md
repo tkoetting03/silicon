@@ -16,7 +16,7 @@
 
 ### Music
 
-[Kid A](https://tidal.com/album/58990523/u)
+[Kid A](https://tidal.com/album/58990523/u) ⭐️
 
 [In Rainbows](https://tidal.com/album/61799588/u)
 
@@ -42,7 +42,7 @@
 
 ### Movies
 
-[Mishima: A Life in Four Chapters](https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters)
+[Mishima: A Life in Four Chapters](https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters) ⭐️
 
 [Hamnet](https://en.wikipedia.org/wiki/Hamnet_(film))
 
@@ -69,7 +69,7 @@
 
 [The Raft of the Medusa](https://collections.louvre.fr/en/ark:/53355/cl010059199)
 
-[Oath of the Horatii](https://collections.louvre.fr/en/ark:/53355/cl010062239)
+[Oath of the Horatii](https://collections.louvre.fr/en/ark:/53355/cl010062239) ⭐️
 
 [The Night Watch](https://www.rijksmuseum.nl/en/collection/object/The-Night-Watch-Militia-Company-of-District-II-under-the-Command-of-Captain-Frans-Banninck-Cocq--3137deb45cd7765f9a76084a16c99544)
 
@@ -110,7 +110,7 @@
 
 ### Youtube Channels
 
-[Asianometry](https://www.youtube.com/@Asianometry)
+[Asianometry](https://www.youtube.com/@Asianometry) ⭐️
 
 [3Blue1Brown](https://www.youtube.com/@3blue1brown)
 

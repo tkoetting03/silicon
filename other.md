@@ -18,13 +18,27 @@
 
 [Kid A](https://tidal.com/album/58990523/u)
 
-[In Rainbows][https://tidal.com/album/61799588/u]
+[In Rainbows](https://tidal.com/album/61799588/u)
 
 [Deathconsciousness](https://tidal.com/album/65229357/u)
 
 [Radio Amor](https://tidal.com/album/176533110/u)
 
 [Debussy: Estampes; Pour le piano; 6 épigraphes antiques](https://tidal.com/album/414065766/u)
+
+[To See the Next Part of the Dream](https://tidal.com/album/180892435/u)
+
+[Long Season](https://tidal.com/album/92891727/u)
+
+[Minecraft - Volume Beta](https://tidal.com/album/488529268/u)
+
+[Uchu Nippon Setagaya](https://tidal.com/album/92891764/u)
+
+[冀西南林路行](https://tidal.com/album/166203100/u)
+
+[Cold Visions](https://tidal.com/album/411889225/u)
+
+
 
 
 ### Movies

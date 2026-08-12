@@ -40,7 +40,6 @@
 
 
 
-
 ### Movies
 
 [Mishima: A Life in Four Chapters](https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters)
@@ -52,6 +51,7 @@
 [Police Story](https://en.wikipedia.org/wiki/Police_Story_(1985_film))
 
 [The Thin Red Line](https://en.wikipedia.org/wiki/The_Thin_Red_Line_(1998_film))
+
 
 ### Paintings
 
@@ -86,8 +86,6 @@
 
 [10 & 30 Hudson Yards](https://www.kpf.com/project/10-30-hudson-yards)
 
-[Back](./)
-
 
 ### News and Current Events
 
@@ -98,6 +96,7 @@
 [Quanta Magazine](https://www.quantamagazine.org/)
 
 [Phys.org](https://phys.org/)
+
 
 ### Blogs and Newsletters
 
@@ -132,6 +131,7 @@
 [Moritz Klein](https://www.youtube.com/@MoritzKlein0)
 
 [Lemino](https://www.youtube.com/@LEMMiNO)
+
 
 ### Other
 

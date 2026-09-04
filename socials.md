@@ -1,4 +1,6 @@
 
+# Socials
+
 
 [LinkedIn](https://www.linkedin.com/in/thomas-koetting-5a94b8239/)
 
@@ -7,6 +9,8 @@
 [Editing Instagram](https://www.instagram.com/tked1ts/)
 
 [YouTube Channel](https://www.youtube.com/@thomask7326)
+
+---
 
 [Back](./)
 

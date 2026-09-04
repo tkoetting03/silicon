@@ -6,5 +6,7 @@
 
 [Editing Instagram](https://www.instagram.com/tked1ts/)
 
+[YouTube Channel](https://www.youtube.com/@thomask7326)
+
 [Back](./)
 

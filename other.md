@@ -1,3 +1,5 @@
+# Favorites
+
 ## Books
 
 [Ulysses](https://en.wikipedia.org/wiki/Ulysses_(novel))

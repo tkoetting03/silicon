@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UART · Silicon</title>
+  <meta name="description" content="An interactive walkthrough of a Verilog UART — baud generator, transmitter, receiver, and the asynchronous serial frame." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #fe2627;
+      --red-deep: #de342e;
+      --black: #0a0a0a;
+      --ink: #111111;
+      --white: #ffffff;
+      --gray: #aaaaaa;
+      --gray-mid: #dbdbdb;
+      --gray-bg: #ececec;
+      --panel: #1a1a1a;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+      --radius: 10px;
+      --font: "Inter", system-ui, sans-serif;
+      --mono: "Inter", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--gray-bg);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+
+    .hero-bar {
+      height: 10px;
+      background: linear-gradient(90deg, var(--red) 0%, #ff8a80 55%, var(--white) 100%);
+      background-size: 200% 100%;
+      animation: barShift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes barShift {
+      from { background-position: 0% 50%; }
+      to   { background-position: 100% 50%; }
+    }
+
+    .hero-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .hero-nav a:hover { color: var(--white); }
+
+    .hero-nav .mark {
+      color: var(--red);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+
+    .hero-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem clamp(1.5rem, 6vw, 5rem) 4rem;
+      z-index: 1;
+    }
+
+    .hero-brand {
+      font-size: clamp(4.5rem, 18vw, 11rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    }
+
+    .hero-brand span {
+      color: var(--red);
+    }
+
+    .hero-copy {
+      max-width: 28rem;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--gray-mid);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--red);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.9rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      width: fit-content;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(254, 38, 39, 0.35);
+    }
+
+    .hero-cta svg { width: 16px; height: 16px; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      padding: 1.25rem 2rem 1.75rem;
+      border-top: 1px solid #222;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .hero-meta strong {
+      display: block;
+      color: var(--white);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      margin-top: 0.35rem;
+      font-weight: 600;
+      text-transform: none;
+    }
+
+    /* radial field behind brand */
+    .hero-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background:
+        radial-gradient(ellipse 60% 50% at 75% 55%, rgba(254, 38, 39, 0.22), transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.04), transparent 40%);
+    }
+
+    .hero-lines {
+      position: absolute;
+      right: -5%;
+      top: 18%;
+      width: min(55vw, 640px);
+      height: min(55vw, 640px);
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.6s forwards;
+    }
+
+    @keyframes riseIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ---------- EXPLORER ---------- */
+    .explorer {
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem) 4rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-lead {
+      color: #555;
+      max-width: 36rem;
+      line-height: 1.55;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(200px, 240px) 1fr minmax(260px, 340px);
+      gap: 1rem;
+      align-items: stretch;
+      min-height: 520px;
+    }
+
+    @media (max-width: 980px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* topic panel — KIOKU dark list */
+    .topics {
+      background: var(--black);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+
+    .topics-head {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      color: var(--gray-mid);
+    }
+
+    .topics-head em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      font-family: var(--font);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 0.55rem;
+      border: none;
+      background: transparent;
+      color: var(--gray);
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .tab.active {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .topic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+      overflow: auto;
+    }
+
+    .topic-btn {
+      width: 100%;
+      text-align: left;
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.7rem 0.75rem;
+      background: #2a2a2a;
+      color: var(--white);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    }
+
+    .topic-btn:nth-child(even) { margin-left: 0.5rem; width: calc(100% - 0.5rem); }
+    .topic-btn:hover { background: #333; transform: translateX(2px); }
+    .topic-btn.active {
+      background: #333;
+      border-color: var(--red);
+      box-shadow: inset 3px 0 0 var(--red);
+    }
+
+    .topic-btn .sup {
+      font-size: 0.65rem;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    /* mind map canvas */
+    .canvas {
+      position: relative;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .canvas-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+    }
+
+    .map-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-svg line {
+      stroke: var(--red);
+      stroke-width: 1.25;
+      stroke-opacity: 0;
+      transition: stroke-opacity 0.4s ease;
+    }
+
+    .map-svg.ready line { stroke-opacity: 0.55; }
+
+    .map-svg line.lit { stroke-opacity: 1; stroke-width: 2; }
+
+    .node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      z-index: 2;
+      user-select: none;
+    }
+
+    .node:hover {
+      transform: translate(-50%, -50%) scale(1.04);
+      border-color: #bbb;
+    }
+
+    .node.center {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.9rem 1.2rem;
+      box-shadow: 0 8px 24px rgba(254, 38, 39, 0.35);
+    }
+
+    .node.active:not(.center) {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .node .plus {
+      display: inline-block;
+      margin-left: 0.4rem;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .node.center .plus,
+    .node.active .plus { color: #ffb4b4; }
+
+    .canvas-hint {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      font-weight: 500;
+      z-index: 3;
+    }
+
+    /* detail card — KIOKU popup */
+    .detail {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .detail-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #666;
+    }
+
+    .detail-top .logo-mark {
+      color: var(--red);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .detail-hero {
+      background: var(--red);
+      color: var(--white);
+      padding: 1.25rem 1.15rem 1.1rem;
+      transition: background 0.25s;
+    }
+
+    .detail-hero h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.35rem;
+    }
+
+    .detail-hero p {
+      font-size: 0.82rem;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .detail-body {
+      padding: 1.15rem;
+      flex: 1;
+      overflow: auto;
+    }
+
+    .detail-body h3 {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.55rem;
+      font-weight: 700;
+    }
+
+    .detail-body ul {
+      list-style: none;
+      margin-bottom: 1.15rem;
+    }
+
+    .detail-body li {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      padding: 0.35rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+      color: #222;
+    }
+
+    .detail-body li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: #f2f2f2;
+      color: #333;
+      border: 1px solid #e4e4e4;
+    }
+
+    .tag.dark {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .tag.hot {
+      background: #ffe8e8;
+      color: var(--red-deep);
+      border-color: #ffc9c9;
+    }
+
+    .code-snip {
+      background: var(--black);
+      color: #e8e8e8;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      line-height: 1.55;
+      padding: 0.9rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      white-space: pre;
+      tab-size: 2;
+      margin-bottom: 0.5rem;
+    }
+
+    .code-snip .kw { color: #ff8a80; }
+    .code-snip .ty { color: #90caf9; }
+    .code-snip .cm { color: #777; }
+    .code-snip .nm { color: #ffe082; }
+
+    .detail-foot {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.85rem 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .btn-ghost,
+    .btn-solid {
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.7rem 0.9rem;
+      border: none;
+      cursor: pointer;
+      flex: 1;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+
+    .btn-ghost:hover { background: #f7f7f7; }
+
+    .btn-solid {
+      background: var(--red);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .btn-solid:hover {
+      background: var(--red-deep);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- FRAME STRIP ---------- */
+    .frame-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 3rem) 4rem;
+    }
+
+    .frame-panel {
+      background: var(--black);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 1.75rem clamp(1rem, 3vw, 2rem) 2rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .frame-panel .section-label { color: #777; }
+    .frame-panel .section-title { color: var(--white); margin-bottom: 0.35rem; }
+    .frame-panel .section-lead { color: var(--gray); margin-bottom: 1.5rem; }
+
+    .bits {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 0.45rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .bits { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    .bit {
+      aspect-ratio: 1 / 1.15;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+
+    .bit .lbl {
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 600;
+    }
+
+    .bit.on {
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 0 24px rgba(254, 38, 39, 0.45);
+      transform: translateY(-3px);
+    }
+
+    .bit.on .lbl { color: #ffd0d0; }
+
+    .bit.start, .bit.stop { background: #1f1f1f; }
+
+    .wave {
+      height: 56px;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .wave-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      margin-top: 1.25rem;
+    }
+
+    .wave-controls input[type="text"] {
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #333;
+      background: #151515;
+      color: var(--white);
+      width: 8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .wave-controls input:focus {
+      outline: 2px solid var(--red);
+      border-color: transparent;
+    }
+
+    .status-pill {
+      margin-left: auto;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .status-pill span { color: var(--red); }
+
+    /* ---------- SOURCE ---------- */
+    .source-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 3rem) 5rem;
+    }
+
+    .source-panel {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .source-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .source-head h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .source-actions { display: flex; gap: 0.5rem; }
+
+    .source-body {
+      max-height: 480px;
+      overflow: auto;
+      background: var(--black);
+    }
+
+    .source-body pre {
+      margin: 0;
+      padding: 1.25rem 1.5rem;
+      color: #ddd;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      line-height: 1.55;
+      white-space: pre;
+      tab-size: 2;
+    }
+
+    .source-body .kw { color: #ff8a80; }
+    .source-body .ty { color: #90caf9; }
+    .source-body .cm { color: #666; }
+    .source-body .nm { color: #ffe082; }
+    .source-body .nu { color: #a5d6a7; }
+
+    /* ---------- FOOTER ---------- */
+    footer.site {
+      border-top: 1px solid #ddd;
+      padding: 1.5rem clamp(1rem, 4vw, 3rem) 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: #777;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    footer.site a:hover { color: var(--red); }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero-bar" aria-hidden="true"></div>
+    <nav class="hero-nav">
+      <a href="../" class="mark">Silicon</a>
+      <a href="uart.v">uart.v →</a>
+    </nav>
+    <div class="hero-field" aria-hidden="true"></div>
+    <svg class="hero-lines" viewBox="0 0 400 400" aria-hidden="true">
+      <g fill="none" stroke="#fe2627" stroke-width="1" opacity="0.55">
+        <line x1="200" y1="200" x2="40" y2="60" />
+        <line x1="200" y1="200" x2="200" y2="30" />
+        <line x1="200" y1="200" x2="360" y2="70" />
+        <line x1="200" y1="200" x2="370" y2="200" />
+        <line x1="200" y1="200" x2="340" y2="340" />
+        <line x1="200" y1="200" x2="200" y2="370" />
+        <line x1="200" y1="200" x2="50" y2="320" />
+        <line x1="200" y1="200" x2="30" y2="200" />
+      </g>
+      <rect x="155" y="175" width="90" height="50" fill="#fe2627" />
+      <text x="200" y="206" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700" letter-spacing="3">UART</text>
+    </svg>
+    <div class="hero-stage">
+      <h1 class="hero-brand">UAR<span>T</span></h1>
+      <p class="hero-copy">
+        An interactive walkthrough of a Verilog UART —
+        how start bits, baud ticks, and shift registers turn parallel bytes into an asynchronous serial wire.
+      </p>
+      <button class="hero-cta" type="button" data-scroll="#explorer">
+        Explore the module
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="hero-meta">
+      <div>Protocol<strong>8N1 · async serial</strong></div>
+      <div>Default baud<strong>115200</strong></div>
+      <div>Language<strong>Verilog HDL</strong></div>
+      <div>Oversample<strong>16×</strong></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="explorer" id="explorer">
+      <p class="section-label">Module map</p>
+      <h2 class="section-title">Select a block to open its meaning</h2>
+      <p class="section-lead">
+        Like a mind-map for silicon: click a node or topic to inspect ports, states, and the Verilog that implements it.
+      </p>
+
+      <div class="workspace">
+        <aside class="topics" aria-label="Module topics">
+          <div class="topics-head">Sort by → <em id="sort-label">Block</em></div>
+          <div class="tabs" role="tablist">
+            <button class="tab active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="tab" type="button" data-filter="clock" role="tab">Clock</button>
+            <button class="tab" type="button" data-filter="tx" role="tab">TX</button>
+            <button class="tab" type="button" data-filter="rx" role="tab">RX</button>
+            <button class="tab" type="button" data-filter="frame" role="tab">Frame</button>
+          </div>
+          <ul class="topic-list" id="topic-list"></ul>
+        </aside>
+
+        <div class="canvas" aria-label="UART architecture map">
+          <div class="canvas-inner" id="map">
+            <svg class="map-svg" id="map-svg" aria-hidden="true"></svg>
+          </div>
+          <p class="canvas-hint">Click a node · live links</p>
+        </div>
+
+        <article class="detail" id="detail" aria-live="polite">
+          <div class="detail-top">
+            <span class="logo-mark">Si</span>
+            <span>Verilog → En</span>
+          </div>
+          <div class="detail-hero">
+            <h2 id="detail-title">UART</h2>
+            <p id="detail-sub">Universal Asynchronous Receiver/Transmitter</p>
+          </div>
+          <div class="detail-body">
+            <h3>Key ideas</h3>
+            <ul id="detail-points"></ul>
+            <h3>Tags</h3>
+            <div class="tags" id="detail-tags"></div>
+            <h3>Snippet</h3>
+            <div class="code-snip" id="detail-code"></div>
+          </div>
+          <div class="detail-foot">
+            <button class="btn-ghost" type="button" data-scroll="#source">View full source</button>
+            <button class="btn-solid" type="button" data-scroll="#frame" id="deep-dive">
+              Deep dive frame →
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="frame-section" id="frame">
+      <div class="frame-panel">
+        <p class="section-label">Line activity</p>
+        <h2 class="section-title">Watch a byte leave the wire</h2>
+        <p class="section-lead">
+          Type a character. The transmitter shifts out Start · 8 data bits (LSB first) · Stop
+          while the waveform tracks the line.
+        </p>
+        <div class="bits" id="bits" aria-hidden="true"></div>
+        <svg class="wave" id="wave" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-label="Serial waveform"></svg>
+        <div class="wave-controls">
+          <input id="char-input" type="text" maxlength="1" value="A" aria-label="Character to transmit" />
+          <button class="btn-solid" type="button" id="tx-btn" style="flex:0 0 auto; padding:0.7rem 1.2rem;">
+            Transmit →
+          </button>
+          <p class="status-pill">Line · <span id="line-status">idle high</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="source-section" id="source">
+      <div class="source-panel">
+        <div class="source-head">
+          <h2>uart.v</h2>
+          <div class="source-actions">
+            <a class="btn-ghost" href="uart.v" download style="flex:0; text-align:center;">Download</a>
+            <button class="btn-solid" type="button" id="copy-src" style="flex:0;">Copy source</button>
+          </div>
+        </div>
+        <div class="source-body">
+          <pre id="full-source"></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <p>Silicon · Thomas Koetting · <a href="../">← Back to projects</a></p>
+    <p>Visual language inspired by <a href="https://www.behance.net/gallery/253369445/KIOKU-AI-powered-extension" target="_blank" rel="noopener">KÏOKU</a> · typeface Inter</p>
+  </footer>
+
+  <script>
+    /* ========== Knowledge graph ========== */
+    const NODES = [
+      {
+        id: "uart",
+        label: "UART",
+        center: true,
+        x: 50, y: 50,
+        filter: "all",
+        ports: 10,
+        title: "UART",
+        sub: "Universal Asynchronous Receiver/Transmitter",
+        points: [
+          "Moves bytes between chips without a shared clock — timing is recovered from the bit period.",
+          "This model is 8N1: eight data bits, no parity, one stop bit.",
+          "Built from a shared baud generator plus independent TX and RX state machines."
+        ],
+        tags: [
+          { t: "Top", c: "dark" },
+          { t: "Async serial", c: "" },
+          { t: "8N1", c: "hot" }
+        ],
+        code: `<span class="kw">module</span> <span class="nm">uart</span> <span class="kw">#</span>(
+  <span class="kw">parameter</span> <span class="ty">integer</span> CLK_HZ = 50_000_000,
+  <span class="kw">parameter</span> <span class="ty">integer</span> BAUD   = 115_200
+)(
+  <span class="kw">input</span>  <span class="ty">wire</span> clk, rst_n,
+  <span class="cm">/* TX + RX ports */</span>
+);`
+      },
+      {
+        id: "baud",
+        label: "Baud Gen",
+        x: 18, y: 28,
+        filter: "clock",
+        ports: 3,
+        title: "Baud rate generator",
+        sub: "Divides the system clock into oversampled bit ticks",
+        points: [
+          "Produces a tick OVERSAMPLE times per bit (here 16×).",
+          "DIV = CLK_HZ / (BAUD × OVERSAMPLE) — e.g. 50 MHz / (115200 × 16).",
+          "TX advances on every 16 ticks; RX samples the middle of each bit."
+        ],
+        tags: [
+          { t: "Clock", c: "dark" },
+          { t: "Oversample 16×", c: "hot" },
+          { t: "tick", c: "" }
+        ],
+        code: `<span class="kw">localparam</span> <span class="ty">integer</span> DIV = CLK_HZ / (BAUD * OVERSAMPLE);
+<span class="kw">always</span> @(<span class="kw">posedge</span> clk ...)
+  <span class="kw">if</span> (cnt == DIV-1) tick &lt;= 1'b1;`
+      },
+      {
+        id: "tx",
+        label: "Transmitter",
+        x: 82, y: 28,
+        filter: "tx",
+        ports: 6,
+        title: "uart_tx",
+        sub: "Parallel-in, serial-out shift register + FSM",
+        points: [
+          "Idle line sits high. A start bit pulls it low for one bit time.",
+          "Data shifts LSB-first onto tx, one bit every 16 ticks.",
+          "A stop bit returns the line high before the next frame."
+        ],
+        tags: [
+          { t: "TX", c: "dark" },
+          { t: "FSM", c: "" },
+          { t: "Shift register", c: "hot" }
+        ],
+        code: `<span class="kw">DATA</span>: <span class="kw">if</span> (tick) <span class="kw">begin</span>
+  tx &lt;= shift[0];
+  <span class="kw">if</span> (tick_cnt == 4'd15)
+    shift &lt;= {1'b0, shift[7:1]};
+<span class="kw">end</span>`
+      },
+      {
+        id: "rx",
+        label: "Receiver",
+        x: 82, y: 72,
+        filter: "rx",
+        ports: 6,
+        title: "uart_rx",
+        sub: "Edge-detect start, sample mid-bit, assemble the byte",
+        points: [
+          "Watches for a falling edge, then confirms the start bit at tick 7.",
+          "Samples each data bit at the center of the bit window.",
+          "Checks the stop bit; raises framing_err if the line is not high."
+        ],
+        tags: [
+          { t: "RX", c: "dark" },
+          { t: "Mid-bit sample", c: "hot" },
+          { t: "framing_err", c: "" }
+        ],
+        code: `<span class="kw">START</span>: <span class="kw">if</span> (tick && tick_cnt == 4'd7) <span class="kw">begin</span>
+  <span class="kw">if</span> (rx == 1'b0) state &lt;= DATA;
+  <span class="kw">else</span> state &lt;= IDLE; <span class="cm">// false start</span>
+<span class="kw">end</span>`
+      },
+      {
+        id: "frame",
+        label: "Frame 8N1",
+        x: 18, y: 72,
+        filter: "frame",
+        ports: 10,
+        title: "Serial frame",
+        sub: "Start · D0…D7 · Stop — ten bit-times on the wire",
+        points: [
+          "Start bit is always 0 so receivers can see the falling edge.",
+          "Eight payload bits travel least-significant bit first.",
+          "Stop bit is 1; it restores idle and creates a gap before the next start."
+        ],
+        tags: [
+          { t: "Frame", c: "dark" },
+          { t: "LSB first", c: "hot" },
+          { t: "10 bit-times", c: "" }
+        ],
+        code: `<span class="cm">// wire timeline for byte 0x41 ('A')</span>
+<span class="cm">// 0  1 0 0 0 0 0 1 0  1</span>
+<span class="cm">// S  D0      …     D7  P</span>`
+      },
+      {
+        id: "fsm",
+        label: "TX FSM",
+        x: 50, y: 18,
+        filter: "tx",
+        ports: 4,
+        title: "TX state machine",
+        sub: "IDLE → START → DATA → STOP → IDLE",
+        points: [
+          "Four explicit states keep timing deterministic.",
+          "tick_cnt counts 0…15 inside each bit; bit_idx counts data bits 0…7.",
+          "busy is asserted whenever state ≠ IDLE."
+        ],
+        tags: [
+          { t: "FSM", c: "dark" },
+          { t: "IDLE/START/DATA/STOP", c: "" },
+          { t: "busy", c: "hot" }
+        ],
+        code: `<span class="kw">localparam</span> IDLE=0, START=1, DATA=2, STOP=3;
+<span class="kw">assign</span> busy = (state != IDLE);`
+      },
+      {
+        id: "sample",
+        label: "RX Sample",
+        x: 50, y: 82,
+        filter: "rx",
+        ports: 2,
+        title: "Mid-bit sampling",
+        sub: "Why oversampling matters",
+        points: [
+          "Sampling at tick 7 (of 16) lands near the center of each bit.",
+          "That margin absorbs clock skew between transmitter and receiver.",
+          "False starts (glitches) are rejected if the mid-start sample is not low."
+        ],
+        tags: [
+          { t: "Timing", c: "dark" },
+          { t: "tick 7", c: "hot" },
+          { t: "Noise reject", c: "" }
+        ],
+        code: `<span class="cm">// 16× oversample bit window</span>
+<span class="cm">// |0······7······15|</span>
+<span class="cm">//         ^ sample</span>`
+      }
+    ];
+
+    const LINKS = [
+      ["uart", "baud"],
+      ["uart", "tx"],
+      ["uart", "rx"],
+      ["uart", "frame"],
+      ["uart", "fsm"],
+      ["uart", "sample"],
+      ["tx", "fsm"],
+      ["tx", "frame"],
+      ["rx", "sample"],
+      ["rx", "frame"],
+      ["baud", "tx"],
+      ["baud", "rx"]
+    ];
+
+    /* ========== Render topics + map ========== */
+    const topicList = document.getElementById("topic-list");
+    const mapEl = document.getElementById("map");
+    const svgEl = document.getElementById("map-svg");
+    let activeId = "uart";
+    let filter = "all";
+
+    function visibleNodes() {
+      return NODES.filter(n => filter === "all" || n.filter === filter || n.center);
+    }
+
+    function renderTopics() {
+      topicList.innerHTML = "";
+      visibleNodes().forEach(n => {
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "topic-btn" + (n.id === activeId ? " active" : "");
+        btn.innerHTML = `<span>${n.label}</span><span class="sup">${String(n.ports).replace(/0/g,"⁰").replace(/1/g,"¹").replace(/2/g,"²").replace(/3/g,"³").replace(/4/g,"⁴").replace(/5/g,"⁵").replace(/6/g,"⁶").replace(/7/g,"⁷").replace(/8/g,"⁸").replace(/9/g,"⁹")}</span>`;
+        btn.addEventListener("click", () => selectNode(n.id));
+        li.appendChild(btn);
+        topicList.appendChild(li);
+      });
+    }
+
+    function renderMap() {
+      const nodes = visibleNodes();
+      mapEl.querySelectorAll(".node").forEach(el => el.remove());
+
+      const w = mapEl.clientWidth || 400;
+      const h = mapEl.clientHeight || 420;
+      svgEl.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      svgEl.innerHTML = "";
+
+      const pos = {};
+      nodes.forEach(n => {
+        pos[n.id] = { x: (n.x / 100) * w, y: (n.y / 100) * h };
+      });
+
+      LINKS.forEach(([a, b]) => {
+        if (!pos[a] || !pos[b]) return;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", pos[a].x);
+        line.setAttribute("y1", pos[a].y);
+        line.setAttribute("x2", pos[b].x);
+        line.setAttribute("y2", pos[b].y);
+        line.dataset.a = a;
+        line.dataset.b = b;
+        if (a === activeId || b === activeId) line.classList.add("lit");
+        svgEl.appendChild(line);
+      });
+
+      requestAnimationFrame(() => svgEl.classList.add("ready"));
+
+      nodes.forEach(n => {
+        const el = document.createElement("button");
+        el.type = "button";
+        el.className = "node" + (n.center ? " center" : "") + (n.id === activeId ? " active" : "");
+        el.style.left = n.x + "%";
+        el.style.top = n.y + "%";
+        el.innerHTML = n.label + (n.center ? "" : '<span class="plus">+</span>');
+        el.addEventListener("click", () => selectNode(n.id));
+        mapEl.appendChild(el);
+      });
+    }
+
+    function selectNode(id) {
+      activeId = id;
+      const n = NODES.find(x => x.id === id);
+      document.getElementById("detail-title").textContent = n.title;
+      document.getElementById("detail-sub").textContent = n.sub;
+      document.getElementById("detail-points").innerHTML =
+        n.points.map(p => `<li>${p}</li>`).join("");
+      document.getElementById("detail-tags").innerHTML =
+        n.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join("");
+      document.getElementById("detail-code").innerHTML = n.code;
+
+      const deep = document.getElementById("deep-dive");
+      deep.textContent = (id === "frame" || id === "tx") ? "Play frame →" : "Deep dive frame →";
+
+      renderTopics();
+      renderMap();
+    }
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        filter = tab.dataset.filter;
+        document.getElementById("sort-label").textContent =
+          filter === "all" ? "Block" : tab.textContent;
+        if (!visibleNodes().some(n => n.id === activeId)) {
+          selectNode(visibleNodes()[0].id);
+        } else {
+          renderTopics();
+          renderMap();
+        }
+      });
+    });
+
+    /* ========== Frame / waveform ========== */
+    const bitLabels = ["Start", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "Stop"];
+    const bitsEl = document.getElementById("bits");
+    bitLabels.forEach((lbl, i) => {
+      const d = document.createElement("div");
+      d.className = "bit" + (i === 0 ? " start" : i === 9 ? " stop" : "");
+      d.innerHTML = `<span class="val">–</span><span class="lbl">${lbl}</span>`;
+      bitsEl.appendChild(d);
+    });
+
+    const wave = document.getElementById("wave");
+    let txTimer = null;
+
+    function drawWave(levels) {
+      // levels: array of 0/1 across time
+      const W = 1000, H = 56, midHi = 14, midLo = 42;
+      let d = `M 0 ${midHi}`;
+      let x = 0;
+      const step = W / Math.max(levels.length - 1, 1);
+      levels.forEach((lv, i) => {
+        const y = lv ? midHi : midLo;
+        if (i === 0) d = `M 0 ${y}`;
+        else {
+          d += ` H ${x}`;
+          d += ` V ${y}`;
+        }
+        x += step;
+      });
+      d += ` H ${W}`;
+      wave.innerHTML = `
+        <rect width="${W}" height="${H}" fill="#151515"/>
+        <path d="${d}" fill="none" stroke="#fe2627" stroke-width="2.5" stroke-linejoin="round"/>
+      `;
+    }
+
+    drawWave(Array(40).fill(1));
+
+    function charToBits(ch) {
+      const code = (ch || "A").charCodeAt(0) & 0xff;
+      const data = [];
+      for (let i = 0; i < 8; i++) data.push((code >> i) & 1);
+      return [0, ...data, 1]; // start, data, stop
+    }
+
+    function transmit() {
+      const ch = document.getElementById("char-input").value || "A";
+      const frame = charToBits(ch);
+      const bitDivs = [...bitsEl.children];
+      const status = document.getElementById("line-status");
+      if (txTimer) clearInterval(txTimer);
+
+      bitDivs.forEach((el, i) => {
+        el.classList.remove("on");
+        el.querySelector(".val").textContent = frame[i];
+      });
+
+      // build oversampled waveform: idle + frame bits + idle
+      const levels = Array(6).fill(1);
+      frame.forEach(b => {
+        for (let k = 0; k < 4; k++) levels.push(b);
+      });
+      for (let k = 0; k < 6; k++) levels.push(1);
+      drawWave(levels);
+
+      let i = 0;
+      status.textContent = "transmitting";
+      txTimer = setInterval(() => {
+        bitDivs.forEach(el => el.classList.remove("on"));
+        if (i < frame.length) {
+          bitDivs[i].classList.add("on");
+          status.textContent = bitLabels[i].toLowerCase() + " · " + frame[i];
+          i++;
+        } else {
+          clearInterval(txTimer);
+          status.textContent = "idle high";
+        }
+      }, 280);
+    }
+
+    document.getElementById("tx-btn").addEventListener("click", transmit);
+    document.getElementById("char-input").addEventListener("keydown", e => {
+      if (e.key === "Enter") transmit();
+    });
+    document.getElementById("deep-dive").addEventListener("click", () => {
+      document.getElementById("frame").scrollIntoView({ behavior: "smooth" });
+      setTimeout(transmit, 400);
+    });
+
+    /* ========== Full source ========== */
+    const SOURCE = `// UART — educational Verilog model for Silicon
+// Frame: 1 start · 8 data · 1 stop · no parity
+
+module baud_gen #(
+    parameter integer CLK_HZ  = 50_000_000,
+    parameter integer BAUD    = 115_200,
+    parameter integer OVERSAMPLE = 16
+)(
+    input  wire clk,
+    input  wire rst_n,
+    output reg  tick
+);
+    localparam integer DIV = CLK_HZ / (BAUD * OVERSAMPLE);
+    reg [$clog2(DIV)-1:0] cnt;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            cnt  <= 0;
+            tick <= 1'b0;
+        end else if (cnt == DIV - 1) begin
+            cnt  <= 0;
+            tick <= 1'b1;
+        end else begin
+            cnt  <= cnt + 1'b1;
+            tick <= 1'b0;
+        end
+    end
+endmodule
+
+module uart_tx (
+    input  wire       clk,
+    input  wire       rst_n,
+    input  wire       tick,
+    input  wire       tx_start,
+    input  wire [7:0] tx_data,
+    output reg        tx,
+    output wire       busy
+);
+    localparam IDLE=0, START=1, DATA=2, STOP=3;
+    reg [1:0] state;
+    reg [3:0] tick_cnt;
+    reg [2:0] bit_idx;
+    reg [7:0] shift;
+
+    assign busy = (state != IDLE);
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            state <= IDLE; tx <= 1'b1;
+            tick_cnt <= 0; bit_idx <= 0; shift <= 0;
+        end else case (state)
+            IDLE: begin
+                tx <= 1'b1;
+                if (tx_start) begin
+                    shift <= tx_data; tick_cnt <= 0; state <= START;
+                end
+            end
+            START: if (tick) begin
+                tx <= 1'b0;
+                if (tick_cnt == 4'd15) begin
+                    tick_cnt <= 0; bit_idx <= 0; state <= DATA;
+                end else tick_cnt <= tick_cnt + 1'b1;
+            end
+            DATA: if (tick) begin
+                tx <= shift[0];
+                if (tick_cnt == 4'd15) begin
+                    tick_cnt <= 0;
+                    shift <= {1'b0, shift[7:1]};
+                    if (bit_idx == 3'd7) state <= STOP;
+                    else bit_idx <= bit_idx + 1'b1;
+                end else tick_cnt <= tick_cnt + 1'b1;
+            end
+            STOP: if (tick) begin
+                tx <= 1'b1;
+                if (tick_cnt == 4'd15) begin
+                    tick_cnt <= 0; state <= IDLE;
+                end else tick_cnt <= tick_cnt + 1'b1;
+            end
+        endcase
+    end
+endmodule
+
+module uart_rx (
+    input  wire       clk,
+    input  wire       rst_n,
+    input  wire       tick,
+    input  wire       rx,
+    output reg  [7:0] rx_data,
+    output reg        rx_valid,
+    output reg        framing_err
+);
+    localparam IDLE=0, START=1, DATA=2, STOP=3;
+    reg [1:0] state;
+    reg [3:0] tick_cnt;
+    reg [2:0] bit_idx;
+    reg [7:0] shift;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            state <= IDLE; rx_data <= 0; rx_valid <= 0;
+            framing_err <= 0; tick_cnt <= 0; bit_idx <= 0; shift <= 0;
+        end else begin
+            rx_valid <= 1'b0;
+            case (state)
+                IDLE: if (tick && rx == 1'b0) begin
+                    tick_cnt <= 0; state <= START;
+                end
+                START: if (tick) begin
+                    if (tick_cnt == 4'd7) begin
+                        if (rx == 1'b0) begin
+                            tick_cnt <= 0; bit_idx <= 0; state <= DATA;
+                        end else state <= IDLE;
+                    end else tick_cnt <= tick_cnt + 1'b1;
+                end
+                DATA: if (tick) begin
+                    if (tick_cnt == 4'd15) begin
+                        tick_cnt <= 0;
+                        shift <= {rx, shift[7:1]};
+                        if (bit_idx == 3'd7) state <= STOP;
+                        else bit_idx <= bit_idx + 1'b1;
+                    end else tick_cnt <= tick_cnt + 1'b1;
+                end
+                STOP: if (tick) begin
+                    if (tick_cnt == 4'd7) begin
+                        framing_err <= (rx != 1'b1);
+                        rx_data <= shift; rx_valid <= 1'b1;
+                        tick_cnt <= 0; state <= IDLE;
+                    end else tick_cnt <= tick_cnt + 1'b1;
+                end
+            endcase
+        end
+    end
+endmodule
+
+module uart #(
+    parameter integer CLK_HZ = 50_000_000,
+    parameter integer BAUD   = 115_200
+)(
+    input  wire       clk, rst_n,
+    input  wire       tx_start,
+    input  wire [7:0] tx_data,
+    output wire       tx, tx_busy,
+    input  wire       rx,
+    output wire [7:0] rx_data,
+    output wire       rx_valid, framing_err
+);
+    wire tick;
+    baud_gen #(.CLK_HZ(CLK_HZ), .BAUD(BAUD)) u_baud (
+        .clk(clk), .rst_n(rst_n), .tick(tick)
+    );
+    uart_tx u_tx (
+        .clk(clk), .rst_n(rst_n), .tick(tick),
+        .tx_start(tx_start), .tx_data(tx_data),
+        .tx(tx), .busy(tx_busy)
+    );
+    uart_rx u_rx (
+        .clk(clk), .rst_n(rst_n), .tick(tick),
+        .rx(rx), .rx_data(rx_data),
+        .rx_valid(rx_valid), .framing_err(framing_err)
+    );
+endmodule
+`;
+
+    function highlightVerilog(src) {
+      return src
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/(\/\/.*)$/gm, '<span class="cm">$1</span>')
+        .replace(/\b(module|endmodule|parameter|localparam|input|output|inout|wire|reg|always|begin|end|if|else|case|endcase|assign|posedge|negedge)\b/g,
+          '<span class="kw">$1</span>')
+        .replace(/\b(integer|logic)\b/g, '<span class="ty">$1</span>')
+        .replace(/\b(\d+'[bhd]\w+|\d+)\b/g, '<span class="nu">$1</span>');
+    }
+
+    document.getElementById("full-source").innerHTML = highlightVerilog(SOURCE);
+
+    document.getElementById("copy-src").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(SOURCE);
+        const btn = document.getElementById("copy-src");
+        btn.textContent = "Copied";
+        setTimeout(() => { btn.textContent = "Copy source"; }, 1400);
+      } catch (_) {
+        /* ignore */
+      }
+    });
+
+    /* ========== Scroll helpers ========== */
+    document.querySelectorAll("[data-scroll]").forEach(el => {
+      el.addEventListener("click", () => {
+        const t = document.querySelector(el.getAttribute("data-scroll"));
+        if (t) t.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    /* ========== Init ========== */
+    selectNode("uart");
+    window.addEventListener("resize", () => renderMap());
+  </script>
+</body>
+</html>

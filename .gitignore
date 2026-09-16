@@ -1,0 +1,12 @@
+# Jekyll build output
+_site/
+
+# Bundler / local gem install
+.bundle/
+vendor/
+
+# Generated dependency lockfile (theme gem is not distributed with a lock)
+Gemfile.lock
+
+# Built gem artifacts
+*.gem

@@ -660,11 +660,18 @@
     .bit.on {
       background: var(--red);
       border-color: var(--red);
-      box-shadow: 0 0 24px rgba(254, 38, 39, 0.45);
-      transform: translateY(-3px);
+      box-shadow: 0 0 28px rgba(254, 38, 39, 0.55);
+      transform: translateY(-4px) scale(1.04);
     }
 
     .bit.on .lbl { color: #ffd0d0; }
+
+    .bit.done {
+      background: #3a1515;
+      border-color: #6b2a2a;
+    }
+
+    .bit.done .lbl { color: #c98888; }
 
     .bit.start, .bit.stop { background: #1f1f1f; }
 
@@ -1264,31 +1271,45 @@
       if (txTimer) clearInterval(txTimer);
 
       bitDivs.forEach((el, i) => {
-        el.classList.remove("on");
+        el.classList.remove("on", "done");
         el.querySelector(".val").textContent = frame[i];
       });
 
-      // build oversampled waveform: idle + frame bits + idle
-      const levels = Array(6).fill(1);
-      frame.forEach(b => {
-        for (let k = 0; k < 4; k++) levels.push(b);
-      });
-      for (let k = 0; k < 6; k++) levels.push(1);
-      drawWave(levels);
+      function paintWave(upTo) {
+        const accurate = Array(4).fill(1);
+        for (let idx = 0; idx < frame.length; idx++) {
+          for (let k = 0; k < 4; k++) accurate.push(idx <= upTo ? frame[idx] : 1);
+        }
+        for (let k = 0; k < 4; k++) accurate.push(1);
+        drawWave(accurate);
+      }
+
+      paintWave(-1);
 
       let i = 0;
       status.textContent = "transmitting";
+
       txTimer = setInterval(() => {
         bitDivs.forEach(el => el.classList.remove("on"));
         if (i < frame.length) {
+          for (let j = 0; j < i; j++) bitDivs[j].classList.add("done");
           bitDivs[i].classList.add("on");
+          paintWave(i);
           status.textContent = bitLabels[i].toLowerCase() + " · " + frame[i];
           i++;
         } else {
+          bitDivs.forEach(el => {
+            el.classList.remove("on");
+            el.classList.add("done");
+          });
+          paintWave(frame.length - 1);
           clearInterval(txTimer);
           status.textContent = "idle high";
+          setTimeout(() => {
+            bitDivs.forEach(el => el.classList.remove("done"));
+          }, 900);
         }
-      }, 280);
+      }, 380);
     }
 
     document.getElementById("tx-btn").addEventListener("click", transmit);

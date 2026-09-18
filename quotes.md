@@ -12,6 +12,8 @@
 
 "Are you righteous? Kind? Does your confidence lie in this? Are you loved by all? Know that I was, too. Do you imagine your suffering will be any less because you loved goodness and truth?" -**Takamitsu Ôkubo, The Thin Red Line**
 
+"One man looks at a dying bird and thinks there's nothing but unanswered pain. But death's got the final word. It's laughing at him. Another man sees that same bird, feels the glory. Feels something smiling through him." -**Private Edward P. Train, The Thin Red Line**
+
 "All the western nations are caught in a lie, the lie of their pretended humanism: this means that their history has no moral justification, and that the West has no moral authority.” - **James Baldwin**
 
 "Nothing in life is certain except death, taxes and the second law of thermodynamics" - **Seth Lloyd**

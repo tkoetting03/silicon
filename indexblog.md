@@ -13,5 +13,7 @@
 
 ### [Op Amp](blog/opamp.md)
 
+### [UART Explainer](uart/)
+
 
 [Back](./)

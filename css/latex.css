@@ -13,62 +13,63 @@
   --font-sans: "Computer Modern Sans", "CMU Sans Serif", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "Computer Modern Typewriter", "JetBrains Mono", "Courier New", Courier, monospace;
 
-  /* Classic LaTeX Paper (Default) */
-  --bg-desktop: #e8e8e8;
-  --bg-page: #ffffff;
-  --text-primary: #111111;
-  --text-secondary: #444444;
-  --text-muted: #666666;
-  --rule-color: #222222;
-  --rule-light: #d0d0d0;
-  --col-divider: #e4e4e4;
-  --interactive-bg: #f8f9fa;
-  --interactive-border: #cccccc;
-  --accent-color: #003366;
-  --accent-link: #002288;
-  --tag-bg: #f0f0f0;
-  --code-bg: #f5f6f8;
-  --code-border: #dcdcdc;
-  --page-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
-  --paper-width: 960px;
+  /* Classic LaTeX Paper with 'Distance' Editorial Warmth */
+  --bg-desktop: #e3dfd7;
+  --bg-page: #faf8f4;
+  --text-primary: #121316;
+  --text-secondary: #3c3f46;
+  --text-muted: #6e727c;
+  --rule-color: #121316;
+  --rule-light: #d6d1c7;
+  --col-divider: #ddd8ce;
+  --interactive-bg: #f2eee6;
+  --interactive-border: #c9c3b6;
+  --accent-color: #0b1a30;
+  --accent-link: #153258;
+  --tag-bg: #ece7dc;
+  --code-bg: #eee9df;
+  --code-border: #cdc6b8;
+  --page-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --paper-width: 980px;
 }
 
 [data-theme="parchment"] {
-  --bg-desktop: #dfd7cc;
-  --bg-page: #f9f6ee;
-  --text-primary: #25201b;
-  --text-secondary: #4a423a;
-  --text-muted: #6e655b;
-  --rule-color: #2b241e;
-  --rule-light: #ded7cb;
-  --col-divider: #e2dbcf;
-  --interactive-bg: #f0ece1;
-  --interactive-border: #cdc3b3;
-  --accent-color: #632a10;
-  --accent-link: #5c2c12;
-  --tag-bg: #e8e2d4;
-  --code-bg: #eee9dc;
-  --code-border: #cfc6b5;
-  --page-shadow: 0 4px 22px rgba(50, 35, 20, 0.12);
+  --bg-desktop: #ded6c8;
+  --bg-page: #f6f1e5;
+  --text-primary: #1f1b17;
+  --text-secondary: #453e37;
+  --text-muted: #72685d;
+  --rule-color: #241e19;
+  --rule-light: #d8cfbf;
+  --col-divider: #dcd3c3;
+  --interactive-bg: #ebe3d3;
+  --interactive-border: #c8bdab;
+  --accent-color: #4a2210;
+  --accent-link: #5c2d16;
+  --tag-bg: #e5dccb;
+  --code-bg: #e8dfce;
+  --code-border: #c9beab;
+  --page-shadow: 0 8px 30px rgba(40, 30, 20, 0.12);
 }
 
 [data-theme="dark"] {
-  --bg-desktop: #0c0e12;
-  --bg-page: #15181e;
-  --text-primary: #e6e8eb;
-  --text-secondary: #b0b4ba;
-  --text-muted: #828790;
-  --rule-color: #4a505b;
-  --rule-light: #2c323b;
-  --col-divider: #262b34;
-  --interactive-bg: #1c212a;
-  --interactive-border: #38404d;
-  --accent-color: #64b5f6;
-  --accent-link: #82b1ff;
-  --tag-bg: #222832;
-  --code-bg: #111419;
-  --code-border: #2e3541;
-  --page-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  /* Distance Minimalist Dark Aesthetic */
+  --bg-desktop: #0e0f12;
+  --bg-page: #16171b;
+  --text-primary: #f0f2f5;
+  --text-secondary: #b6bac2;
+  --text-muted: #7b818d;
+  --rule-color: #464c58;
+  --rule-light: #2c3038;
+  --col-divider: #262a32;
+  --interactive-bg: #1d1f25;
+  --interactive-border: #383c47;
+  --accent-color: #79b8ff;
+  --accent-link: #9ac7ff;
+  --tag-bg: #22252c;
+  --code-bg: #121316;
+  --code-border: #2c3038;
+  --page-shadow: 0 10px 40px rgba(0, 0, 0, 0.65);
 }
 
 /* Reset & Box Sizing */
@@ -314,30 +315,64 @@ body {
 /* Document Title Block */
 .article-header {
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2rem;
 }
 
 .article-title {
-  font-size: 1.65rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
+  font-size: 2.15rem;
+  font-weight: 800;
+  line-height: 1.16;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
 }
 
 .article-authors {
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   margin-bottom: 0.35rem;
 }
 
 .article-affiliation {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-style: italic;
   color: var(--text-secondary);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 'Distance' Style Minimalist Metadata Grid */
+.distance-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  padding: 0.9rem 0.5rem;
+  margin: 1.6rem 0 2rem 0;
+  border-top: 1.5px solid var(--rule-color);
+  border-bottom: 1px solid var(--rule-light);
+  text-align: left;
+}
+
+.distance-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.distance-meta-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.distance-meta-val {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-serif);
 }
 
 .article-meta-links {
@@ -364,10 +399,10 @@ body {
 
 /* Abstract Container (indented, justified, centered) */
 .abstract-block {
-  max-width: 86%;
-  margin: 1.5rem auto 2.2rem auto;
-  font-size: 0.88rem;
-  line-height: 1.45;
+  max-width: 88%;
+  margin: 1.6rem auto 2.4rem auto;
+  font-size: 0.9rem;
+  line-height: 1.52;
   text-align: justify;
   text-justify: inter-word;
   color: var(--text-secondary);
@@ -380,25 +415,25 @@ body {
 }
 
 .abstract-runin {
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
   color: var(--text-primary);
 }
 
 .keywords-line {
-  font-size: 0.82rem;
-  margin-top: 0.4rem;
+  font-size: 0.84rem;
+  margin-top: 0.5rem;
 }
 
 .keywords-runin {
-  font-weight: 700;
+  font-weight: 800;
   font-style: normal;
 }
 
 .header-separator {
   border: none;
-  border-top: 0.75px solid var(--rule-color);
-  margin: 1.6rem 0 2rem 0;
+  border-top: 1.5px solid var(--rule-color);
+  margin: 1.8rem 0 2.2rem 0;
 }
 
 /* ==========================================================================
@@ -411,14 +446,14 @@ body {
 /* Two-column layout (Default matching PDF) */
 [data-layout="twocolumn"] .monograph-body {
   column-count: 2;
-  column-gap: 2.2rem;
+  column-gap: 2.4rem;
   column-rule: 0.5px solid var(--col-divider);
 }
 
 /* One-column layout (Reading mode) */
 [data-layout="onecolumn"] .monograph-body {
   column-count: 1;
-  max-width: 780px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -434,7 +469,7 @@ p {
   text-justify: inter-word;
   text-indent: 1.4em;
   margin-bottom: 0.45em;
-  line-height: 1.48;
+  line-height: 1.5;
   hyphens: auto;
 }
 
@@ -446,25 +481,28 @@ h3 + p,
   text-indent: 0;
 }
 
-/* Section Headings (Rigid LaTeX standard) */
+/* Section Headings (Bigger, Bolder, with 'Distance' Editorial Gravity) */
 .section-header {
-  font-size: 0.98rem;
-  font-weight: 700;
-  font-variant: small-caps;
-  letter-spacing: 0.05em;
-  margin-top: 1.6rem;
-  margin-bottom: 0.65rem;
+  font-size: 1.34rem;
+  font-weight: 800;
+  letter-spacing: -0.018em;
+  line-height: 1.24;
+  margin-top: 2.4rem;
+  margin-bottom: 0.85rem;
   color: var(--text-primary);
+  border-bottom: 1.5px solid var(--rule-color);
+  padding-bottom: 0.35rem;
   break-after: avoid;
   page-break-after: avoid;
 }
 
 .subsection-header {
-  font-size: 0.92rem;
-  font-weight: 600;
-  font-style: italic;
-  margin-top: 1.2rem;
-  margin-bottom: 0.45rem;
+  font-size: 1.06rem;
+  font-weight: 750;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+  margin-top: 1.6rem;
+  margin-bottom: 0.55rem;
   color: var(--text-primary);
   break-after: avoid;
   page-break-after: avoid;
@@ -1303,19 +1341,19 @@ canvas.sim-canvas {
 }
 
 .latex-toc-title {
-  font-variant: small-caps;
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: 1.4rem;
   text-align: center;
+  color: var(--text-primary);
 }
 
 .latex-toc-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1.1rem;
 }
 
 .latex-toc-item {
@@ -1326,51 +1364,80 @@ canvas.sim-canvas {
 }
 
 .latex-toc-link {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.08rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   text-decoration: none;
   display: inline-flex;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: 0.6rem;
   background: var(--bg-page);
-  padding-right: 0.4rem;
+  padding-right: 0.5rem;
   position: relative;
   z-index: 1;
+  transition: color 0.15s ease;
 }
 
 .latex-toc-link:hover {
-  color: var(--accent-color);
+  color: var(--accent-link);
   text-decoration: underline;
 }
 
 .latex-toc-secnum {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+  font-weight: 600;
 }
 
 .latex-toc-dots {
   flex-grow: 1;
   border-bottom: 1.5px dotted var(--rule-light);
-  margin: 0 0.4rem;
+  margin: 0 0.5rem;
   height: 0.7em;
 }
 
 .latex-toc-page {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-primary);
   background: var(--bg-page);
-  padding-left: 0.4rem;
+  padding-left: 0.5rem;
   position: relative;
   z-index: 1;
 }
 
 .latex-toc-desc {
-  font-size: 0.82rem;
-  font-style: italic;
+  font-size: 0.86rem;
+  line-height: 1.45;
   color: var(--text-secondary);
-  margin-top: 0.15rem;
-  padding-left: 2rem;
+  margin-top: 0.2rem;
+  padding-left: 2.2rem;
+}
+
+/* 'Distance' Morse Code Signal Motif */
+.morse-signal-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 2.2rem 0;
+  user-select: none;
+  opacity: 0.65;
+}
+
+.morse-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--text-primary);
+  border-radius: 1px;
+}
+
+.morse-dash {
+  width: 16px;
+  height: 5px;
+  background-color: var(--text-primary);
+  border-radius: 1px;
 }

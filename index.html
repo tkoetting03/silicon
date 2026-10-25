@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper" data-layout="twocolumn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silicon — Thomas Koetting</title>
+  <meta name="description" content="An interactable LaTeX research paper and academic portfolio on semiconductor modeling, game-theoretic security, and systems engineering by Thomas Koetting.">
+  <meta name="author" content="Thomas Koetting">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/thumbnail.png">
+
+  <!-- Computer Modern & Academic Typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <!-- KaTeX CSS & JS for LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Core LaTeX Monograph Stylesheet -->
+  <link rel="stylesheet" href="css/latex.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Minimalist TeX Utility & Metadata Toolbar
+       ========================================================================== -->
+  <header class="tex-toolbar" role="banner">
+    <div class="tex-meta-left">
+      <span class="tex-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        pdfTeX-3.14159
+      </span>
+      <nav class="tex-nav-links" aria-label="Monograph Sections">
+        <a href="#sec-intro">§1 Intro</a>
+        <a href="#sec-hardware">§2 Hardware</a>
+        <a href="#sec-security">§3 Security</a>
+        <a href="#sec-systems">§4 Systems</a>
+        <a href="#sec-ai">§5 AI Discourse</a>
+        <a href="#sec-epigraphs">§6 Epigraphs</a>
+        <a href="#sec-catalog">§7 Catalog</a>
+        <a href="#sec-refs">§8 References</a>
+      </nav>
+    </div>
+
+    <div class="tex-meta-right">
+      <!-- Layout Mode Group -->
+      <div class="tex-btn-group" title="Select Document Layout Mode">
+        <button class="tex-btn active" data-set-layout="twocolumn" title="Two-Column Proceedings (as in PDF)">2-Col</button>
+        <button class="tex-btn" data-set-layout="onecolumn" title="Single-Column Manuscript">1-Col</button>
+        <button class="tex-btn" data-set-layout="paginated" title="Paginated Sheets">Pages</button>
+      </div>
+
+      <!-- Theme Group -->
+      <div class="tex-btn-group" title="Select Paper Tone">
+        <button class="tex-btn active" data-set-theme="paper" title="Classic White Paper">Paper</button>
+        <button class="tex-btn" data-set-theme="parchment" title="Archival Parchment">Parchment</button>
+        <button class="tex-btn" data-set-theme="dark" title="Overleaf Dark">Dark</button>
+      </div>
+
+      <!-- Actions -->
+      <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Recompile
+      </button>
+
+      <button class="tex-action-btn" data-open-bibtex title="Copy BibTeX Citation">
+        [Cite]
+      </button>
+
+      <button class="tex-action-btn" onclick="window.print()" title="Print physical academic paper">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main Paper Sheet Container (Letter dimensions / Authentic Formatting)
+       ========================================================================== -->
+  <div class="paper-outer-wrapper">
+    <article class="paper-sheet" id="paper-document">
+
+      <!-- Proceedings Header (matching Page 1 & 2 of the PDF) -->
+      <header class="proceedings-header">
+        <div class="proceedings-title">
+          Proceedings of the Silicon Colloquium on Semiconductor Devices, Distributed Security & Systems
+        </div>
+        <div class="proceedings-vol">
+          Vol. 2 &mdash; December 2026 &mdash; ISSN 2470-1049
+        </div>
+      </header>
+
+      <!-- Document Title Block -->
+      <div class="article-header">
+        <h1 class="article-title">
+          Silicon: An Interdisciplinary Monograph on Hardware Synthesis, Non-Cooperative Security Dynamics, and Machine Intelligence
+        </h1>
+        <div class="article-authors">
+          Thomas Koetting
+        </div>
+        <div class="article-affiliation">
+          Department of Electrical Engineering &amp; Computer Science, University of Kansas<br>
+          Silicon Research Collective, Timarpur / Overland Park
+        </div>
+        <div class="article-meta-links">
+          <span>E-mail: <a href="mailto:tkoettin@stumail.jccc.edu">tkoettin@stumail.jccc.edu</a></span>
+          <span>&bull;</span>
+          <span><a href="https://github.com/tkoetting03" target="_blank" rel="noopener">github.com/tkoetting03</a></span>
+          <span>&bull;</span>
+          <span><a href="https://www.linkedin.com/in/thomas-koetting-5a94b8239/" target="_blank" rel="noopener">LinkedIn</a></span>
+          <span>&bull;</span>
+          <span><a href="https://www.youtube.com/@thomask7326" target="_blank" rel="noopener">YouTube</a></span>
+          <span>&bull;</span>
+          <span><a href="https://tidal.com/@tckoetting" target="_blank" rel="noopener">Tidal</a></span>
+        </div>
+      </div>
+
+      <!-- LaTeX Abstract Block -->
+      <section class="abstract-block" aria-label="Abstract">
+        <p>
+          <span class="abstract-runin">Abstract &mdash;</span>
+          This monograph presents an integrated investigation spanning digital logic synthesis, non-cooperative game theoretic security models, discrete control theory, and the socioeconomic dynamics of automated intelligence. First, we examine the synthesis and hardware description of operational amplifiers in Verilog, progressing from ideal behavioral abstractions to discrete iterative-addition accumulator circuits and gate-level netlists mapped to physical MinecraftHDL redstone architectures. Second, we formalize an economic framework for back-end web application security using Stackelberg and Bayesian game theoretic formulations, demonstrating how diminishing marginal fortification yields optimal Nash equilibria under constrained engineering budgets. Third, we document applied embedded architectures including a 32-bit RISC-V microcontroller, a closed-loop discrete PID compensator, and a lock-free circular ring buffer in C. Finally, we critique the structural pressures of artificial intelligence on critical human cognition and corporate labor outsourcing, supported by an annotated philosophical and cultural compendium.
+        </p>
+        <div class="keywords-line">
+          <span class="keywords-runin">Key words &mdash;</span>
+          <em>Hardware Synthesis &bull; Verilog HDL &bull; Operational Amplifiers &bull; Game Theory &bull; Nash Equilibrium &bull; RISC-V &bull; PID Control &bull; Ring Buffers &bull; Machine Intelligence &bull; Silicon Ethics</em>
+        </div>
+      </section>
+
+      <hr class="header-separator">
+
+      <!-- ==========================================================================
+           Two-Column Monograph Body
+           ========================================================================== -->
+      <div class="monograph-body">
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 1: INTRODUCTION
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-intro">1. Introduction</h2>
+        <p>
+          Technological progression has historically centered upon conferring mechanical and cognitive leverage to mankind. From the steam engines of the Industrial Revolution to the solid-state transistors synthesized in the golden age of Bell Telephone Laboratories, human ingenuity has striven to maximize finished work output while minimizing muscular and computational expenditure. However, the modern digital landscape has introduced deep structural bifurcations between abstraction and physical implementation. Modern software frameworks frequently obscure the underlying physics of digital logic, while corporate organizational strategies treat technical fortresses as static configurations rather than dynamic battlegrounds.
+        </p>
+        <p>
+          The <em>Silicon</em> monograph represents an effort to bridge these disparate strata. By exploring systems from basic silicon gates to high-level game-theoretic resource allocation, we seek to re-establish first-principles clarity. This paper consolidates our research across three core domains: (i) the hardware description and digital logic synthesis of analog components in Verilog, (ii) the formulation of non-cooperative game theory to model back-end web application security under constrained developer hours, and (iii) the applied implementation of systems software, including 32-bit RISC-V microarchitectures and discrete PID control algorithms. We conclude with a socio-technical analysis of artificial intelligence and its implications for human critical thinking.
+        </p>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 2: HARDWARE SYNTHESIS & OP-AMP MODELING
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-hardware">2. Hardware Architecture &amp; Verilog Op-Amp Modeling</h2>
+        <p>
+          In our exploration of Small-Scale Integration (SSI) and Medium-Scale Integration (MSI) semiconductor products, the operational amplifier (op-amp) occupies a foundational position <a class="citation-link" data-ref="1" title="Citation">[1]</a>. Primary design inspiration was drawn from radiation-hardened operational amplifiers such as the Texas Instruments OPA4H199-SP, along with theoretical treatments from Toshiba semiconductor documentation and University of Kansas EECS research.
+        </p>
+
+        <h3 class="subsection-header">2.1 Ideal Behavioral Abstraction</h3>
+        <p>
+          We initially formulated the op-amp according to its ideal transfer characteristic, amplifying an input signal $V_{\text{in}}$ through direct multiplication by a scalar parameter $\text{Gain}$:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$V_{\text{out}} = \text{Gain} \times V_{\text{in}}$$
+          </div>
+          <span class="equation-number" title="Equation (1)">(1)</span>
+        </div>
+
+        <p class="no-indent">
+          In hardware description languages such as Verilog-2001, this abstraction is expressed succinctly:
+        </p>
+
+<pre><code class="language-verilog">module OpAmp(
+    input  wire [x:0] Vin,
+    output wire [x:0] Vout,
+    input  wire [x:0] Gain
+);
+    assign Vout = Gain * Vin;
+endmodule</code></pre>
+
+        <p>
+          Here, the parameter $x$ denotes an arbitrary bus bit-width left unconstrained to permit generalized evaluation <a href="#footnote-1" class="citation-link">[a]</a>. While analytically clean, this behavioral formulation relies upon an implicit, high-overhead digital hardware multiplier that fails to reflect the physical realities and constraints of discrete silicon gates.
+        </p>
+
+        <h3 class="subsection-header">2.2 Iterative Arithmetic Realization</h3>
+        <p>
+          To approximate discrete silicon structures without introducing external mathematical coprocessors, we replaced the abstract multiplier with an iterative accumulator loop. Working as a clocked state pipeline, an iterative integer variable $i$ is compared against the maximum gain parameter $\text{GAIN\_MAX} = 8$. For each cycle wherein $i < \text{Gain}$, the accumulator register increments by $V_{\text{in}}$:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$V_{\text{out}}[k] = \sum_{i=0}^{\min(\text{Gain}-1, 7)} V_{\text{in}}$$
+          </div>
+          <span class="equation-number" title="Equation (2)">(2)</span>
+        </div>
+
+<pre><code class="language-verilog">module OpAmp(
+    input  wire Vin, 
+    input  wire Gain,  
+    output reg  Vout  
+);
+    parameter MAX_GAIN = 8; 
+    integer i;               
+
+    always @(*) begin
+        Vout = 0; 
+        for (i = 0; i &lt; MAX_GAIN; i = i + 1) begin
+            if (i &lt; Gain)  
+                Vout = Vout + Vin;
+        end
+    end
+endmodule</code></pre>
+
+        <!-- Figure 1: Interactive OpAmp Logic & Oscilloscope Simulator -->
+        <figure class="latex-figure" id="fig-opamp-sim">
+          <div class="figure-frame">
+            <!-- Simulator Controls -->
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="opamp-vin-slider">Vin:</label>
+                <input type="range" id="opamp-vin-slider" class="sim-slider" min="0.2" max="3.0" step="0.1" value="1.2">
+                <span id="opamp-vin-val" class="sim-value-badge">1.2 V</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="opamp-gain-slider">Gain:</label>
+                <input type="range" id="opamp-gain-slider" class="sim-slider" min="0" max="8" step="1" value="4">
+                <span id="opamp-gain-val" class="sim-value-badge">4</span>
+              </div>
+              <button class="sim-btn" id="opamp-step-btn" title="Execute single clock pulse">Step (i++)</button>
+              <button class="sim-btn" id="opamp-run-btn" title="Clock automatic cycles">▶ Auto Clock</button>
+              <button class="sim-btn" id="opamp-reset-btn" title="Reset state">Reset</button>
+            </div>
+
+            <!-- Phosphor Oscilloscope Screen -->
+            <div class="oscilloscope-canvas-wrapper">
+              <canvas id="opamp-canvas" class="sim-canvas"></canvas>
+            </div>
+
+            <!-- Pipeline Step Grid -->
+            <div class="logic-steps-grid" id="opamp-steps-grid"></div>
+
+            <div class="sim-readout-row">
+              <span id="opamp-status-readout">Step i=0: (i &lt; Gain) is TRUE: +1.2V</span>
+              <strong id="opamp-vout-readout">Vout = 4.80 V</strong>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 1.</strong> Interactive Verilog operational amplifier waveform and logic stepper. Users may adjust input voltage $V_{\text{in}}$ and discrete gain $A \in [0, 8]$. Stepping through clock iterations simulates accumulator multiplexing with real-time oscilloscope trace output.
+          </figcaption>
+        </figure>
+
+        <h3 class="subsection-header">2.3 Logic Synthesis &amp; Physical Discretization</h3>
+        <p>
+          Gate-level synthesis of this iterative op-amp was executed using the open-source Yosys digital logic suite <a class="citation-link" data-ref="2" title="Citation">[2]</a>. The resulting netlist structures decompose the conditional adder into eight cascaded multiplexer stages. Iterative addresses $0\text{x}0$ through $0\text{x}7$ serve as data buses, while comparator logic ($0\text{xA} < \text{Gain}$) drives select lines. The zero-input of stage $k$ receives the accumulated sum of stage $k-1$, while the one-input routes the arithmetic addition of $V_{\text{in}}$.
+        </p>
+
+        <!-- Figure 2: Interactive Circuit Image Inspector -->
+        <figure class="latex-figure" id="fig-circuits">
+          <div class="figure-frame">
+            <div class="circuit-tabs-nav">
+              <button class="circuit-tab-btn active" data-target="tab-yosys-svg">Yosys Netlist SVG</button>
+              <button class="circuit-tab-btn" data-target="tab-yosys-block">Yosys Logic Block</button>
+              <button class="circuit-tab-btn" data-target="tab-redstone">MinecraftHDL Redstone</button>
+            </div>
+
+            <!-- Pane 1: SVG Netlist -->
+            <div class="circuit-tab-pane active" id="tab-yosys-svg">
+              <img src="assets/img/Untitled.svg" alt="Yosys Generated Vector Netlist" class="circuit-img-frame" loading="lazy">
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Yosys NetlistSVG gate-level schematic showing multiplexer and adder cascade.</div>
+            </div>
+
+            <!-- Pane 2: Yosys Block Diagram -->
+            <div class="circuit-tab-pane" id="tab-yosys-block">
+              <img src="assets/img/yosya.jpg" alt="Yosys Digital Logic Synthesis" class="circuit-img-frame" loading="lazy">
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Memory blocks 0x0–7 with multiplexer selectors and accumulator bus.</div>
+            </div>
+
+            <!-- Pane 3: Redstone HDL -->
+            <div class="circuit-tab-pane" id="tab-redstone">
+              <img src="assets/img/redstone.jpg" alt="MinecraftHDL Redstone Circuit" class="circuit-img-frame" loading="lazy">
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Physical discrete simulation in Minecraft utilizing MinecraftHDL logic gates.</div>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 2.</strong> Multi-tier structural synthesis of the operational amplifier. Top: Yosys gate-level vector schematic. Middle: Register-transfer level (RTL) block diagram. Bottom: Spatial physicalization compiled directly to redstone repeaters via MinecraftHDL.
+          </figcaption>
+        </figure>
+
+        <p>
+          Beyond silicon synthesis, we compiled the identical RTL specification directly into a discrete spatial simulation via the MinecraftHDL compiler <a href="#footnote-2" class="citation-link">[b]</a>. Redstone dust, repeaters, and comparators provide a visceral, physical demonstration of digital propagation delays and boolean truth tables in real time.
+        </p>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 3: NON-COOPERATIVE GAME THEORETIC DEFENSE
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-security">3. Non-Cooperative Game Theoretic Security</h2>
+        <p>
+          In contemporary web development environments, engineering organizations engage in continuous, asymmetric combat against malicious actors probing for exploitable attack surfaces <a class="citation-link" data-ref="3" title="Citation">[3]</a>. Traditional defensive strategies focus heavily on static perimeter hardening and reactive patching. In our peer-reviewed investigation, <em>"Can Non-Cooperative Game Theory Assist Modeling Security Implementation for Back-End Web App Development?"</em>, we formalize this adversarial relationship through non-cooperative Stackelberg and Bayesian game theoretic models <a class="citation-link" data-ref="4" title="Citation">[4]</a>, <a class="citation-link" data-ref="14" title="Citation">[14]</a>.
+        </p>
+
+        <h3 class="subsection-header">3.1 Mathematical Formulation &amp; Diminishing Returns</h3>
+        <p>
+          Adapting power-grid physical resilience models proposed by Rao et al. <a class="citation-link" data-ref="3" title="Citation">[3]</a>, we characterize web components (e.g. authentication endpoints, database migrations in Laravel or Ruby on Rails <a class="citation-link" data-ref="15" title="Citation">[15]</a>) subject to cyber-attacks $y_c$ and defense allocation $x_c$. The probability of breach $p_{P|R}$ follows:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$p_{P|R} = \frac{f_P}{1 + N_L [y_c - x_c]^{+}}$$
+          </div>
+          <span class="equation-number" title="Equation (3)">(3)</span>
+        </div>
+
+        <p class="no-indent">
+          where $N_L$ represents the number of exposed routing paths, and $[z]^{+} \equiv \max(0, z)$. Crucially, engineering budgets are strictly bounded. Applying software functionality models from Hui &amp; Tam <a class="citation-link" data-ref="4" title="Citation">[4]</a>, marginal fortification returns diminish rapidly as developer hours increase <a class="citation-link" data-ref="19" title="Citation">[19]</a>. Given market capacity $M$ and asset valuation $V$, software fortification $Q''$ and defender payoff $\pi''$ are expressed:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$Q'' = \frac{2}{5M} \left( (V + M) + \sqrt{(V + M)^2 - 5VM} \right)$$
+          </div>
+          <span class="equation-number" title="Equation (4)">(4)</span>
+        </div>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$\pi'' = \frac{2M - 8V}{25M} \left( (V + M) + \sqrt{(V + M)^2 - 5VM} \right) - \frac{V}{5}$$
+          </div>
+          <span class="equation-number" title="Equation (5)">(5)</span>
+        </div>
+
+        <!-- Figure 3: Interactive Game Theory Simulator -->
+        <figure class="latex-figure" id="fig-gametheory-sim">
+          <div class="figure-frame">
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="gt-v-slider">Asset V:</label>
+                <input type="range" id="gt-v-slider" class="sim-slider" min="1" max="10" step="0.5" value="4.0">
+                <span id="gt-v-val" class="sim-value-badge">4.0</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="gt-m-slider">Adversary M:</label>
+                <input type="range" id="gt-m-slider" class="sim-slider" min="5" max="25" step="1" value="10.0">
+                <span id="gt-m-val" class="sim-value-badge">10.0</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="gt-yc-slider">Attacks yc:</label>
+                <input type="range" id="gt-yc-slider" class="sim-slider" min="1" max="12" step="0.5" value="6.0">
+                <span id="gt-yc-val" class="sim-value-badge">6.0</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="gt-xc-slider">Defense xc:</label>
+                <input type="range" id="gt-xc-slider" class="sim-slider" min="0" max="15" step="0.25" value="4.5">
+                <span id="gt-xc-val" class="sim-value-badge">4.5</span>
+              </div>
+            </div>
+
+            <div style="height:210px; position:relative;">
+              <canvas id="gametheory-canvas" class="sim-canvas"></canvas>
+            </div>
+
+            <div class="sim-readout-row">
+              <span id="gt-payoff-readout">Payoff π'' = 1.842</span>
+              <span id="gt-risk-readout">Breach Risk p_{P|R} = 33.9%</span>
+            </div>
+            <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-primary); margin-top:0.3rem;" id="gt-eq-readout">
+              Nash Equilibrium: x* = 4.56 hrs (π* = 1.85)
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 3.</strong> Real-time numerical solver for non-cooperative Stackelberg security games. Adjusting asset valuation $V$, adversary strength $M$, attack volume $y_c$, and defensive allocation $x_c$ illustrates the optimal Nash equilibrium frontier $(x_c^*, \pi^*)$ versus systemic vulnerability.
+          </figcaption>
+        </figure>
+
+        <p>
+          Excessive over-investment in hardening fails to yield proportional risk mitigation due to nonlinear developer fatigue and diminishing returns <a class="citation-link" data-ref="18" title="Citation">[18]</a>. The complete mathematical proofs, Stackelberg moving-target defense (MTD) dynamics <a class="citation-link" data-ref="9" title="Citation">[9]</a>, <a class="citation-link" data-ref="10" title="Citation">[10]</a>, and empirical bounds are available in the full published monograph:
+        </p>
+
+        <div style="text-align:center; margin: 0.8rem 0;">
+          <a href="assets/docs/Can_Non-Cooperative_Game_Theory.pdf" target="_blank" class="tex-action-btn" style="padding:0.4rem 0.9rem; font-size:0.8rem;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Download Original Paper (5-Page PDF)
+          </a>
+        </div>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 4: APPLIED SYSTEMS & EMBEDDED CONTROLS
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-systems">4. Applied Systems &amp; Embedded Controls</h2>
+        <p>
+          Practical engineering requires synthesizing mathematical theory into deterministic code. Our systems work spans bare-metal microcontrollers, closed-loop feedback controllers, and memory-safe data structures.
+        </p>
+
+        <h3 class="subsection-header">4.1 32-Bit RISC-V Microcontroller Architecture</h3>
+        <p>
+          We authored a synthesized 32-bit RISC-V microcontroller conforming to the RV32I base integer instruction set <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank">(@tkoetting03/32-bit-risc-mcu)</a>. The microarchitecture incorporates a classic five-stage instruction pipeline (Fetch, Decode, Execute, Memory, Write-back), hazard detection forwarding units, and discrete memory-mapped I/O peripherals.
+        </p>
+
+        <h3 class="subsection-header">4.2 Discrete Closed-Loop PID Control in C</h3>
+        <p>
+          Real-time automation necessitates stable feedback regulation. In our C-based PID engine <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank">(@tkoetting03/PID-Tuner)</a>, the continuous differential control law is discretized:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$u(t) = K_p \, e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \, \frac{de(t)}{dt}$$
+          </div>
+          <span class="equation-number" title="Equation (6)">(6)</span>
+        </div>
+
+        <!-- Figure 4: Interactive PID Simulator -->
+        <figure class="latex-figure" id="fig-pid-sim">
+          <div class="figure-frame">
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="pid-kp-slider">Kp:</label>
+                <input type="range" id="pid-kp-slider" class="sim-slider" min="0" max="10" step="0.2" value="3.2">
+                <span id="pid-kp-val" class="sim-value-badge">3.2</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="pid-ki-slider">Ki:</label>
+                <input type="range" id="pid-ki-slider" class="sim-slider" min="0" max="5" step="0.1" value="0.8">
+                <span id="pid-ki-val" class="sim-value-badge">0.8</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="pid-kd-slider">Kd:</label>
+                <input type="range" id="pid-kd-slider" class="sim-slider" min="0" max="5" step="0.1" value="1.2">
+                <span id="pid-kd-val" class="sim-value-badge">1.2</span>
+              </div>
+              <button class="sim-btn" id="pid-pulse-btn">Step Pulse</button>
+            </div>
+
+            <div style="height:190px; position:relative;">
+              <canvas id="pid-canvas" class="sim-canvas"></canvas>
+            </div>
+
+            <div class="sim-readout-row">
+              <span id="pid-metrics-readout">Overshoot: 14.2% | Rise Time: 0.64s | Settling: 2.40s</span>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 4.</strong> Interactive discrete-time PID step response simulation. Sliders control proportional ($K_p$), integral ($K_i$), and derivative ($K_d$) coefficients governing a second-order plant, plotting real-time damping, transient oscillation, and steady-state error.
+          </figcaption>
+        </figure>
+
+        <h3 class="subsection-header">4.3 Lock-Free Circular Ring Buffer in C</h3>
+        <p>
+          Deterministic inter-process communication requires zero-allocation buffering. In <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank">@tkoetting03/Ring-Buffer</a>, we implement a circular FIFO memory queue utilizing power-of-two modulo pointer arithmetic:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$\text{head}_{\text{next}} = (\text{head} + 1) \pmod N, \quad \text{count} = (\text{head} - \text{tail}) \pmod N$$
+          </div>
+          <span class="equation-number" title="Equation (7)">(7)</span>
+        </div>
+
+        <!-- Figure 5: Interactive Ring Buffer Visualizer -->
+        <figure class="latex-figure" id="fig-ringbuffer-sim">
+          <div class="figure-frame">
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="rb-input-val">Byte:</label>
+                <input type="text" id="rb-input-val" value="0xAA" style="width:50px; font-family:var(--font-mono); font-size:0.75rem; padding:2px 4px; border:1px solid var(--interactive-border);">
+              </div>
+              <button class="sim-btn" id="rb-push-btn">+ Enqueue (W)</button>
+              <button class="sim-btn" id="rb-pop-btn">- Dequeue (R)</button>
+              <button class="sim-btn" id="rb-reset-btn">Clear</button>
+            </div>
+
+            <div class="ring-buffer-container">
+              <div class="ring-buffer-slots" id="ring-slots-container"></div>
+              <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary); margin-top:0.6rem;" id="rb-status">
+                Head: 0x03 | Tail: 0x00 | Count: 3/8 (ACTIVE)
+              </div>
+              <pre style="width:100%; margin-top:0.4rem; padding:0.4rem 0.6rem; font-size:0.7rem;"><code id="rb-code-snippet">ring_buffer[2] = 0x4C; head = (head + 1) % 8; // count = 3</code></pre>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 5.</strong> Interactive circular ring buffer state machine. Pointers $\text{Head}$ (write) and $\text{Tail}$ (read) increment modulo 8. Demonstrates enqueue/dequeue dynamics, overflow protection, and contiguous memory utilization.
+          </figcaption>
+        </figure>
+
+        <h3 class="subsection-header">4.4 Server Utilities Minecraft Mod &amp; Transistor Archive</h3>
+        <p>
+          We authored high-concurrency server administration tools <a href="https://github.com/tkoetting03/server-utilities" target="_blank">(@tkoetting03/server-utilities)</a> to optimize tick rates and network packets in distributed Minecraft environments. Additionally, raw project archives and motion graphics source files for <em>Transistor</em> <a href="#footnote-3" class="citation-link">[c]</a> are maintained on Dropbox and downloadable below:
+        </p>
+
+        <div style="text-align:center; margin: 0.8rem 0;">
+          <a href="assets/data/Transistor.zip" download class="tex-action-btn" style="padding:0.4rem 0.9rem; font-size:0.8rem;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Transistor Archive (After Effects / CAD .zip)
+          </a>
+        </div>
+
+        <!-- Figure 6: Embedded Multimedia Showcase Reel -->
+        <figure class="latex-figure" id="fig-video-reel">
+          <div class="figure-frame">
+            <div class="video-responsive-frame">
+              <iframe src="https://www.youtube.com/embed/d-_-cdy8ZQc?si=6hTL0Gnz1Q8NPchm" title="Silicon Engineering & Motion Reel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 6.</strong> Multimedia technical showcase reel documenting hardware visualization, algorithmic synchronization, and motion graphics design. Embedded from YouTube channel <a href="https://www.youtube.com/@thomask7326" target="_blank">@thomask7326</a>.
+          </figcaption>
+        </figure>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 5: CRITICAL DISCOURSE ON MACHINE INTELLIGENCE
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-ai">5. Socio-Technical Discourse: Artificial Intelligence &amp; Human Labor</h2>
+        <p>
+          Technological progression has centered around making our lives easier for a long time; not only is that what people strive to discover the most, but it is also the most profitable innovation. Therefore, it comes as no surprise that artificial intelligence—an algorithm which can mimic conversation, critical thinking, image and video creation, and complex problem-solving tasks—has become the defining technology of the 2020s. If I want to, say, get the answer to a homework question, instead of solving it myself, I can simply copy and paste a LaTeX rendition of the problem and have ChatGPT or Grok solve it for me. Pretty great.
+        </p>
+        <p>
+          The issue, of course, arises when you consider the repercussions of using such a tool to ease your personal workload, especially in education. You are losing your capacity to think critically, and for me—someone who aspires to be an engineer—critical thinking is an indispensable discipline that cannot be subcontracted to an external model. If we begin to depend on artificial intelligence for everything we do, then we have surrendered our ability to think for ourselves, an action that is precious and a core part of being human.
+        </p>
+        <p>
+          I reflect upon all the innovations prior to AI that have eased human labor: the printing press, the steam engine, the microprocessor, and the internet. Each had the goal of taking difficult tasks and creating ways to solve hard problems in less time-consuming manners. These inventions gave humanity both literal and intellectual mechanical advantage—yielding the highest multiplier of finished work output from the least amount of effort input. This was heralded for decades as the core driving principle of mankind; our expeditions to the stars and the golden age of Bell Labs were exemplars of human ingenuity and creative instinct. I myself felt this was the personal purpose ascribed to my life: to innovate and carry on the tradition of engineered excellence to forge a brighter future.
+        </p>
+        <p>
+          We must, however, realize that at some point our technology may become so proficient at multiplying our minuscule efforts that we lose any latent ability to solve hard problems independently, becoming inextricably tied to AI as the sole method by which we can hope to solve problems beyond elementary arithmetic. That threshold may have arrived already.
+        </p>
+        <p>
+          There are times I wonder if innovation is now propelled by an innate drive to understand and create, or purely for money. I believe it is the latter. Who benefits most from AI? Who benefits from the automation of service work and artistry? Corporations. It is no coincidence that large tech conglomerates—who hire tens of thousands of service workers, managers, engineers, and sales personnel—aggressively pursue technologies that eliminate these roles. I view this as the next phase of outsourcing. Corporations previously laid off countless American workers to transition toward offshore partnerships with Tata Consultancy, Tech Mahindra, Cognizant, or established outposts in Hyderabad, Romania, and Hanoi. Layoffs are consistently the primary lever pulled to appease quarterly shareholders. IT workers may no longer lose livelihoods to foreign contractors, but to proprietary neural network models from Meta, IBM, or Microsoft.
+        </p>
+        <p>
+          Furthermore, society consistently values art and artists far less than engineers—a consequence of living in an economy that lionizes manufactured consumer goods and silicon hardware. In truth, artists and engineers are two sides of the same coin. The prevalence of AI-generated art is not an accidental byproduct of machine learning research, but a concerted campaign to bypass human artistic compensation. Companies at their core prioritize their financial bottom line; it is a foregone conclusion that they will systematically reduce graphic designers, UI/UX illustrators, visual effects specialists, and animators. While the online discourse often loses measured perspective, the structural harm remains genuine. Addressing it will require more than flimsy corporate self-regulation or belated legislation.
+        </p>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 6: SCHOLARLY EPIGRAPHS & PHILOSOPHICAL AXIOMS
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-epigraphs">6. Scholarly Epigraphs &amp; Philosophical Axioms</h2>
+        <p>
+          The conceptual foundation of our research is informed by ten axioms spanning political philosophy, physical laws, and cinematic humanism:
+        </p>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“The truth which makes men free is for the most part the truth which men prefer not to hear.”</div>
+          <div class="epigraph-author">&mdash; <strong>Herbert Agar</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“I think folks would be surprised by how many people are very touched to hear from a young person. It’s always clear to me, when I meet someone young, if they’re going to do it or not. It requires a certain self-possession that I immediately recognize.”</div>
+          <div class="epigraph-author">&mdash; <strong>Brady Corbet</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“‘A nation,’ he heard himself say, ‘consists of its laws. A nation does not consist of its situation at a given time. If an individual’s morals are situational, that individual is without morals. If a nation’s laws are situational, that nation has no laws, and soon isn’t a nation.’”</div>
+          <div class="epigraph-author">&mdash; <strong>William Gibson</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“I ignore polling as a method of government. I think that shows a certain weakness of mind—an inability to chart a course whichever way the wind blows, whichever way the media encourages the people to go, you follow. If you can't force or are unwilling to force your people to follow you, with or without threats, you are not a leader.”</div>
+          <div class="epigraph-author">&mdash; <strong>Lee Kuan Yew</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“Nobody ever figures out what life is all about, and it doesn't matter. Explore the world. Nearly everything is really interesting if you go into it deeply enough.”</div>
+          <div class="epigraph-author">&mdash; <strong>Richard Feynman</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“Are you righteous? Kind? Does your confidence lie in this? Are you loved by all? Know that I was, too. Do you imagine your suffering will be any less because you loved goodness and truth?”</div>
+          <div class="epigraph-author">&mdash; <strong>Takamitsu Ôkubo</strong>, <em>The Thin Red Line</em></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“One man looks at a dying bird and thinks there's nothing but unanswered pain. That death's got the final word. It's laughing at him. Another man sees that same bird, feels the glory. Feels something smiling through him.”</div>
+          <div class="epigraph-author">&mdash; <strong>Private Edward P. Train</strong>, <em>The Thin Red Line</em></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“All the western nations are caught in a lie, the lie of their pretended humanism: this means that their history has no moral justification, and that the West has no moral authority.”</div>
+          <div class="epigraph-author">&mdash; <strong>James Baldwin</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“Nothing in life is certain except death, taxes and the second law of thermodynamics.”</div>
+          <div class="epigraph-author">&mdash; <strong>Seth Lloyd</strong></div>
+        </div>
+
+        <div class="epigraph-card">
+          <div class="epigraph-quote">“Lynch and Frost are saying that the new media and conspiracy theorists who claim to see beyond our surface level reality, are capitalizing on the fear in the air. Putting a price tag on false hope and false solutions. Garbage spray-painted fake gold.”</div>
+          <div class="epigraph-author">&mdash; <strong>Twin Perfect</strong></div>
+        </div>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 7: CURATED AESTHETIC & SCHOLARLY CATALOG
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-catalog">7. Curated Aesthetic &amp; Scholarly Catalog</h2>
+        <p>
+          A rigorous engineering intellect is enriched through engagement with rigorous literature, music, cinema, and fine art. The following catalog constitutes our primary canon of reference works:
+        </p>
+
+        <!-- Category Filters -->
+        <div class="catalog-filter-bar">
+          <button class="catalog-pill active" data-cat="all">All</button>
+          <button class="catalog-pill" data-cat="book">Books</button>
+          <button class="catalog-pill" data-cat="music">Music</button>
+          <button class="catalog-pill" data-cat="movie">Cinema</button>
+          <button class="catalog-pill" data-cat="art">Fine Art</button>
+          <button class="catalog-pill" data-cat="arch">Architecture</button>
+          <button class="catalog-pill" data-cat="news">Periodicals</button>
+        </div>
+
+        <!-- Catalog Items Grid -->
+        <div class="catalog-grid" id="catalog-container">
+          <!-- Books -->
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Ulysses</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">James Joyce (1922)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Ulysses_(novel)" target="_blank">Wikipedia Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Empire of the Summer Moon</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">S. C. Gwynne (2010)</div>
+            <div class="catalog-item-links"><a href="https://www.goodreads.com/book/show/7648269-empire-of-the-summer-moon" target="_blank">Goodreads &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Anarchy</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">William Dalrymple (2019)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Anarchy:_The_Relentless_Rise_of_the_East_India_Company" target="_blank">Wikipedia Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Road to Reality</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">Roger Penrose (2004)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Road_to_Reality" target="_blank">A Complete Guide to the Laws of the Universe &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Stalingrad</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">Antony Beevor (1998)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Stalingrad_(Beevor_book)" target="_blank">Historical Monograph &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Embarrassment of Riches</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">Simon Schama (1987)</div>
+            <div class="catalog-item-links"><a href="https://www.goodreads.com/en/book/show/21073.The_Embarrassment_of_Riches" target="_blank">Dutch Golden Age Culture &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="book">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Alexander Hamilton</span>
+              <span class="catalog-item-type">Book</span>
+            </div>
+            <div class="catalog-item-detail">Ron Chernow (2004)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Alexander_Hamilton_(biography)" target="_blank">Biography &rarr;</a></div>
+          </div>
+
+          <!-- Music -->
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Kid A &bigstar;</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Radiohead (2000) &bull; Masterwork</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/58990523/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">In Rainbows</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Radiohead (2007)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/61799588/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Deathconsciousness</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Have a Nice Life (2008)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/65229357/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Radio Amor</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Tim Hecker (2003)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/176533110/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Debussy: Estampes; Pour le piano</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Claude Debussy &bull; 6 épigraphes antiques</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/414065766/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">To See the Next Part of the Dream</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Parannoul (2021)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/180892435/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Long Season</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Fishmans (1996)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/92891727/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Minecraft - Volume Beta</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">C418 (Daniel Rosenfeld, 2013)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/488529268/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Uchu Nippon Setagaya</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Fishmans (1997)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/92891764/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">冀西南林路行</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Omnipotent Youth Society (Inside the Cable Temple, 2020)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/166203100/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="music">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Cold Visions</span>
+              <span class="catalog-item-type">Music</span>
+            </div>
+            <div class="catalog-item-detail">Bladee (2024)</div>
+            <div class="catalog-item-links"><a href="https://tidal.com/album/411889225/u" target="_blank">Listen on Tidal &rarr;</a></div>
+          </div>
+
+          <!-- Movies -->
+          <div class="catalog-item" data-cat="movie">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Mishima: A Life in Four Chapters &bigstar;</span>
+              <span class="catalog-item-type">Cinema</span>
+            </div>
+            <div class="catalog-item-detail">Dir. Paul Schrader (1985)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters" target="_blank">Criterion Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="movie">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Thin Red Line</span>
+              <span class="catalog-item-type">Cinema</span>
+            </div>
+            <div class="catalog-item-detail">Dir. Terrence Malick (1998)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Thin_Red_Line_(1998_film)" target="_blank">Film Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="movie">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Children of Men</span>
+              <span class="catalog-item-type">Cinema</span>
+            </div>
+            <div class="catalog-item-detail">Dir. Alfonso Cuarón (2006)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Children_of_Men" target="_blank">Film Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="movie">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Police Story</span>
+              <span class="catalog-item-type">Cinema</span>
+            </div>
+            <div class="catalog-item-detail">Dir. Jackie Chan (1985)</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Police_Story_(1985_film)" target="_blank">Film Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="movie">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Hamnet</span>
+              <span class="catalog-item-type">Cinema</span>
+            </div>
+            <div class="catalog-item-detail">Dir. Chloé Zhao</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Hamnet_(film)" target="_blank">Production Details &rarr;</a></div>
+          </div>
+
+          <!-- Paintings -->
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Oath of the Horatii &bigstar;</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Jacques-Louis David (1784) &bull; Musée du Louvre</div>
+            <div class="catalog-item-links"><a href="https://collections.louvre.fr/en/ark:/53355/cl010062239" target="_blank">Louvre Collection &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Saint John the Baptist in the Wilderness</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Caravaggio (1604) &bull; Nelson-Atkins Museum</div>
+            <div class="catalog-item-links"><a href="https://art.nelson-atkins.org/objects/1130/saint-john-the-baptist-in-the-wilderness?ctx=f0e795ce19a6c901eafbe84aa2a93b837f6d07e0&idx=144" target="_blank">Gallery Archive &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Death of Socrates</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Jacques-Louis David (1787) &bull; The Met</div>
+            <div class="catalog-item-links"><a href="https://www.metmuseum.org/art/collection/search/436105" target="_blank">Metropolitan Museum &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Raft of the Medusa</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Théodore Géricault (1819) &bull; Musée du Louvre</div>
+            <div class="catalog-item-links"><a href="https://collections.louvre.fr/en/ark:/53355/cl010059199" target="_blank">Louvre Collection &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Night Watch</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Rembrandt van Rijn (1642) &bull; Rijksmuseum</div>
+            <div class="catalog-item-links"><a href="https://www.rijksmuseum.nl/en/collection/object/The-Night-Watch-Militia-Company-of-District-II-under-the-Command-of-Captain-Frans-Banninck-Cocq--3137deb45cd7765f9a76084a16c99544" target="_blank">Rijksmuseum &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Dugout</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Norman Rockwell (1948) &bull; Art Institute Chicago</div>
+            <div class="catalog-item-links"><a href="https://www.artic.edu/artworks/282198/the-dugout-preliminary-work" target="_blank">Art Institute Chicago &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="art">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">View of Cotopaxi</span>
+              <span class="catalog-item-type">Fine Art</span>
+            </div>
+            <div class="catalog-item-detail">Frederic Edwin Church (1857) &bull; Art Institute Chicago</div>
+            <div class="catalog-item-links"><a href="https://www.artic.edu/artworks/76571/view-of-cotopaxi" target="_blank">Art Institute Chicago &rarr;</a></div>
+          </div>
+
+          <!-- Architecture -->
+          <div class="catalog-item" data-cat="arch">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Fallingwater</span>
+              <span class="catalog-item-type">Architecture</span>
+            </div>
+            <div class="catalog-item-detail">Frank Lloyd Wright (1935) &bull; Mill Run, PA</div>
+            <div class="catalog-item-links"><a href="https://fallingwater.org/" target="_blank">Official Archive &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="arch">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Sendai Mediatheque</span>
+              <span class="catalog-item-type">Architecture</span>
+            </div>
+            <div class="catalog-item-detail">Toyo Ito &amp; Associates (2001) &bull; Sendai, Japan</div>
+            <div class="catalog-item-links"><a href="https://www.archdaily.com/118627/ad-classics-sendai-mediatheque-toyo-ito-and-associates-architects" target="_blank">Architectural Analysis &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="arch">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">The Shard</span>
+              <span class="catalog-item-type">Architecture</span>
+            </div>
+            <div class="catalog-item-detail">Renzo Piano (2012) &bull; London, UK</div>
+            <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Shard" target="_blank">Wikipedia Reference &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="arch">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">10 &amp; 30 Hudson Yards</span>
+              <span class="catalog-item-type">Architecture</span>
+            </div>
+            <div class="catalog-item-detail">Kohn Pedersen Fox (2019) &bull; New York, NY</div>
+            <div class="catalog-item-links"><a href="https://www.kpf.com/project/10-30-hudson-yards" target="_blank">KPF Monograph &rarr;</a></div>
+          </div>
+
+          <!-- News & Periodicals -->
+          <div class="catalog-item" data-cat="news">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Naked Capitalism</span>
+              <span class="catalog-item-type">Periodical</span>
+            </div>
+            <div class="catalog-item-detail">Finance, Economics &amp; Political Economy</div>
+            <div class="catalog-item-links"><a href="https://www.nakedcapitalism.com/" target="_blank">Visit Site &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="news">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Quanta Magazine</span>
+              <span class="catalog-item-type">Periodical</span>
+            </div>
+            <div class="catalog-item-detail">Fundamental Physics, Mathematics &amp; Computer Science</div>
+            <div class="catalog-item-links"><a href="https://www.quantamagazine.org/" target="_blank">Visit Site &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="news">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Scope of Work</span>
+              <span class="catalog-item-type">Newsletter</span>
+            </div>
+            <div class="catalog-item-detail">Engineering, Manufacturing &amp; Industrial Systems</div>
+            <div class="catalog-item-links"><a href="https://www.scopeofwork.net/" target="_blank">Visit Site &rarr;</a></div>
+          </div>
+
+          <div class="catalog-item" data-cat="news">
+            <div class="catalog-item-header">
+              <span class="catalog-item-title">Phys.org</span>
+              <span class="catalog-item-type">Periodical</span>
+            </div>
+            <div class="catalog-item-detail">Nanotechnology, Physics &amp; Materials Science</div>
+            <div class="catalog-item-links"><a href="https://phys.org/" target="_blank">Visit Site &rarr;</a></div>
+          </div>
+        </div>
+
+        <!-- ----------------------------------------------------------------------
+             SECTION 8: CONCLUSIONS & REFERENCES
+             ---------------------------------------------------------------------- -->
+        <h2 class="section-header" id="sec-conclusion">8. Conclusions</h2>
+        <p>
+          We have presented a unified treatment of semiconductor logic modeling, non-cooperative game theoretic security dynamics, and discrete embedded systems. By demonstrating how high-level behavioral abstractions in Verilog can be synthesized into discrete arithmetic accumulators, we illustrate the vital link between conceptual mathematics and physical silicon. In parallel, our game theoretic analysis confirms that software defense optimization adheres strictly to economic principles of diminishing marginal returns, establishing precise Nash equilibria for finite engineering budgets. Finally, our socio-technical discourse highlights the imperative of safeguarding critical human analytical thinking amid expanding machine automation.
+        </p>
+
+        <!-- Footnotes Section -->
+        <div class="footnotes-container">
+          <div class="footnote-item" id="footnote-1">
+            <span class="footnote-marker">[a]</span> We parameterized the bus width with variable $x$ during exploratory prototyping to preserve generality across varying bit-depth testbenches prior to strict bit sizing.
+          </div>
+          <div class="footnote-item" id="footnote-2">
+            <span class="footnote-marker">[b]</span> MinecraftHDL is an open-source synthesis project authored by Frank Denis (itsfrank), translating netlists into structured block files.
+          </div>
+          <div class="footnote-item" id="footnote-3">
+            <span class="footnote-marker">[c]</span> The <em>Transistor</em> project file requires Adobe After Effects with the Magic Bullet Looks suite; all other expressions and motion elements utilize vanilla JSX scripts.
+          </div>
+        </div>
+
+        <!-- References Section (Matching IEEE/Springer standard) -->
+        <h2 class="section-header" id="sec-refs">References</h2>
+        <ol style="padding-left: 1.4rem; font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary);">
+          <li id="ref-1">X. Liang and Y. Xiao, &ldquo;Game Theory for Network Security,&rdquo; in <em>IEEE Communications Surveys &amp; Tutorials</em>, vol. 15, no. 1, pp. 472&ndash;486, 2013.</li>
+          <li id="ref-2">J. E. Kendall, K. E. Kendall, and M. Germonprez, &ldquo;Game theory and open source contribution: Rationale behind corporate participation in open source software development,&rdquo; <em>Journal of Organizational Computing and Electronic Commerce</em>, 2016.</li>
+          <li id="ref-3">N. S. V. Rao, C. Y. T. Ma, F. He, J. Zhuang, and D. K. Y. Yau, &ldquo;Cyber-physical correlations for infrastructure resilience: A game-theoretic approach,&rdquo; <em>17th International Conference on Information Fusion (FUSION)</em>, Salamanca, Spain, pp. 1&ndash;8, 2014.</li>
+          <li id="ref-4">K. L. Hui and K. Y. Tam, &ldquo;Software Functionality: A Game Theoretic Analysis,&rdquo; <em>Journal of Management Information Systems</em>, vol. 19, no. 1, pp. 151&ndash;184, 2002.</li>
+          <li id="ref-5">E. Mattos, M. Vieira, E. A. Schmitz, and A. J. Alencar, &ldquo;Applying game theory to the incremental funding method in software projects,&rdquo; <em>Journal of Software</em>, vol. 9, no. 6, pp. 14&ndash;35, 2014.</li>
+          <li id="ref-6">H. Cavusoglu, B. Mishra, and S. Raghunathan, &ldquo;A model for evaluating IT security investments,&rdquo; <em>Communications of the ACM</em>, vol. 47, no. 7, pp. 87&ndash;92, 2004.</li>
+          <li id="ref-7">M. Shubik, &ldquo;The uses of game theory in management science,&rdquo; <em>Management Science</em>, vol. 2, no. 1, pp. 40&ndash;54, 1955.</li>
+          <li id="ref-8">S. K. Bang, S. Chung, Y. Choh, and M. Dupuis, &ldquo;A grounded theory analysis of modern web applications: knowledge, skills, and abilities for DevOps,&rdquo; in <em>Proc. 2nd Annual Conf. on Research in IT</em>, pp. 61&ndash;62, 2013.</li>
+          <li id="ref-9">C. Lei, H. Q. Zhang, J. L. Tan, Y. C. Zhang, and X. H. Liu, &ldquo;Moving target defense techniques: A survey,&rdquo; <em>Security and Communication Networks</em>, 2018.</li>
+          <li id="ref-10">S. Sengupta, S. G. Vadlamudi, S. Kambhampati, A. Doup&eacute;, et al., &ldquo;A Game Theoretic Approach to Strategy Generation for Moving Target Defense in Web Applications,&rdquo; in <em>AAMAS</em>, vol. 1, pp. 178&ndash;186, 2017.</li>
+          <li id="ref-11">T. Li and S. P. Sethi, &ldquo;A review of dynamic Stackelberg game models,&rdquo; <em>Discrete &amp; Continuous Dynamical Systems-B</em>, vol. 22, no. 1, p. 125, 2017.</li>
+          <li id="ref-12">S. Roy, C. Ellis, S. Shiva, D. Dasgupta, V. Shandilya, and Q. Wu, &ldquo;A survey of game theory as applied to network security,&rdquo; in <em>2010 43rd Hawaii Int. Conf. on System Sciences</em>, pp. 1&ndash;10, IEEE, 2010.</li>
+          <li id="ref-13">S. N. Hamilton, W. L. Miller, A. Ott, and O. S. Saydjari, &ldquo;The role of game theory in information warfare,&rdquo; in <em>Proc. 4th Information Survivability Workshop (ISW)</em>, 2002.</li>
+          <li id="ref-14">R. Gibbons, <em>Game Theory for Applied Economists</em>. Princeton University Press, 1992.</li>
+          <li id="ref-15">A. Chaudhuri and J. S. Foster, &ldquo;Symbolic security analysis of Ruby-on-Rails web applications,&rdquo; in <em>Proc. 17th ACM Conf. on Computer and Communications Security (CCS)</em>, pp. 585&ndash;594, 2010.</li>
+          <li id="ref-16">M. K. Sohrabi and H. Azgomi, &ldquo;A survey on the combined use of optimization methods and game theory,&rdquo; <em>Archives of Computational Methods in Engineering</em>, vol. 27, no. 1, pp. 59&ndash;80, 2020.</li>
+          <li id="ref-17">M. Jorgensen and M. Shepperd, &ldquo;A systematic review of software development cost estimation studies,&rdquo; <em>IEEE Transactions on Software Engineering</em>, vol. 33, no. 1, pp. 33&ndash;53, 2006.</li>
+          <li id="ref-18">P. C. Pendharkar and J. A. Rodger, &ldquo;The relationship between software development team size and software development cost,&rdquo; <em>Communications of the ACM</em>, vol. 52, no. 1, pp. 141&ndash;144, 2009.</li>
+          <li id="ref-19">R. F. Deckro and J. E. Hebert, &ldquo;Modeling diminishing returns in project resource planning,&rdquo; <em>Computers &amp; Industrial Engineering</em>, vol. 44, no. 1, pp. 19&ndash;33, 2003.</li>
+          <li id="ref-20">K. Wang, M. Du, D. Yang, C. Zhu, J. Shen, and Y. Zhang, &ldquo;Game-theory-based active defense for intrusion detection in cyber-physical embedded systems,&rdquo; <em>IEEE Systems Journal</em>, 2016.</li>
+        </ol>
+
+      </div><!-- /.monograph-body -->
+
+      <!-- Document Footer (Page number centered at bottom: 1057 / 1058 as in PDF) -->
+      <footer class="paper-footer">
+        <div class="paper-page-number">1057</div>
+        <div class="paper-running-footer">
+          Koetting &bull; Silicon: Interdisciplinary Research Monograph &bull; Proceedings of the 2026 Colloquium
+        </div>
+      </footer>
+
+    </article>
+  </div>
+
+  <!-- ==========================================================================
+       Modal: BibTeX Citation Generator
+       ========================================================================== -->
+  <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true" aria-labelledby="bibtex-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span id="bibtex-title">BibTeX Academic Citation</span>
+        <button class="modal-close-btn" id="bibtex-close-btn" aria-label="Close Modal">&times;</button>
+      </div>
+      <div class="modal-content">
+        <p style="font-size:0.8rem; margin-bottom:0.6rem; color:var(--text-secondary); text-indent:0;">
+          Cite this publication using standard LaTeX / BibLaTeX formatting:
+        </p>
+        <pre><code id="bibtex-code">@article{koetting2026silicon,
+  author    = {Koetting, Thomas},
+  title     = {Silicon: An Interdisciplinary Monograph on Hardware Synthesis, 
+               Non-Cooperative Security Dynamics, and Machine Intelligence},
+  journal   = {Proceedings of the Silicon Colloquium on Semiconductor Devices},
+  volume    = {2},
+  pages     = {1057--1064},
+  year      = {2026},
+  publisher = {Silicon Research Collective},
+  url       = {https://github.com/tkoetting03/silicon}
+}</code></pre>
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:0.8rem;">
+          <button class="tex-action-btn" id="bibtex-copy-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy to Clipboard
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Modal: TeX Compilation Terminal Output Simulator
+       ========================================================================== -->
+  <div class="modal-overlay" id="recompile-modal" role="dialog" aria-modal="true">
+    <div class="modal-window" style="max-width: 650px;">
+      <div class="modal-header">
+        <span>pdfTeX Terminal &mdash; silicon.tex</span>
+        <button class="modal-close-btn" id="recompile-close-btn" aria-label="Close Modal">&times;</button>
+      </div>
+      <div class="modal-content" style="padding:0; background:#0d1117;">
+        <div class="terminal-window" id="recompile-log" style="height: 280px; overflow-y: auto;">
+          <!-- Log output generated via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>

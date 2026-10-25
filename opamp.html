@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper" data-layout="twocolumn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verilog Operational Amplifier — Thomas Koetting</title>
+  <link rel="icon" type="image/png" href="assets/img/thumbnail.png">
+
+  <!-- Fonts & KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="css/latex.css">
+</head>
+<body>
+
+  <!-- Minimalist TeX Utility Toolbar -->
+  <header class="tex-toolbar" role="banner">
+    <div class="tex-meta-left">
+      <span class="tex-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        pdfTeX-3.14159 [opamp.tex]
+      </span>
+      <nav class="tex-nav-links">
+        <a href="index.html">&larr; Contents</a>
+        <a href="projects.html">Projects</a>
+        <a href="opamp.html" style="font-weight:bold; color:var(--text-primary);">Op-Amp</a>
+        <a href="paper.html">Research Paper</a>
+        <a href="ai.html">AI Essay</a>
+        <a href="quotes.html">Quotes</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="projectfiles.html">Files</a>
+        <a href="socials.html">Socials</a>
+      </nav>
+    </div>
+
+    <div class="tex-meta-right">
+      <div class="tex-btn-group">
+        <button class="tex-btn active" data-set-layout="twocolumn">2-Col</button>
+        <button class="tex-btn" data-set-layout="onecolumn">1-Col</button>
+      </div>
+      <div class="tex-btn-group">
+        <button class="tex-btn active" data-set-theme="paper">Paper</button>
+        <button class="tex-btn" data-set-theme="parchment">Parchment</button>
+        <button class="tex-btn" data-set-theme="dark">Dark</button>
+      </div>
+      <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">Recompile</button>
+      <button class="tex-action-btn" data-open-bibtex>[Cite]</button>
+      <button class="tex-action-btn" onclick="window.print()">Print / PDF</button>
+    </div>
+  </header>
+
+  <div class="paper-outer-wrapper">
+    <article class="paper-sheet">
+
+      <!-- Back Navigation Breadcrumbs -->
+      <div style="display:flex; gap:0.5rem; margin-bottom:1.4rem;">
+        <a href="index.html" class="tex-back-link" style="margin-bottom:0;">&larr; Return to Table of Contents</a>
+        <a href="projects.html" class="tex-back-link" style="margin-bottom:0;">&larr; Return to Projects</a>
+      </div>
+
+      <header class="proceedings-header">
+        <div class="proceedings-title">
+          Proceedings of the Silicon Colloquium on Semiconductor Devices, Distributed Security & Systems
+        </div>
+        <div class="proceedings-vol">
+          Vol. 2 &mdash; December 2026 &mdash; Section 2: Hardware Modeling &bull; pp. 1059
+        </div>
+      </header>
+
+      <div class="article-header">
+        <h1 class="article-title">
+          Operational Amplifier Modeling &amp; Synthesis in Verilog: From Behavioral Abstraction to Iterative Addition Accumulators
+        </h1>
+        <div class="article-authors">Thomas Koetting</div>
+        <div class="article-affiliation">
+          Department of Electrical Engineering &amp; Computer Science, University of Kansas<br>
+          Silicon Research Collective, Timarpur / Overland Park
+        </div>
+      </div>
+
+      <section class="abstract-block">
+        <p>
+          <span class="abstract-runin">Abstract &mdash;</span>
+          In my quest to synthesize Verilog models for diverse Small-Scale (SSI) and Medium-Scale Integration (MSI) semiconductor devices, I investigate the operational amplifier. Drawing inspiration from radiation-tolerant integrated circuits such as the Texas Instruments OPA4H199-SP, this paper evaluates the transition between a pure behavioral representation and a discrete architectural realization. We demonstrate how eliminating high-overhead abstract multiplier operators in favor of an iterative conditional-addition loop produces an efficient accumulator structure, confirmed via Yosys gate-level netlists and simulated spatial redstone logic.
+        </p>
+        <div class="keywords-line">
+          <span class="keywords-runin">Key words &mdash;</span>
+          <em>Operational Amplifier &bull; Verilog HDL &bull; RTL Synthesis &bull; Iterative Addition &bull; Yosys Netlist &bull; MinecraftHDL</em>
+        </div>
+      </section>
+
+      <hr class="header-separator">
+
+      <div class="monograph-body">
+
+        <h2 class="section-header">1. Operational Amplifier Foundations</h2>
+        <p>
+          In my quest to make Verilog models out of a multitude of different SSI and MSI semiconductor products, I have now gotten to the operational amplifier. My primary inspiration for this design is the OPA4H199-SP from Texas Instruments. First, I started with the basic transfer function of an op-amp, which is the linear amplification of an input signal by multiplying the voltage by the gain:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$V_{\text{out}} = \text{Gain} \times V_{\text{in}}$$
+          </div>
+          <span class="equation-number" title="Equation (1)">(1)</span>
+        </div>
+
+<pre><code class="language-verilog">module OpAmp(
+    input wire [x:0] Vin,
+    output wire [x:0] Vout,
+    input wire [x:0] Gain
+);
+
+    assign Vout = Gain * Vin;
+
+endmodule</code></pre>
+
+        <p>
+          I chose to represent an arbitrary amount of bits with variable $x$ <a href="#footnote-1" class="citation-link">[1]</a>. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.
+        </p>
+        <p>
+          This is an <em>ideal</em> and <em>general</em> op-amp that has no resistance, slew rate limits, feedback networks, or added physical complexity to achieve specific frequency responses. During creation, I asked myself whether I wanted an op-amp that would be created in perfect imitation of the real deal or one which is the <em>perfect abstract model</em>. I settled upon the latter, as imitating real-world analog silicon constraints with test benches and design features was not my goal in creating this Verilog op-amp.
+        </p>
+
+        <h2 class="section-header">2. Ideal Parameters &amp; Iterative Addition</h2>
+        <p>
+          We have to consider, then, ideal variables for the op-amp so as to create the <em>perfect abstract model</em> as I have discussed. Finding the characteristics and specifications turned out to be easier than I thought thanks to documentation from power semiconductor manufacturers like <a href="https://www.ti.com.cn/cn/lit/an/slaa068b/slaa068b.pdf" target="_blank">Texas Instruments</a> and <a href="https://toshiba.semicon-storage.com/us/semiconductor/knowledge/faq/linear_opamp/what-is-the-ideal-op-amp.html" target="_blank">Toshiba</a>, along with my very own <a href="http://www.ittc.ku.edu/~jstiles/412/handouts/2.1%20The%20ideal%20op-amp/The%20Ideal%20Operational%20Amplifier%20lecture.pdf" target="_blank">University of Kansas</a> lecture handouts.
+        </p>
+        <p>
+          In order to get closer to the real silicon in my design abstraction, I shall remove the <code>*</code> multiplication operator and replace it with an <code>always</code> loop which is particularly inefficient in clock cycles but easy to understand conceptually. Essentially working as any formulaic loop, it takes an iterative variable $i$, and compares it to the maximum gain outlined as a constant parameter. If $i$ is less than the gain, the output voltage is incremented by the input voltage, and this is repeated until $i$ reaches its threshold of eight iterations, replicating multiplication through brute-force addition:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$V_{\text{out}}[k] = \sum_{i=0}^{\min(\text{Gain}-1, \, 7)} V_{\text{in}}$$
+          </div>
+          <span class="equation-number" title="Equation (2)">(2)</span>
+        </div>
+
+<pre><code class="language-verilog">module OpAmp(
+    input wire Vin, 
+    input wire Gain,  
+    output reg Vout  
+);
+
+    parameter MAX_GAIN = 8; 
+    integer i;               
+
+    always @(*) begin
+        Vout = 0; 
+        for (i = 0; i &lt; MAX_GAIN; i = i + 1) begin
+            if (i &lt; Gain)  
+                Vout = Vout + Vin;
+        end
+    end
+
+endmodule</code></pre>
+
+        <!-- Figure 1: Live Interactive Oscilloscope & Pipeline Simulator -->
+        <figure class="latex-figure" id="fig-opamp-sim">
+          <div class="figure-frame">
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="opamp-vin-slider">Vin:</label>
+                <input type="range" id="opamp-vin-slider" class="sim-slider" min="0.2" max="3.0" step="0.1" value="1.2">
+                <span id="opamp-vin-val" class="sim-value-badge">1.2 V</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="opamp-gain-slider">Gain:</label>
+                <input type="range" id="opamp-gain-slider" class="sim-slider" min="0" max="8" step="1" value="4">
+                <span id="opamp-gain-val" class="sim-value-badge">4</span>
+              </div>
+              <button class="sim-btn" id="opamp-step-btn">Step (i++)</button>
+              <button class="sim-btn" id="opamp-run-btn">▶ Auto Clock</button>
+              <button class="sim-btn" id="opamp-reset-btn">Reset</button>
+            </div>
+
+            <div class="oscilloscope-canvas-wrapper">
+              <canvas id="opamp-canvas" class="sim-canvas"></canvas>
+            </div>
+
+            <div class="logic-steps-grid" id="opamp-steps-grid"></div>
+
+            <div class="sim-readout-row">
+              <span id="opamp-status-readout">Step i=0: (i &lt; Gain) is TRUE: +1.2V</span>
+              <strong id="opamp-vout-readout">Vout = 4.80 V</strong>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 1.</strong> Interactive Verilog operational amplifier waveform and logic stepper. Users can manipulate input voltage $V_{\text{in}}$ and gain $A \in [0, 8]$. Stepping clock cycles demonstrates discrete accumulator multiplexing with real-time CRT phosphor oscilloscope output.
+          </figcaption>
+        </figure>
+
+        <h2 class="section-header">3. Gate-Level Synthesis &amp; Logic Diagram</h2>
+        <p>
+          The <a href="https://github.com/YosysHQ/yosys" target="_blank">Yosys</a> digital logic diagram is given below. The iterative variables are given by the memory blocks $0\text{x}0$ through $0\text{x}7$, with the multiplexer selectors being the comparison $0\text{xA} < \text{Gain}$ ($A$ representing any value 0&ndash;7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage, with the final product that routes to the output voltage register being the last mux output.
+        </p>
+
+        <!-- Figure 2: Multi-tier Circuit Tabs -->
+        <figure class="latex-figure" id="fig-circuits">
+          <div class="figure-frame">
+            <div class="circuit-tabs-nav">
+              <button class="circuit-tab-btn active" data-target="tab-yosys-svg">Yosys Netlist SVG</button>
+              <button class="circuit-tab-btn" data-target="tab-yosys-block">Yosys Logic Block</button>
+              <button class="circuit-tab-btn" data-target="tab-redstone">MinecraftHDL Redstone</button>
+            </div>
+
+            <div class="circuit-tab-pane active" id="tab-yosys-svg">
+              <img src="assets/img/Untitled.svg" alt="Yosys Generated Vector Netlist" class="circuit-img-frame" loading="lazy">
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Yosys NetlistSVG vector gate-level schematic showing multiplexer and adder cascade.</div>
+            </div>
+
+            <div class="circuit-tab-pane" id="tab-yosys-block">
+              <img src="assets/img/yosya.jpg" alt="Yosys Digital Logic Synthesis" class="circuit-img-frame" loading="lazy">
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Memory blocks 0x0–7 with multiplexer selectors and accumulator bus.</div>
+            </div>
+
+            <div class="circuit-tab-pane" id="tab-redstone">
+              <img src="assets/img/redstone.jpg" alt="MinecraftHDL Redstone Circuit" class="circuit-img-frame" loading="lazy">
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Physical discrete simulation in Minecraft utilizing MinecraftHDL repeaters.</div>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 2.</strong> Structural synthesis of the operational amplifier. Top: Yosys vector netlist. Middle: RTL memory and multiplexer block diagram. Bottom: Spatial redstone compilation via MinecraftHDL.
+          </figcaption>
+        </figure>
+
+        <h2 class="section-header">4. Spatial Simulation in MinecraftHDL</h2>
+        <p>
+          Of course, we could not create a Verilog circuit if we didn't also model it with Minecraft redstone as well! With the ability to do this being none of my own but due to the help of the amazing <a href="https://github.com/itsfrank/MinecraftHDL" target="_blank">MinecraftHDL</a> project authored by Frank Denis. Minecraft repeaters, comparators, and redstone dust synthesize the exact boolean logic gates into an explorable physical space.
+        </p>
+
+        <!-- Footnotes -->
+        <div class="footnotes-container">
+          <div class="footnote-item" id="footnote-1">
+            <span class="footnote-marker">[1]</span> I chose to represent an arbitrary amount of bits with variable $x$. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.
+          </div>
+        </div>
+
+      </div><!-- /.monograph-body -->
+
+      <footer class="paper-footer">
+        <div class="paper-page-number">1059</div>
+        <div class="paper-running-footer">
+          Koetting &bull; Operational Amplifier Modeling &amp; Synthesis in Verilog &bull; Proceedings of the 2026 Colloquium
+        </div>
+      </footer>
+
+    </article>
+  </div>
+
+  <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span>BibTeX Academic Citation</span>
+        <button class="modal-close-btn" id="bibtex-close-btn">&times;</button>
+      </div>
+      <div class="modal-content">
+        <pre><code id="bibtex-code">@article{koetting2026opamp,
+  author    = {Koetting, Thomas},
+  title     = {Operational Amplifier Modeling and Synthesis in Verilog: From Behavioral Abstraction to Iterative Addition Accumulators},
+  journal   = {Proceedings of the Silicon Colloquium on Semiconductor Devices},
+  volume    = {2},
+  pages     = {1059},
+  year      = {2026},
+  url       = {https://github.com/tkoetting03/silicon}
+}</code></pre>
+        <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
+          <button class="tex-action-btn" id="bibtex-copy-btn">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="recompile-modal" role="dialog" aria-modal="true">
+    <div class="modal-window" style="max-width: 650px;">
+      <div class="modal-header">
+        <span>pdfTeX Terminal &mdash; opamp.tex</span>
+        <button class="modal-close-btn" id="recompile-close-btn">&times;</button>
+      </div>
+      <div class="modal-content" style="padding:0; background:#0d1117;">
+        <div class="terminal-window" id="recompile-log" style="height: 260px; overflow-y: auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1268,3 +1268,109 @@ canvas.sim-canvas {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+
+/* ==========================================================================
+   LaTeX Table of Contents & Multi-Page Navigation Additions
+   ========================================================================== */
+.tex-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: 1.4rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--rule-light);
+  border-radius: 2px;
+  background: var(--tag-bg);
+  transition: all 0.15s ease;
+}
+
+.tex-back-link:hover {
+  background: var(--text-primary);
+  color: var(--bg-page);
+  border-color: var(--text-primary);
+}
+
+.latex-toc {
+  margin: 1.8rem 0 2.2rem 0;
+  border-top: 1.5px solid var(--rule-color);
+  border-bottom: 1.5px solid var(--rule-color);
+  padding: 1.5rem 0.5rem;
+}
+
+.latex-toc-title {
+  font-variant: small-caps;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.latex-toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.latex-toc-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.latex-toc-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  background: var(--bg-page);
+  padding-right: 0.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.latex-toc-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.latex-toc-secnum {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.latex-toc-dots {
+  flex-grow: 1;
+  border-bottom: 1.5px dotted var(--rule-light);
+  margin: 0 0.4rem;
+  height: 0.7em;
+}
+
+.latex-toc-page {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: var(--bg-page);
+  padding-left: 0.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.latex-toc-desc {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+  padding-left: 2rem;
+}

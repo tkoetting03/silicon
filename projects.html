@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper" data-layout="twocolumn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Thomas Koetting</title>
+  <link rel="icon" type="image/png" href="assets/img/thumbnail.png">
+
+  <!-- Fonts & KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="css/latex.css">
+</head>
+<body>
+
+  <!-- Minimalist TeX Utility Toolbar -->
+  <header class="tex-toolbar" role="banner">
+    <div class="tex-meta-left">
+      <span class="tex-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        pdfTeX-3.14159 [projects.tex]
+      </span>
+      <nav class="tex-nav-links">
+        <a href="index.html">&larr; Contents</a>
+        <a href="projects.html" style="font-weight:bold; color:var(--text-primary);">Projects</a>
+        <a href="opamp.html">Op-Amp</a>
+        <a href="paper.html">Research Paper</a>
+        <a href="ai.html">AI Essay</a>
+        <a href="quotes.html">Quotes</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="projectfiles.html">Files</a>
+        <a href="socials.html">Socials</a>
+      </nav>
+    </div>
+
+    <div class="tex-meta-right">
+      <div class="tex-btn-group">
+        <button class="tex-btn active" data-set-layout="twocolumn">2-Col</button>
+        <button class="tex-btn" data-set-layout="onecolumn">1-Col</button>
+      </div>
+      <div class="tex-btn-group">
+        <button class="tex-btn active" data-set-theme="paper">Paper</button>
+        <button class="tex-btn" data-set-theme="parchment">Parchment</button>
+        <button class="tex-btn" data-set-theme="dark">Dark</button>
+      </div>
+      <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">Recompile</button>
+      <button class="tex-action-btn" data-open-bibtex>[Cite]</button>
+      <button class="tex-action-btn" onclick="window.print()">Print / PDF</button>
+    </div>
+  </header>
+
+  <div class="paper-outer-wrapper">
+    <article class="paper-sheet">
+
+      <!-- Back Navigation Breadcrumb -->
+      <a href="index.html" class="tex-back-link">&larr; Return to Table of Contents</a>
+
+      <header class="proceedings-header">
+        <div class="proceedings-title">
+          Proceedings of the Silicon Colloquium on Semiconductor Devices, Distributed Security & Systems
+        </div>
+        <div class="proceedings-vol">
+          Vol. 2 &mdash; December 2026 &mdash; Section 1: Experimental Systems &bull; pp. 1058
+        </div>
+      </header>
+
+      <div class="article-header">
+        <h1 class="article-title">
+          Projects &amp; Experimental Systems: Microarchitectures, Discrete Feedback Controls, and Memory Topologies
+        </h1>
+        <div class="article-authors">Thomas Koetting</div>
+        <div class="article-affiliation">
+          Department of Electrical Engineering &amp; Computer Science, University of Kansas<br>
+          Silicon Research Collective, Overland Park
+        </div>
+      </div>
+
+      <section class="abstract-block">
+        <p>
+          <span class="abstract-runin">Abstract &mdash;</span>
+          This manuscript details five applied engineering repositories developed to investigate discrete computation across multiple abstraction layers. Implementations include an RV32I-compliant 32-bit pipelined RISC-V microcontroller synthesized in Verilog, a low-latency server utilities daemon for distributed Minecraft environments, a discretized proportional-integral-derivative (PID) feedback compensator with live canvas simulation, a lock-free circular ring buffer utilizing power-of-two modulo pointer arithmetic, and an iterative-addition operational amplifier. An embedded demonstration reel showcases dynamic hardware behavior.
+        </p>
+        <div class="keywords-line">
+          <span class="keywords-runin">Key words &mdash;</span>
+          <em>RISC-V &bull; Microcontroller &bull; PID Control &bull; Circular Ring Buffer &bull; Verilog &bull; Operational Amplifier</em>
+        </div>
+      </section>
+
+      <hr class="header-separator">
+
+      <div class="monograph-body">
+
+        <!-- Section 1: Video Showcase -->
+        <h2 class="section-header">1. Multimedia Engineering Showcase</h2>
+        <p>
+          To visually record signal behavior, algorithmic timing, and motion graphics pipelines, a technical demonstration reel is embedded below. The reel documents hardware register transfers, graphic synchronization, and spatial redstone logic:
+        </p>
+
+        <figure class="latex-figure" id="fig-reel">
+          <div class="figure-frame">
+            <div class="video-responsive-frame">
+              <iframe src="https://www.youtube.com/embed/d-_-cdy8ZQc?si=6hTL0Gnz1Q8NPchm" title="Silicon Engineering Showcase" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 1.</strong> Video demonstration reel showcasing hardware register dynamics, graphic synchronization, and digital simulation. Hosted on YouTube channel <a href="https://www.youtube.com/@thomask7326" target="_blank">@thomask7326</a>.
+          </figcaption>
+        </figure>
+
+        <!-- Section 2: RISC-V -->
+        <h2 class="section-header">2. 32-Bit RISC-V Microcontroller</h2>
+        <p>
+          In <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank">@tkoetting03/32-bit-risc-mcu</a>, we implement a synthesized 32-bit processor core compliant with the unprivileged RV32I base integer specification. The core executes arithmetic, logical, memory-access, and branch instructions across a classical five-stage instruction pipeline consisting of:
+        </p>
+        <ul style="padding-left:1.2rem; font-size:0.84rem; line-height:1.45; margin-bottom:0.6rem;">
+          <li><strong>Instruction Fetch (IF):</strong> Program counter indexing with dual-port instruction memory.</li>
+          <li><strong>Instruction Decode (ID):</strong> Immediate sign extension and dual-read 32-register file access.</li>
+          <li><strong>Execution (EX):</strong> 32-bit ALU executing branch evaluations and arithmetic operations.</li>
+          <li><strong>Memory Access (MEM):</strong> Data memory interface with byte, halfword, and word masking.</li>
+          <li><strong>Write-Back (WB):</strong> Multiplexed register retirement.</li>
+        </ul>
+        <p>
+          Forwarding logic and hazard detection units resolve data dependencies with minimal branch misprediction stalls. The repository contains full Verilog HDL source and simulation testbenches.
+        </p>
+
+        <!-- Section 3: Server Utilities -->
+        <h2 class="section-header">3. Server Utilities Minecraft Mod</h2>
+        <p>
+          Distributed multi-tenant sandbox environments demand efficient memory allocation and deterministic event scheduling. In <a href="https://github.com/tkoetting03/server-utilities" target="_blank">@tkoetting03/server-utilities</a>, we authored a high-throughput server modification engineered to optimize tick rates, reduce packet serialization overhead, and manage world states with minimal GC latency.
+        </p>
+
+        <!-- Section 4: PID Controller with Live Simulator -->
+        <h2 class="section-header">4. Real-Time PID Controller in C</h2>
+        <p>
+          Stable physical automation necessitates closed-loop regulation. In <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank">@tkoetting03/PID-Tuner</a>, we formulate a discrete-time proportional-integral-derivative feedback algorithm:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$u(t) = K_p \, e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \, \frac{de(t)}{dt}$$
+          </div>
+          <span class="equation-number" title="Equation (1)">(1)</span>
+        </div>
+
+        <p class="no-indent">
+          The interactive instrumentation below simulates a closed-loop second-order plant driven by the discrete controller. Adjusting gain coefficients recalculates transient overshoot, damping factor, and settling time in real time:
+        </p>
+
+        <!-- Interactive PID Canvas -->
+        <figure class="latex-figure" id="fig-pid">
+          <div class="figure-frame">
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="pid-kp-slider">Kp:</label>
+                <input type="range" id="pid-kp-slider" class="sim-slider" min="0" max="10" step="0.2" value="3.2">
+                <span id="pid-kp-val" class="sim-value-badge">3.2</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="pid-ki-slider">Ki:</label>
+                <input type="range" id="pid-ki-slider" class="sim-slider" min="0" max="5" step="0.1" value="0.8">
+                <span id="pid-ki-val" class="sim-value-badge">0.8</span>
+              </div>
+              <div class="sim-control-group">
+                <label for="pid-kd-slider">Kd:</label>
+                <input type="range" id="pid-kd-slider" class="sim-slider" min="0" max="5" step="0.1" value="1.2">
+                <span id="pid-kd-val" class="sim-value-badge">1.2</span>
+              </div>
+              <button class="sim-btn" id="pid-pulse-btn">Step Pulse</button>
+            </div>
+
+            <div style="height:190px; position:relative;">
+              <canvas id="pid-canvas" class="sim-canvas"></canvas>
+            </div>
+
+            <div class="sim-readout-row">
+              <span id="pid-metrics-readout">Overshoot: 14.2% | Rise Time: 0.64s | Settling: 2.40s</span>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 2.</strong> Closed-loop step response simulation. Sliders control proportional ($K_p$), integral ($K_i$), and derivative ($K_d$) coefficients governing plant feedback, updating transient metrics live.
+          </figcaption>
+        </figure>
+
+        <!-- Section 5: Ring Buffer with Live Simulator -->
+        <h2 class="section-header">5. Lock-Free Circular Ring Buffer in C</h2>
+        <p>
+          High-performance systems programming precludes dynamic heap allocation in time-critical paths. In <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank">@tkoetting03/Ring-Buffer</a>, we develop a fixed-capacity circular FIFO buffer utilizing power-of-two bitwise pointer wrapping:
+        </p>
+
+        <div class="equation-row">
+          <div class="equation-math">
+            $$\text{head}_{\text{next}} = (\text{head} + 1) \pmod N, \quad \text{count} = (\text{head} - \text{tail}) \pmod N$$
+          </div>
+          <span class="equation-number" title="Equation (2)">(2)</span>
+        </div>
+
+        <!-- Interactive Ring Buffer Visualizer -->
+        <figure class="latex-figure" id="fig-ringbuffer">
+          <div class="figure-frame">
+            <div class="sim-controls">
+              <div class="sim-control-group">
+                <label for="rb-input-val">Byte:</label>
+                <input type="text" id="rb-input-val" value="0xAA" style="width:50px; font-family:var(--font-mono); font-size:0.75rem; padding:2px 4px; border:1px solid var(--interactive-border);">
+              </div>
+              <button class="sim-btn" id="rb-push-btn">+ Enqueue (W)</button>
+              <button class="sim-btn" id="rb-pop-btn">- Dequeue (R)</button>
+              <button class="sim-btn" id="rb-reset-btn">Clear</button>
+            </div>
+
+            <div class="ring-buffer-container">
+              <div class="ring-buffer-slots" id="ring-slots-container"></div>
+              <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary); margin-top:0.6rem;" id="rb-status">
+                Head: 0x03 | Tail: 0x00 | Count: 3/8 (ACTIVE)
+              </div>
+              <pre style="width:100%; margin-top:0.4rem; padding:0.4rem 0.6rem; font-size:0.7rem;"><code id="rb-code-snippet">ring_buffer[2] = 0x4C; head = (head + 1) % 8; // count = 3</code></pre>
+            </div>
+          </div>
+          <figcaption>
+            <strong>Fig. 3.</strong> Circular ring buffer memory state machine. Pointers $\text{Head}$ (write) and $\text{Tail}$ (read) rotate modulo 8 with full/empty detection and zero lock contention.
+          </figcaption>
+        </figure>
+
+        <!-- Section 6: Op-Amp Link -->
+        <h2 class="section-header">6. Verilog Operational Amplifier</h2>
+        <p>
+          Our exploration into analog-to-digital hardware synthesis led to the design of an operational amplifier formulated as an iterative-addition accumulator loop. The complete manuscript, including Verilog RTL, the interactive CRT oscilloscope simulator, and Yosys/MinecraftHDL netlists, is detailed in a dedicated monograph:
+        </p>
+
+        <div style="text-align:center; margin: 1.2rem 0;">
+          <a href="opamp.html" class="tex-action-btn" style="padding:0.45rem 1rem; font-size:0.85rem;">
+            Read Op-Amp Verilog Monograph &rarr;
+          </a>
+        </div>
+
+      </div><!-- /.monograph-body -->
+
+      <footer class="paper-footer">
+        <div class="paper-page-number">1058</div>
+        <div class="paper-running-footer">
+          Koetting &bull; Projects &amp; Experimental Systems &bull; Proceedings of the 2026 Colloquium
+        </div>
+      </footer>
+
+    </article>
+  </div>
+
+  <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span>BibTeX Academic Citation</span>
+        <button class="modal-close-btn" id="bibtex-close-btn">&times;</button>
+      </div>
+      <div class="modal-content">
+        <pre><code id="bibtex-code">@article{koetting2026projects,
+  author    = {Koetting, Thomas},
+  title     = {Projects and Experimental Systems: Microarchitectures, Discrete Feedback Controls, and Memory Topologies},
+  journal   = {Proceedings of the Silicon Colloquium on Semiconductor Devices},
+  volume    = {2},
+  pages     = {1058},
+  year      = {2026},
+  url       = {https://github.com/tkoetting03/silicon}
+}</code></pre>
+        <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
+          <button class="tex-action-btn" id="bibtex-copy-btn">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="recompile-modal" role="dialog" aria-modal="true">
+    <div class="modal-window" style="max-width: 650px;">
+      <div class="modal-header">
+        <span>pdfTeX Terminal &mdash; projects.tex</span>
+        <button class="modal-close-btn" id="recompile-close-btn">&times;</button>
+      </div>
+      <div class="modal-content" style="padding:0; background:#0d1117;">
+        <div class="terminal-window" id="recompile-log" style="height: 260px; overflow-y: auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

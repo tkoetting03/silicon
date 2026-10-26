@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curated Catalog — Thomas Koetting</title>
+  <title>Favorites — Thomas Koetting</title>
   <link rel="icon" type="image/png" href="assets/img/thumbnail.png">
 
   <!-- Fonts & KaTeX -->
@@ -28,7 +28,7 @@
         <a href="projects.html">Projects</a>
         <a href="opamp.html">Op-Amp</a>
         <a href="paper.html">Research Paper</a>
-        <a href="ai.html">AI Essay</a>
+        <a href="ai.html">AI</a>
         <a href="quotes.html">Quotes</a>
         <a href="favorites.html" style="font-weight:bold; color:var(--text-primary);">Favorites</a>
         <a href="projectfiles.html">Files</a>
@@ -58,424 +58,131 @@
       <!-- Back Navigation Breadcrumbs -->
       <a href="index.html" class="tex-back-link">&larr; Return to Table of Contents</a>
 
-      <header class="proceedings-header">
-        <div class="proceedings-title">
-          Proceedings of the Silicon Colloquium on Semiconductor Devices, Distributed Security & Systems
-        </div>
-        <div class="proceedings-vol">
-          Vol. 2 &mdash; December 2026 &mdash; Section 6: Curated Compendium &bull; pp. 1063
-        </div>
-      </header>
+      <!-- Running Header -->
+      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.2rem; color:var(--text-secondary);">
+        <span>Silicon</span>
+        <span>Favorites</span>
+      </div>
 
-      <div class="article-header">
-        <h1 class="article-title">
-          Curated Reference Compendium: Literature, Music, Cinema, and Fine Art
+      <!-- Title Block -->
+      <div class="article-header" style="text-align:center; margin-bottom:2.5rem;">
+        <h1 class="article-title" style="font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; color:var(--text-primary);">
+          Favorites
         </h1>
-        <div class="article-authors">Thomas Koetting</div>
-        <div class="article-affiliation">
-          Department of Electrical Engineering &amp; Computer Science, University of Kansas<br>
-          Silicon Research Collective, Overland Park
-        </div>
-
-        <div class="distance-meta-grid">
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Compendium</span>
-            <span class="distance-meta-val">Aesthetic Canon</span>
-          </div>
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Categories</span>
-            <span class="distance-meta-val">6 Classifications</span>
-          </div>
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Media</span>
-            <span class="distance-meta-val">Books / Art / Music</span>
-          </div>
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Galleries</span>
-            <span class="distance-meta-val">Louvre / Met / AIC</span>
-          </div>
+        <div class="article-authors" style="font-size:1.1rem; font-weight:600; color:var(--text-primary); margin-bottom:0.3rem;">
+          Thomas Koetting
         </div>
       </div>
 
-      <section class="abstract-block">
-        <p>
-          <span class="abstract-runin">Abstract &mdash;</span>
-          An intellectual framework is shaped through rigorous engagement with arts, humanities, and fundamental sciences. This catalog presents an annotated bibliography of foundational literary texts, acoustic compositions, cinema, classical paintings, architectural monuments, and technical periodicals that serve as primary cultural touchstones for our work.
-        </p>
-        <div class="keywords-line">
-          <span class="keywords-runin">Key words &mdash;</span>
-          <em>Bibliography &bull; Literature &bull; Music &bull; Cinema &bull; Fine Art &bull; Architecture</em>
-        </div>
-      </section>
+      <!-- Authentic Favorites Body -->
+      <div class="monograph-body">
 
-      <!-- Category Filter Bar -->
-      <div class="catalog-filter-bar">
-        <button class="catalog-pill active" data-cat="all">All</button>
-        <button class="catalog-pill" data-cat="book">Books</button>
-        <button class="catalog-pill" data-cat="music">Music</button>
-        <button class="catalog-pill" data-cat="movie">Cinema</button>
-        <button class="catalog-pill" data-cat="art">Fine Art</button>
-        <button class="catalog-pill" data-cat="arch">Architecture</button>
-        <button class="catalog-pill" data-cat="news">Periodicals</button>
+        <h2 class="section-header">Books</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://en.wikipedia.org/wiki/Ulysses_(novel)" target="_blank" rel="noopener">Ulysses</a></li>
+          <li><a href="https://www.goodreads.com/book/show/7648269-empire-of-the-summer-moon" target="_blank" rel="noopener">Empire of the Summer Moon</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/The_Anarchy:_The_Relentless_Rise_of_the_East_India_Company" target="_blank" rel="noopener">The Anarchy</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/The_Road_to_Reality" target="_blank" rel="noopener">The Road To Reality</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Stalingrad_(Beevor_book)" target="_blank" rel="noopener">Stalingrad</a></li>
+          <li><a href="https://www.goodreads.com/en/book/show/21073.The_Embarrassment_of_Riches" target="_blank" rel="noopener">The Embarrassment of Riches</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Alexander_Hamilton_(biography)" target="_blank" rel="noopener">Alexander Hamilton</a></li>
+        </ul>
+
+        <h2 class="section-header">Music</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://tidal.com/album/58990523/u" target="_blank" rel="noopener">Kid A</a> &#11088; <sup><a href="#footnote-1">[1]</a></sup></li>
+          <li><a href="https://tidal.com/album/61799588/u" target="_blank" rel="noopener">In Rainbows</a></li>
+          <li><a href="https://tidal.com/album/65229357/u" target="_blank" rel="noopener">Deathconsciousness</a></li>
+          <li><a href="https://tidal.com/album/176533110/u" target="_blank" rel="noopener">Radio Amor</a></li>
+          <li><a href="https://tidal.com/album/414065766/u" target="_blank" rel="noopener">Debussy: Estampes; Pour le piano; 6 &eacute;pigraphes antiques</a></li>
+          <li><a href="https://tidal.com/album/180892435/u" target="_blank" rel="noopener">To See the Next Part of the Dream</a></li>
+          <li><a href="https://tidal.com/album/92891727/u" target="_blank" rel="noopener">Long Season</a></li>
+          <li><a href="https://tidal.com/album/488529268/u" target="_blank" rel="noopener">Minecraft - Volume Beta</a></li>
+          <li><a href="https://tidal.com/album/92891764/u" target="_blank" rel="noopener">Uchu Nippon Setagaya</a></li>
+          <li><a href="https://tidal.com/album/166203100/u" target="_blank" rel="noopener">&#20864;&#35199;&#21335;&#26519;&#36335;&#34892;</a></li>
+          <li><a href="https://tidal.com/album/411889225/u" target="_blank" rel="noopener">Cold Visions</a></li>
+        </ul>
+
+        <h2 class="section-header">Movies</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters" target="_blank" rel="noopener">Mishima: A Life in Four Chapters</a> &#11088;</li>
+          <li><a href="https://en.wikipedia.org/wiki/Hamnet_(film)" target="_blank" rel="noopener">Hamnet</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Children_of_Men" target="_blank" rel="noopener">Children of Men</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Police_Story_(1985_film)" target="_blank" rel="noopener">Police Story</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/The_Thin_Red_Line_(1998_film)" target="_blank" rel="noopener">The Thin Red Line</a></li>
+        </ul>
+
+        <h2 class="section-header">Paintings</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://art.nelson-atkins.org/objects/1130/saint-john-the-baptist-in-the-wilderness?ctx=f0e795ce19a6c901eafbe84aa2a93b837f6d07e0&idx=144" target="_blank" rel="noopener">Saint John the Baptist in the Wilderness</a></li>
+          <li><a href="https://www.metmuseum.org/art/collection/search/436105" target="_blank" rel="noopener">The Death of Socrates</a></li>
+          <li><a href="https://www.artic.edu/artworks/282198/the-dugout-preliminary-work" target="_blank" rel="noopener">The Dugout</a></li>
+          <li><a href="https://www.artic.edu/artworks/5848/landscape-with-saint-john-on-patmos" target="_blank" rel="noopener">Landscape with Saint John on Patmos</a></li>
+          <li><a href="https://www.artic.edu/artworks/146701/mountain-brook" target="_blank" rel="noopener">Mountain Brook</a></li>
+          <li><a href="https://www.artic.edu/artworks/76571/view-of-cotopaxi" target="_blank" rel="noopener">View of Cotopaxi</a></li>
+          <li><a href="https://collections.louvre.fr/en/ark:/53355/cl010059199" target="_blank" rel="noopener">The Raft of the Medusa</a></li>
+          <li><a href="https://collections.louvre.fr/en/ark:/53355/cl010062239" target="_blank" rel="noopener">Oath of the Horatii</a> &#11088;</li>
+          <li><a href="https://www.rijksmuseum.nl/en/collection/object/The-Night-Watch-Militia-Company-of-District-II-under-the-Command-of-Captain-Frans-Banninck-Cocq--3137deb45cd7765f9a76084a16c99544" target="_blank" rel="noopener">The Night Watch</a></li>
+          <li><a href="https://www.rijksmuseum.nl/en/collection/object/A-Ship-on-the-High-Seas-Caught-by-a-Squall-Known-as-The-Gust--10ab6e851c892e484d4ad0ee96f78b37" target="_blank" rel="noopener">A Ship on the High Seas Caught by a Squall</a></li>
+        </ul>
+
+        <h2 class="section-header">Architecture</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://fallingwater.org/" target="_blank" rel="noopener">Fallingwater</a></li>
+          <li><a href="https://www.archdaily.com/118627/ad-classics-sendai-mediatheque-toyo-ito-and-associates-architects" target="_blank" rel="noopener">Sendai Mediatheque</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/The_Shard" target="_blank" rel="noopener">The Shard</a></li>
+          <li><a href="https://www.kpf.com/project/10-30-hudson-yards" target="_blank" rel="noopener">10 &amp; 30 Hudson Yards</a></li>
+        </ul>
+
+        <h2 class="section-header">News and Current Events</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://www.nakedcapitalism.com/" target="_blank" rel="noopener">Naked Capitalism</a></li>
+          <li><a href="https://www.wsj.com/" target="_blank" rel="noopener">WSJ</a></li>
+          <li><a href="https://www.quantamagazine.org/" target="_blank" rel="noopener">Quanta Magazine</a></li>
+          <li><a href="https://phys.org/" target="_blank" rel="noopener">Phys.org</a></li>
+        </ul>
+
+        <h2 class="section-header">Blogs and Newsletters</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://www.scopeofwork.net/" target="_blank" rel="noopener">Scope of Work</a></li>
+          <li><a href="https://www.chinatalk.media/" target="_blank" rel="noopener">ChinaTalk</a></li>
+          <li><a href="https://www.astralcodexten.com/" target="_blank" rel="noopener">Astral Codex Ten</a></li>
+          <li><a href="https://www.construction-physics.com/" target="_blank" rel="noopener">Construction Physics</a></li>
+          <li><a href="https://asianometry.substack.com/" target="_blank" rel="noopener">Asianometry</a></li>
+          <li><a href="https://www.fabricatedknowledge.com/" target="_blank" rel="noopener">Fabricated Knowledge</a></li>
+          <li><a href="https://www.youtube.com/@SummoningSalt" target="_blank" rel="noopener">Summoning Salt</a></li>
+          <li><a href="https://www.youtube.com/@ModernMBA" target="_blank" rel="noopener">Modern MBA</a></li>
+          <li><a href="https://www.youtube.com/@numberphile" target="_blank" rel="noopener">Numberphile</a></li>
+          <li><a href="https://www.youtube.com/@BenEater" target="_blank" rel="noopener">Ben Eater</a></li>
+          <li><a href="https://www.youtube.com/@HighYield" target="_blank" rel="noopener">High Yield</a></li>
+          <li><a href="https://www.youtube.com/@MoritzKlein0" target="_blank" rel="noopener">Moritz Klein</a></li>
+          <li><a href="https://www.youtube.com/@LEMMiNO" target="_blank" rel="noopener">Lemino</a></li>
+        </ul>
+
+        <h2 class="section-header">Other</h2>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li><a href="https://mathlets.org/mathlets/" target="_blank" rel="noopener">MIT Mathlets</a></li>
+        </ul>
+
+        <!-- Footnote -->
+        <hr style="border:0; border-bottom:1px solid var(--rule-color); margin: 2.5rem 0 1rem 0;">
+        <div class="footnotes-container" style="font-size: 0.78rem; line-height: 1.45; color: var(--text-secondary);">
+          <div class="footnote-item" id="footnote-1">
+            <span class="footnote-marker">[1]</span> &#11088; Entails a listed item is my favorite among the others
+          </div>
+        </div>
+
+      </div><!-- /.monograph-body -->
+
+      <div style="margin-top: 2.5rem;">
+        <a href="index.html" class="tex-back-link">&larr; Back to Contents</a>
       </div>
 
-      <div class="catalog-grid" id="catalog-container">
-
-        <!-- Books -->
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Ulysses</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">James Joyce (1922)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Ulysses_(novel)" target="_blank">Wikipedia Reference &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Empire of the Summer Moon</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">S. C. Gwynne (2010)</div>
-          <div class="catalog-item-links"><a href="https://www.goodreads.com/book/show/7648269-empire-of-the-summer-moon" target="_blank">Goodreads Archive &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Anarchy</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">William Dalrymple (2019)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Anarchy:_The_Relentless_Rise_of_the_East_India_Company" target="_blank">The East India Company &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Road to Reality</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">Roger Penrose (2004)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Road_to_Reality" target="_blank">Laws of the Universe &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Stalingrad</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">Antony Beevor (1998)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Stalingrad_(Beevor_book)" target="_blank">Historical Monograph &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Embarrassment of Riches</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">Simon Schama (1987)</div>
-          <div class="catalog-item-links"><a href="https://www.goodreads.com/en/book/show/21073.The_Embarrassment_of_Riches" target="_blank">Dutch Golden Age Culture &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="book">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Alexander Hamilton</span>
-            <span class="catalog-item-type">Book</span>
-          </div>
-          <div class="catalog-item-detail">Ron Chernow (2004)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Alexander_Hamilton_(biography)" target="_blank">Biography &rarr;</a></div>
-        </div>
-
-        <!-- Music -->
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Kid A &bigstar;</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Radiohead (2000) &bull; Masterwork</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/58990523/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">In Rainbows</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Radiohead (2007)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/61799588/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Deathconsciousness</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Have a Nice Life (2008)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/65229357/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Radio Amor</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Tim Hecker (2003)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/176533110/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Debussy: Estampes; Pour le piano</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Claude Debussy &bull; 6 épigraphes antiques</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/414065766/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">To See the Next Part of the Dream</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Parannoul (2021)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/180892435/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Long Season</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Fishmans (1996)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/92891727/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Minecraft - Volume Beta</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">C418 (2013)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/488529268/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Uchu Nippon Setagaya</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Fishmans (1997)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/92891764/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">冀西南林路行</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Omnipotent Youth Society (Inside the Cable Temple, 2020)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/166203100/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="music">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Cold Visions</span>
-            <span class="catalog-item-type">Music</span>
-          </div>
-          <div class="catalog-item-detail">Bladee (2024)</div>
-          <div class="catalog-item-links"><a href="https://tidal.com/album/411889225/u" target="_blank">Listen on Tidal &rarr;</a></div>
-        </div>
-
-        <!-- Movies -->
-        <div class="catalog-item" data-cat="movie">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Mishima: A Life in Four Chapters &bigstar;</span>
-            <span class="catalog-item-type">Cinema</span>
-          </div>
-          <div class="catalog-item-detail">Dir. Paul Schrader (1985)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Mishima:_A_Life_in_Four_Chapters" target="_blank">Criterion Reference &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="movie">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Thin Red Line</span>
-            <span class="catalog-item-type">Cinema</span>
-          </div>
-          <div class="catalog-item-detail">Dir. Terrence Malick (1998)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Thin_Red_Line_(1998_film)" target="_blank">Film Reference &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="movie">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Children of Men</span>
-            <span class="catalog-item-type">Cinema</span>
-          </div>
-          <div class="catalog-item-detail">Dir. Alfonso Cuarón (2006)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Children_of_Men" target="_blank">Film Reference &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="movie">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Police Story</span>
-            <span class="catalog-item-type">Cinema</span>
-          </div>
-          <div class="catalog-item-detail">Dir. Jackie Chan (1985)</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Police_Story_(1985_film)" target="_blank">Film Reference &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="movie">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Hamnet</span>
-            <span class="catalog-item-type">Cinema</span>
-          </div>
-          <div class="catalog-item-detail">Dir. Chloé Zhao</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/Hamnet_(film)" target="_blank">Production Reference &rarr;</a></div>
-        </div>
-
-        <!-- Paintings -->
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Oath of the Horatii &bigstar;</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Jacques-Louis David (1784) &bull; Musée du Louvre</div>
-          <div class="catalog-item-links"><a href="https://collections.louvre.fr/en/ark:/53355/cl010062239" target="_blank">Louvre Collection &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Saint John the Baptist in the Wilderness</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Caravaggio (1604) &bull; Nelson-Atkins Museum</div>
-          <div class="catalog-item-links"><a href="https://art.nelson-atkins.org/objects/1130/saint-john-the-baptist-in-the-wilderness?ctx=f0e795ce19a6c901eafbe84aa2a93b837f6d07e0&idx=144" target="_blank">Gallery Archive &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Death of Socrates</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Jacques-Louis David (1787) &bull; The Met</div>
-          <div class="catalog-item-links"><a href="https://www.metmuseum.org/art/collection/search/436105" target="_blank">Metropolitan Museum &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Raft of the Medusa</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Théodore Géricault (1819) &bull; Musée du Louvre</div>
-          <div class="catalog-item-links"><a href="https://collections.louvre.fr/en/ark:/53355/cl010059199" target="_blank">Louvre Collection &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Night Watch</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Rembrandt van Rijn (1642) &bull; Rijksmuseum</div>
-          <div class="catalog-item-links"><a href="https://www.rijksmuseum.nl/en/collection/object/The-Night-Watch-Militia-Company-of-District-II-under-the-Command-of-Captain-Frans-Banninck-Cocq--3137deb45cd7765f9a76084a16c99544" target="_blank">Rijksmuseum &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Dugout</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Norman Rockwell (1948) &bull; Art Institute Chicago</div>
-          <div class="catalog-item-links"><a href="https://www.artic.edu/artworks/282198/the-dugout-preliminary-work" target="_blank">Art Institute Chicago &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="art">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">View of Cotopaxi</span>
-            <span class="catalog-item-type">Fine Art</span>
-          </div>
-          <div class="catalog-item-detail">Frederic Edwin Church (1857) &bull; Art Institute Chicago</div>
-          <div class="catalog-item-links"><a href="https://www.artic.edu/artworks/76571/view-of-cotopaxi" target="_blank">Art Institute Chicago &rarr;</a></div>
-        </div>
-
-        <!-- Architecture -->
-        <div class="catalog-item" data-cat="arch">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Fallingwater</span>
-            <span class="catalog-item-type">Architecture</span>
-          </div>
-          <div class="catalog-item-detail">Frank Lloyd Wright (1935) &bull; Mill Run, PA</div>
-          <div class="catalog-item-links"><a href="https://fallingwater.org/" target="_blank">Official Archive &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="arch">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Sendai Mediatheque</span>
-            <span class="catalog-item-type">Architecture</span>
-          </div>
-          <div class="catalog-item-detail">Toyo Ito &amp; Associates (2001) &bull; Sendai, Japan</div>
-          <div class="catalog-item-links"><a href="https://www.archdaily.com/118627/ad-classics-sendai-mediatheque-toyo-ito-and-associates-architects" target="_blank">Architectural Monograph &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="arch">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">The Shard</span>
-            <span class="catalog-item-type">Architecture</span>
-          </div>
-          <div class="catalog-item-detail">Renzo Piano (2012) &bull; London, UK</div>
-          <div class="catalog-item-links"><a href="https://en.wikipedia.org/wiki/The_Shard" target="_blank">Structural Analysis &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="arch">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">10 &amp; 30 Hudson Yards</span>
-            <span class="catalog-item-type">Architecture</span>
-          </div>
-          <div class="catalog-item-detail">Kohn Pedersen Fox (2019) &bull; New York, NY</div>
-          <div class="catalog-item-links"><a href="https://www.kpf.com/project/10-30-hudson-yards" target="_blank">KPF Monograph &rarr;</a></div>
-        </div>
-
-        <!-- News & Periodicals -->
-        <div class="catalog-item" data-cat="news">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Naked Capitalism</span>
-            <span class="catalog-item-type">Periodical</span>
-          </div>
-          <div class="catalog-item-detail">Finance, Economics &amp; Political Economy</div>
-          <div class="catalog-item-links"><a href="https://www.nakedcapitalism.com/" target="_blank">Visit Site &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="news">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Quanta Magazine</span>
-            <span class="catalog-item-type">Periodical</span>
-          </div>
-          <div class="catalog-item-detail">Physics, Mathematics &amp; Computer Science</div>
-          <div class="catalog-item-links"><a href="https://www.quantamagazine.org/" target="_blank">Visit Site &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="news">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Scope of Work</span>
-            <span class="catalog-item-type">Newsletter</span>
-          </div>
-          <div class="catalog-item-detail">Engineering, Manufacturing &amp; Industrial Systems</div>
-          <div class="catalog-item-links"><a href="https://www.scopeofwork.net/" target="_blank">Visit Site &rarr;</a></div>
-        </div>
-
-        <div class="catalog-item" data-cat="news">
-          <div class="catalog-item-header">
-            <span class="catalog-item-title">Phys.org</span>
-            <span class="catalog-item-type">Periodical</span>
-          </div>
-          <div class="catalog-item-detail">Nanotechnology, Physics &amp; Materials Science</div>
-          <div class="catalog-item-links"><a href="https://phys.org/" target="_blank">Visit Site &rarr;</a></div>
-        </div>
-
-      </div>
-
-      <footer class="paper-footer">
-        <div class="paper-page-number">1063</div>
+      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
         <div class="paper-running-footer">
-          Koetting &bull; Curated Reference Compendium &bull; Proceedings of the 2026 Colloquium
+          Koetting &bull; Favorites
         </div>
+        <div class="paper-page-number">7</div>
       </footer>
 
     </article>
@@ -488,12 +195,9 @@
         <button class="modal-close-btn" id="bibtex-close-btn">&times;</button>
       </div>
       <div class="modal-content">
-        <pre><code id="bibtex-code">@article{koetting2026favorites,
+        <pre><code id="bibtex-code">@misc{koetting2026favorites,
   author    = {Koetting, Thomas},
-  title     = {Curated Reference Compendium: Literature, Music, Cinema, and Fine Art},
-  journal   = {Proceedings of the Silicon Colloquium on Semiconductor Devices},
-  volume    = {2},
-  pages     = {1063},
+  title     = {Favorites},
   year      = {2026},
   url       = {https://github.com/tkoetting03/silicon}
 }</code></pre>

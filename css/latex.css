@@ -496,6 +496,18 @@ h3 + p,
   page-break-after: avoid;
 }
 
+.section-header a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.section-header a:hover {
+  color: var(--accent-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
 .subsection-header {
   font-size: 1.06rem;
   font-weight: 750;

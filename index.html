@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Silicon — Thomas Koetting</title>
-  <meta name="description" content="Silicon: Thomas Koetting's research monograph and technical blog, designed as an interactable LaTeX publication.">
+  <meta name="description" content="Silicon: Thomas Koetting's technical projects, research papers, and writings.">
   <meta name="author" content="Thomas Koetting">
 
   <!-- Favicon -->
@@ -24,24 +24,22 @@
 </head>
 <body>
 
-  <!-- ==========================================================================
-       Minimalist TeX Utility Toolbar
-       ========================================================================== -->
+  <!-- Minimalist TeX Utility Toolbar -->
   <header class="tex-toolbar" role="banner">
     <div class="tex-meta-left">
       <span class="tex-badge">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
         pdfTeX-3.14159 [index.tex]
       </span>
-      <nav class="tex-nav-links" aria-label="Monograph Sections">
-        <a href="index.html" style="font-weight:bold; color:var(--text-primary);">Table of Contents</a>
+      <nav class="tex-nav-links" aria-label="Navigation">
+        <a href="index.html" style="font-weight:bold; color:var(--text-primary);">Home</a>
         <a href="projects.html">Projects</a>
         <a href="opamp.html">Op-Amp</a>
         <a href="paper.html">Research Paper</a>
-        <a href="ai.html">AI Essay</a>
+        <a href="ai.html">AI</a>
         <a href="quotes.html">Quotes</a>
         <a href="favorites.html">Favorites</a>
-        <a href="projectfiles.html">Files</a>
+        <a href="projectfiles.html">Project Files</a>
         <a href="socials.html">Socials</a>
       </nav>
     </div>
@@ -77,242 +75,144 @@
     </div>
   </header>
 
-  <!-- ==========================================================================
-       Main Paper Sheet Container
-       ========================================================================== -->
+  <!-- Main Paper Sheet Container -->
   <div class="paper-outer-wrapper">
     <article class="paper-sheet" id="paper-document">
 
-      <!-- Proceedings Header (matching Page 1 & 2 of the reference PDF) -->
-      <header class="proceedings-header">
-        <div class="proceedings-title">
-          Proceedings of the Silicon Colloquium on Semiconductor Devices, Distributed Security & Systems
-        </div>
-        <div class="proceedings-vol">
-          Vol. 2 &mdash; December 2026 &mdash; Allied Publishers &bull; ISSN 2470-1049
-        </div>
-      </header>
+      <!-- Running Header -->
+      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.5rem; color:var(--text-secondary);">
+        <span>Silicon</span>
+        <span>Thomas Koetting</span>
+      </div>
 
       <!-- Document Title Block -->
-      <div class="article-header">
-        <h1 class="article-title">
-          Silicon: Compendium on Semiconductor Modeling, Game-Theoretic Security, and Systems Engineering
+      <div class="article-header" style="text-align:center; margin-bottom: 2.8rem;">
+        <h1 class="article-title" style="font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; color: var(--text-primary);">
+          Silicon
         </h1>
-        <div class="article-authors">
+        <div class="article-authors" style="font-size: 1.12rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem;">
           Thomas Koetting
         </div>
-        <div class="article-affiliation">
-          Department of Electrical Engineering &amp; Computer Science, University of Kansas<br>
-          Silicon Engineering Collective, Overland Park &bull; Timarpur
-        </div>
-        <div class="article-meta-links">
-          <span>E-mail: <a href="mailto:tkoettin@stumail.jccc.edu">tkoettin@stumail.jccc.edu</a></span>
-          <span>&bull;</span>
+        <div class="article-meta-links" style="font-size: 0.82rem; color: var(--text-secondary);">
           <span><a href="https://github.com/tkoetting03" target="_blank" rel="noopener">github.com/tkoetting03</a></span>
           <span>&bull;</span>
-          <span><a href="socials.html">Curriculum Vitae</a></span>
-        </div>
-
-        <!-- 'Distance' Style Minimalist Metadata Grid -->
-        <div class="distance-meta-grid">
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Year</span>
-            <span class="distance-meta-val">2026</span>
-          </div>
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Domain</span>
-            <span class="distance-meta-val">Systems &amp; Logic</span>
-          </div>
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Institution</span>
-            <span class="distance-meta-val">Univ. of Kansas</span>
-          </div>
-          <div class="distance-meta-col">
-            <span class="distance-meta-label">Monographs</span>
-            <span class="distance-meta-val">8 Distinct Sections</span>
-          </div>
+          <span><a href="socials.html">Socials</a></span>
         </div>
       </div>
 
-      <!-- LaTeX Abstract Block -->
-      <section class="abstract-block" aria-label="Abstract">
-        <p>
-          <span class="abstract-runin">Abstract &mdash;</span>
-          This publication comprises an interconnected collection of research investigations, hardware synthesis netlists, discrete systems implementations, and theoretical critiques. Our work spans gate-level Verilog modeling of analog operational amplifiers, non-cooperative Stackelberg security games for back-end web frameworks, bare-metal 32-bit RISC-V pipelined processors, real-time closed-loop PID compensators, circular memory queues in C, and socio-technical evaluations of machine intelligence on human engineering. Each separate section constitutes a complete, interactable monograph formatted according to rigid academic standards.
-        </p>
-        <div class="keywords-line">
-          <span class="keywords-runin">Key words &mdash;</span>
-          <em>Verilog Synthesis &bull; Operational Amplifiers &bull; Non-Cooperative Games &bull; Nash Equilibrium &bull; RISC-V &bull; PID Control &bull; Ring Buffers &bull; Machine Intelligence</em>
+      <!-- Rigid LaTeX Table of Contents (Direct links from index.md) -->
+      <nav class="latex-toc" aria-label="Index" style="margin: 2rem 0 3.5rem 0;">
+        <div class="latex-toc-title" style="font-size: 1.25rem; font-weight: 800; border-bottom: 1.5px solid var(--rule-color); padding-bottom: 0.45rem; margin-bottom: 1.4rem; letter-spacing: -0.01em;">
+          Table of Contents
         </div>
-      </section>
-
-      <!-- 'Distance' Morse Code Motif (S-I-L-I-C-O-N) -->
-      <div class="morse-signal-divider" title="Morse Code: S-I-L-I-C-O-N">
-        <span class="morse-dot"></span><span class="morse-dot"></span><span class="morse-dot"></span>
-        <span style="width:10px;"></span>
-        <span class="morse-dot"></span><span class="morse-dot"></span>
-        <span style="width:10px;"></span>
-        <span class="morse-dot"></span><span class="morse-dash"></span><span class="morse-dot"></span><span class="morse-dot"></span>
-        <span style="width:10px;"></span>
-        <span class="morse-dot"></span><span class="morse-dot"></span>
-        <span style="width:10px;"></span>
-        <span class="morse-dash"></span><span class="morse-dot"></span><span class="morse-dash"></span><span class="morse-dot"></span>
-        <span style="width:10px;"></span>
-        <span class="morse-dash"></span><span class="morse-dash"></span><span class="morse-dash"></span>
-        <span style="width:10px;"></span>
-        <span class="morse-dash"></span><span class="morse-dot"></span>
-      </div>
-
-      <!-- Classical LaTeX Table of Contents (\tableofcontents) -->
-      <nav class="latex-toc" aria-label="Table of Contents">
-        <div class="latex-toc-title">Table of Contents</div>
         <ul class="latex-toc-list">
-          <!-- Item 1: Projects -->
           <li class="latex-toc-item">
             <a href="projects.html" class="latex-toc-link">
               <span class="latex-toc-secnum">&sect; 1</span>
-              <span>Projects &amp; Experimental Systems</span>
+              <span>Projects</span>
             </a>
             <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1058</span>
           </li>
-          <div class="latex-toc-desc">
-            RISC-V 32-Bit Microcontroller, Server Utilities Mod, Discrete PID Tuner (with real-time interactive solver), Circular Ring Buffer in C, and Multimedia Reel.
-          </div>
 
-          <!-- Item 2: Op-Amp -->
-          <li class="latex-toc-item">
-            <a href="opamp.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 2</span>
-              <span>Operational Amplifier Modeling &amp; Synthesis in Verilog</span>
-            </a>
-            <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1059</span>
-          </li>
-          <div class="latex-toc-desc">
-            Ideal behavioral abstraction vs. clocked iterative accumulator loop, with live CRT oscilloscope waveform simulator and Yosys/MinecraftHDL netlist inspector.
-          </div>
-
-          <!-- Item 3: Paper -->
-          <li class="latex-toc-item">
-            <a href="paper.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 3</span>
-              <span>Non-Cooperative Game Theory in Back-End Web Security</span>
-            </a>
-            <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1060</span>
-          </li>
-          <div class="latex-toc-desc">
-            Peer-reviewed research paper on Stackelberg and Bayesian threat modeling, diminishing return software functionality, and live interactive Nash equilibrium solver.
-          </div>
-
-          <!-- Item 4: AI Essay -->
-          <li class="latex-toc-item">
-            <a href="ai.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 4</span>
-              <span>Technological Progression, AI &amp; Critical Reason</span>
-            </a>
-            <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1061</span>
-          </li>
-          <div class="latex-toc-desc">
-            Critical analysis of mechanical advantage, corporate labor outsourcing (from foreign IT centers to neural networks), and preservation of human analytical rigor.
-          </div>
-
-          <!-- Item 5: Quotes -->
           <li class="latex-toc-item">
             <a href="quotes.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 5</span>
-              <span>Quotes of Note: Scholarly Epigraphs</span>
+              <span class="latex-toc-secnum">&sect; 2</span>
+              <span>Quotes of Note</span>
             </a>
             <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1062</span>
           </li>
-          <div class="latex-toc-desc">
-            Ten foundational axioms spanning political philosophy, thermodynamics, and cinema (Agar, Corbet, Gibson, Lee Kuan Yew, Feynman, Baldwin, Lloyd, etc.).
-          </div>
 
-          <!-- Item 6: Favorites -->
           <li class="latex-toc-item">
             <a href="favorites.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 6</span>
-              <span>Curated Reference Compendium (Favorites)</span>
+              <span class="latex-toc-secnum">&sect; 3</span>
+              <span>Favorites</span>
             </a>
             <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1063</span>
           </li>
-          <div class="latex-toc-desc">
-            Annotated academic reference catalog covering Books, Music (Tidal albums), Cinema, Fine Art (Louvre / Met / Art Institute collections), Architecture, and Periodicals.
-          </div>
 
-          <!-- Item 7: Project Files -->
+          <li class="latex-toc-item">
+            <a href="paper.html" class="latex-toc-link">
+              <span class="latex-toc-secnum">&sect; 4</span>
+              <span>Research Paper</span>
+            </a>
+            <span class="latex-toc-dots"></span>
+          </li>
+
           <li class="latex-toc-item">
             <a href="projectfiles.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 7</span>
-              <span>Project Files &amp; CAD Archives</span>
+              <span class="latex-toc-secnum">&sect; 5</span>
+              <span>Project Files</span>
             </a>
             <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1064</span>
           </li>
-          <div class="latex-toc-desc">
-            Transistor motion graphics project archive (After Effects .aep), technical requirements, and direct package downloads.
-          </div>
 
-          <!-- Item 8: Socials -->
           <li class="latex-toc-item">
             <a href="socials.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 8</span>
-              <span>Academic Affiliations &amp; Curriculum Vitae</span>
+              <span class="latex-toc-secnum">&sect; 6</span>
+              <span>Socials</span>
             </a>
             <span class="latex-toc-dots"></span>
-            <span class="latex-toc-page">p. 1065</span>
           </li>
-          <div class="latex-toc-desc">
-            Professional contact indices: LinkedIn, GitHub, YouTube channel, Tidal musical profile, and personal/editing Instagram.
-          </div>
         </ul>
       </nav>
 
-      <!-- Overview Body (Two-Column format) -->
+      <!-- Section Index Listings with Direct Authentic Links -->
       <div class="monograph-body">
-        <h2 class="section-header">1. Monograph Architecture</h2>
-        <p>
-          The <em>Silicon</em> compendium is structured as a collection of specialized manuscripts, each dedicated to a distinct facet of engineering, computation, or philosophical inquiry. Rather than aggregating diverse topics into a single continuous draft, each article maintains its own self-contained academic apparatus, equation numbering, interactive instrumentation, and citation indices.
+        <h2 class="section-header">
+          <a href="projects.html">&sect; 1. Projects</a>
+        </h2>
+        <p style="margin-top:0.3rem;">
+          Hardware implementations, embedded controls, and software tools. Includes 32-bit RISC-V microcontroller, Server Utilities Minecraft mod, PID controller in C, Ring Buffer in C, and operational amplifier in Verilog.
         </p>
-        <p>
-          Readers may navigate directly to any manuscript via the Table of Contents above or the permanent TeX utility bar. Each page provides an interactive experience while maintaining the austere aesthetic standards of physical scientific journals:
-        </p>
-        <ul style="padding-left:1.2rem; font-size:0.86rem; margin-bottom:0.8rem; line-height:1.5;">
-          <li><strong>Interactive Instrumentation:</strong> Real-time numerical solvers, oscilloscopes, and memory state machines executing client-side with zero external dependencies.</li>
-          <li><strong>Rigid LaTeX Typography:</strong> Pixel-perfect Computer Modern Roman and STIX Two Text fonts with authentic mathematical formatting via KaTeX.</li>
-          <li><strong>Multi-Theme Architecture:</strong> Seamlessly switch between crisp White Paper, Archival Parchment, or Overleaf Midnight dark mode.</li>
-          <li><strong>Print to Physical Paper:</strong> Optimized print stylesheets conform each page directly to standard US Letter journal dimensions.</li>
-        </ul>
 
-        <h2 class="section-header">2. Synopsis of Core Research</h2>
-        <p>
-          In <a href="opamp.html">Section 2 (Operational Amplifier Synthesis)</a>, we demonstrate how high-level behavioral HDL abstractions often disguise hardware cost. By transforming an abstract multiplication into an eight-stage iterative accumulator loop, we derive a gate-level netlist that was subsequently compiled into physical MinecraftHDL redstone gates.
+        <h2 class="section-header">
+          <a href="quotes.html">&sect; 2. Quotes of Note</a>
+        </h2>
+        <p style="margin-top:0.3rem;">
+          Collected quotations on science, leadership, literature, thermodynamics, and philosophy.
         </p>
-        <p>
-          In <a href="paper.html">Section 3 (Game Theoretic Defense)</a>, we model back-end web security as a non-cooperative Stackelberg contest between development teams and malicious actors. We prove that software fortification follows classic diminishing marginal returns, establishing precise Nash equilibria for finite engineering budgets.
+
+        <h2 class="section-header">
+          <a href="favorites.html">&sect; 3. Favorites</a>
+        </h2>
+        <p style="margin-top:0.3rem;">
+          Curated collection of books, music, movies, paintings, architecture, news, and engineering newsletters.
         </p>
-        <p>
-          In <a href="projects.html">Section 1 (Applied Systems)</a>, we document our synthesized 32-bit RISC-V pipelined microcontroller alongside discrete C-based PID feedback loops and lock-free circular memory buffers. Finally, <a href="ai.html">Section 4 (AI Discourse)</a> critiques the structural pressures of automated intelligence on human cognition and corporate labor outsourcing.
+
+        <h2 class="section-header">
+          <a href="paper.html">&sect; 4. Research Paper</a>
+        </h2>
+        <p style="margin-top:0.3rem;">
+          <em>Can Non-Cooperative Game Theory Assist Modeling Security Implementation for Back-End Web App Development?</em>
+        </p>
+
+        <h2 class="section-header">
+          <a href="projectfiles.html">&sect; 5. Project Files</a>
+        </h2>
+        <p style="margin-top:0.3rem;">
+          Transistor project assets and downloadable archives.
+        </p>
+
+        <h2 class="section-header">
+          <a href="socials.html">&sect; 6. Socials</a>
+        </h2>
+        <p style="margin-top:0.3rem;">
+          External links to GitHub, LinkedIn, Instagram, Tidal, and YouTube.
         </p>
       </div>
 
-      <!-- Page Footer (Page 1057) -->
-      <footer class="paper-footer">
-        <div class="paper-page-number">1057</div>
+      <!-- Page Footer -->
+      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
         <div class="paper-running-footer">
-          Koetting &bull; Silicon: Compendium on Semiconductor Modeling &bull; Proceedings of the 2026 Colloquium
+          Silicon &bull; Thomas Koetting
         </div>
+        <div class="paper-page-number">1</div>
       </footer>
 
     </article>
   </div>
 
-  <!-- Recompile Modal & BibTeX Modal -->
+  <!-- BibTeX Modal -->
   <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
     <div class="modal-window">
       <div class="modal-header">
@@ -320,12 +220,9 @@
         <button class="modal-close-btn" id="bibtex-close-btn">&times;</button>
       </div>
       <div class="modal-content">
-        <pre><code id="bibtex-code">@article{koetting2026silicon,
+        <pre><code id="bibtex-code">@misc{koetting2026silicon,
   author    = {Koetting, Thomas},
-  title     = {Silicon: Compendium on Semiconductor Modeling, Game-Theoretic Security, and Systems Engineering},
-  journal   = {Proceedings of the Silicon Colloquium on Semiconductor Devices},
-  volume    = {2},
-  pages     = {1057--1065},
+  title     = {Silicon},
   year      = {2026},
   url       = {https://github.com/tkoetting03/silicon}
 }</code></pre>
@@ -336,6 +233,7 @@
     </div>
   </div>
 
+  <!-- Recompile Modal -->
   <div class="modal-overlay" id="recompile-modal" role="dialog" aria-modal="true">
     <div class="modal-window" style="max-width: 650px;">
       <div class="modal-header">

@@ -231,13 +231,13 @@ h3 + p,
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  opacity: 1 !important;
+  opacity: 1;
   text-decoration: none;
   margin-right: 0.65rem;
   margin-bottom: -0.5rem;
   line-height: 1.05;
   transform-origin: left center;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease, opacity 0.2s ease;
   will-change: transform;
   cursor: pointer;
 }
@@ -246,6 +246,26 @@ h3 + p,
   color: var(--accent-link);
   transform: scale(1.05);
   text-decoration: none;
+  opacity: 1 !important;
+}
+
+/* Primary Section Titles: "Projects" and "Resume" (Full size & 100% opacity) */
+.flow-highlight-link[data-section="projects"],
+.flow-highlight-link[data-section="resume"] {
+  font-size: 1.55rem;
+  opacity: 1 !important;
+}
+
+/* Secondary Section Titles: slightly smaller and lower opacity (100% on hover) */
+.flow-highlight-link:not([data-section="projects"]):not([data-section="resume"]) {
+  font-size: 1.34rem;
+  opacity: 0.65 !important;
+}
+
+.flow-highlight-link:not([data-section="projects"]):not([data-section="resume"]):hover {
+  opacity: 1 !important;
+  color: var(--accent-link);
+  transform: scale(1.05);
 }
 
 .lorem-phrase {

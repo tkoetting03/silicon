@@ -218,58 +218,80 @@ let proseResizeListenerAttached = false;
 let activeProseCompute = null;
 
 function initSectionTitleHover() {
-  const prose = document.querySelector('.latex-cohesive-prose');
-  if (!prose) return;
+  const proseBlocks = document.querySelectorAll('.latex-cohesive-prose');
+  if (!proseBlocks.length) return;
 
-  const links = Array.from(prose.querySelectorAll('.flow-highlight-link'));
-  const words = Array.from(prose.querySelectorAll('.lorem-phrase'));
-  if (!links.length || !words.length) return;
+  const computors = [];
 
-  // Cached map of link element -> array of nearby word elements
-  const proximityMap = new Map();
+  proseBlocks.forEach(prose => {
+    const links = Array.from(prose.querySelectorAll('.flow-highlight-link'));
+    const words = Array.from(prose.querySelectorAll('.lorem-phrase'));
+    if (!links.length || !words.length) return;
 
-  function computeForLink(link) {
-    const titleRect = link.getBoundingClientRect();
-    const titleCenterY = (titleRect.top + titleRect.bottom) / 2;
-    const nearWords = [];
+    // Cached map of link element -> array of nearby word elements
+    const proximityMap = new Map();
 
-    for (let i = 0; i < words.length; i++) {
-      const word = words[i];
-      const wRect = word.getBoundingClientRect();
-      if (wRect.width === 0 && wRect.height === 0) continue;
+    function computeForLink(link) {
+      const titleRect = link.getBoundingClientRect();
+      const titleCenterY = (titleRect.top + titleRect.bottom) / 2;
+      const nearWords = [];
 
-      const wCenterX = (wRect.left + wRect.right) / 2;
-      const wCenterY = (wRect.top + wRect.bottom) / 2;
-      const diffY = wCenterY - titleCenterY;
+      for (let i = 0; i < words.length; i++) {
+        const word = words[i];
+        const wRect = word.getBoundingClientRect();
+        if (wRect.width === 0 && wRect.height === 0) continue;
 
-      // 1. Same line: to the right of the section title
-      const isSameLine = Math.abs(diffY) <= 16;
-      const isRight = isSameLine && (wRect.left >= titleRect.right - 12) && (wRect.left <= titleRect.right + 250);
+        const wCenterX = (wRect.left + wRect.right) / 2;
+        const wCenterY = (wRect.top + wRect.bottom) / 2;
+        const diffY = wCenterY - titleCenterY;
 
-      // 2. Line directly above (within 1 line height above title)
-      const isAbove = (diffY >= -44 && diffY < -14) &&
-                      (wRect.right >= titleRect.left - 15) && (wRect.left <= titleRect.right + 75);
+        // 1. Same line: to the right of the section title
+        const isSameLine = Math.abs(diffY) <= 16;
+        const isRight = isSameLine && (wRect.left >= titleRect.right - 12) && (wRect.left <= titleRect.right + 250);
 
-      // 3. Line directly below (within 1 line height below title)
-      const isBelow = (diffY > 14 && diffY <= 44) &&
-                      (wRect.right >= titleRect.left - 15) && (wRect.left <= titleRect.right + 75);
+        // 2. Line directly above (within 1 line height above title)
+        const isAbove = (diffY >= -44 && diffY < -14) &&
+                        (wRect.right >= titleRect.left - 15) && (wRect.left <= titleRect.right + 75);
 
-      if (isRight || isAbove || isBelow) {
-        nearWords.push(word);
+        // 3. Line directly below (within 1 line height below title)
+        const isBelow = (diffY > 14 && diffY <= 44) &&
+                        (wRect.right >= titleRect.left - 15) && (wRect.left <= titleRect.right + 75);
+
+        if (isRight || isAbove || isBelow) {
+          nearWords.push(word);
+        }
       }
+      return nearWords;
     }
-    return nearWords;
-  }
 
-  function computeLayoutMap() {
-    proximityMap.clear();
+    function computeLayoutMap() {
+      proximityMap.clear();
+      links.forEach(link => {
+        proximityMap.set(link, computeForLink(link));
+      });
+    }
+
+    computors.push(computeLayoutMap);
+    computeLayoutMap();
+
+    // Attach hover listeners
     links.forEach(link => {
-      proximityMap.set(link, computeForLink(link));
-    });
-  }
+      link.addEventListener('mouseenter', () => {
+        let targets = proximityMap.get(link);
+        if (!targets || targets.length === 0) {
+          targets = computeForLink(link);
+          proximityMap.set(link, targets);
+        }
+        targets.forEach(w => w.classList.add('dimmed'));
+      });
 
-  activeProseCompute = computeLayoutMap;
-  computeLayoutMap();
+      link.addEventListener('mouseleave', () => {
+        words.forEach(w => w.classList.remove('dimmed'));
+      });
+    });
+  });
+
+  activeProseCompute = () => computors.forEach(cb => cb());
 
   // Recompute when web fonts finish loading & rendering
   if (document.fonts && document.fonts.ready) {
@@ -285,22 +307,6 @@ function initSectionTitleHover() {
     }, { passive: true });
     proseResizeListenerAttached = true;
   }
-
-  // Attach hover listeners
-  links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      let targets = proximityMap.get(link);
-      if (!targets || targets.length === 0) {
-        targets = computeForLink(link);
-        proximityMap.set(link, targets);
-      }
-      targets.forEach(w => w.classList.add('dimmed'));
-    });
-
-    link.addEventListener('mouseleave', () => {
-      words.forEach(w => w.classList.remove('dimmed'));
-    });
-  });
 }
 
 /* ==========================================================================
@@ -379,12 +385,19 @@ function initSmoothResumeScroll() {
   }
 
   document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href="#cv"], a[href="#resume"], a[href$="#cv"], a[href$="#resume"]');
+    const link = e.target.closest('a[href^="#"]');
     if (!link) return;
 
-    const target = document.getElementById('cv') || document.getElementById('resume');
+    const href = link.getAttribute('href');
+    if (!href || href === '#' || href === '#!') return;
+
+    const targetId = href.substring(1);
+    const target = document.getElementById(targetId);
     if (target) {
       e.preventDefault();
+      if (target.tagName.toLowerCase() === 'details') {
+        target.open = true;
+      }
       target.classList.add('is-revealed');
       smoothScrollToElement(target, 750);
     }

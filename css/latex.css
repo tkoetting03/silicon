@@ -269,24 +269,46 @@ h3 + p,
   opacity: 1 !important;
 }
 
-/* Primary Section Titles: "Projects" and "CV" (Full size & 100% opacity) */
-.flow-highlight-link[data-section="projects"],
-.flow-highlight-link[data-section="cv"],
-.flow-highlight-link[data-section="resume"] {
+/* Landing Page: Primary Section Titles "Projects" and "CV" (Full size & 100% opacity) */
+.landing-prose .flow-highlight-link[data-section="projects"],
+.landing-prose .flow-highlight-link[data-section="cv"],
+.landing-prose .flow-highlight-link[data-section="resume"] {
   font-size: 1.55rem;
   opacity: 1 !important;
 }
 
-/* Secondary Section Titles: slightly smaller and lower opacity (100% on hover) */
-.flow-highlight-link:not([data-section="projects"]):not([data-section="cv"]):not([data-section="resume"]) {
+/* Landing Page: Secondary Section Titles slightly smaller and lower opacity (100% on hover) */
+.landing-prose .flow-highlight-link:not([data-section="projects"]):not([data-section="cv"]):not([data-section="resume"]) {
   font-size: 1.34rem;
   opacity: 0.65 !important;
 }
 
-.flow-highlight-link:not([data-section="projects"]):not([data-section="cv"]):not([data-section="resume"]):hover {
+.landing-prose .flow-highlight-link:not([data-section="projects"]):not([data-section="cv"]):not([data-section="resume"]):hover {
   opacity: 1 !important;
   color: var(--accent-link);
   transform: scale(1.05);
+}
+
+/* Subpages (Favorites, Socials, Projects): All titles uniform size (1.55rem) and full 100% opacity */
+.subpage-prose .flow-highlight-link,
+.latex-cohesive-prose.uniform-titles .flow-highlight-link,
+.latex-cohesive-prose:not(.landing-prose) .flow-highlight-link {
+  font-size: 1.55rem !important;
+  opacity: 1 !important;
+}
+
+.subpage-prose .flow-highlight-link:hover,
+.latex-cohesive-prose.uniform-titles .flow-highlight-link:hover,
+.latex-cohesive-prose:not(.landing-prose) .flow-highlight-link:hover {
+  color: var(--accent-link);
+  transform: scale(1.05);
+  opacity: 1 !important;
+}
+
+/* Favorites Directory Prose: Exactly one line of filler text separating each left-aligned title */
+.favorites-directory-prose .flow-section-row {
+  display: block;
+  clear: both;
 }
 
 .lorem-phrase {

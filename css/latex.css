@@ -263,6 +263,11 @@ h3 + p,
   user-select: text;
   font-size: 1.02rem;
   line-height: 1.82;
+  transition: opacity 0.25s ease;
+}
+
+.lorem-ghost:hover {
+  opacity: 0.45;
 }
 
 /* Clickable Section Titles: Scale Up on Hover */

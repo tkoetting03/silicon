@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBibTeXModal();
   initTerminalRecompile();
   initOpampAccordion();
+  initLocalGhostHover();
 });
 
 /* ==========================================================================
@@ -34,6 +35,7 @@ function initKaTeXAutoRender() {
       ],
       throwOnError: false
     });
+    initLocalGhostHover();
   } else {
     setTimeout(initKaTeXAutoRender, 150);
   }
@@ -174,4 +176,114 @@ function initOpampAccordion() {
       details.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   }
+}
+
+/* ==========================================================================
+   6. Localized Area Hover for Landing Page Filler Text
+   ========================================================================== */
+function initLocalGhostHover() {
+  const container = document.querySelector('.latex-prose-container');
+  if (!container || container.dataset.tokensInitialized) return;
+
+  const ghosts = container.querySelectorAll('.lorem-ghost');
+  if (!ghosts.length) return;
+
+  container.dataset.tokensInitialized = 'true';
+
+  // Wrap text nodes in span.lorem-token (preserving KaTeX formulas)
+  function tokenizeNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      if (!text.trim()) return;
+      const parts = text.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      for (const part of parts) {
+        if (/^\s+$/.test(part)) {
+          frag.appendChild(document.createTextNode(part));
+        } else if (part.length > 0) {
+          const span = document.createElement('span');
+          span.className = 'lorem-token';
+          span.textContent = part;
+          frag.appendChild(span);
+        }
+      }
+      node.parentNode.replaceChild(frag, node);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.classList.contains('katex')) {
+        node.classList.add('lorem-token');
+      } else {
+        Array.from(node.childNodes).forEach(tokenizeNode);
+      }
+    }
+  }
+
+  ghosts.forEach(g => {
+    tokenizeNode(g);
+    g.classList.add('tokens-ready');
+  });
+
+  const tokens = Array.from(container.querySelectorAll('.lorem-token'));
+  let tokenBounds = [];
+
+  function updateBounds() {
+    tokenBounds = tokens.map(el => {
+      const rect = el.getBoundingClientRect();
+      return {
+        el,
+        cx: rect.left + rect.width / 2,
+        cy: rect.top + rect.height / 2
+      };
+    });
+  }
+
+  // Calculate center coordinates for proximity detection
+  setTimeout(updateBounds, 120);
+  window.addEventListener('resize', updateBounds, { passive: true });
+  window.addEventListener('scroll', updateBounds, { passive: true });
+
+  const RADIUS_CORE = 45; // px for primary highlight (0.55 opacity)
+  const RADIUS_SOFT = 85; // px for secondary falloff (0.38 opacity)
+  let activeTokens = new Set();
+  let rafId = null;
+
+  container.addEventListener('mousemove', (e) => {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const mx = e.clientX;
+      const my = e.clientY;
+      const nextActive = new Set();
+
+      for (let i = 0; i < tokenBounds.length; i++) {
+        const item = tokenBounds[i];
+        const dx = mx - item.cx;
+        const dy = my - item.cy;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < RADIUS_CORE * RADIUS_CORE) {
+          item.el.classList.add('proximity-core');
+          item.el.classList.remove('proximity-soft');
+          nextActive.add(item.el);
+        } else if (distSq < RADIUS_SOFT * RADIUS_SOFT) {
+          item.el.classList.add('proximity-soft');
+          item.el.classList.remove('proximity-core');
+          nextActive.add(item.el);
+        }
+      }
+
+      for (const el of activeTokens) {
+        if (!nextActive.has(el)) {
+          el.classList.remove('proximity-core', 'proximity-soft');
+        }
+      }
+      activeTokens = nextActive;
+    });
+  });
+
+  container.addEventListener('mouseleave', () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    for (const el of activeTokens) {
+      el.classList.remove('proximity-core', 'proximity-soft');
+    }
+    activeTokens.clear();
+  });
 }

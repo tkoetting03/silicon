@@ -289,10 +289,10 @@ h3 + p,
    Landing Page: Cohesive Text Block Wrapping Around Left-Aligned Titles
    ========================================================================== */
 .latex-cohesive-prose {
-  margin: 2.8rem 0 3.5rem 0;
+  margin: 2.2rem 0 3.5rem 0;
   display: flow-root;
   text-align: left;
-  line-height: 1.82;
+  line-height: 1.62;
   font-family: var(--font-cm);
   font-size: 1.05rem;
 }
@@ -301,15 +301,15 @@ h3 + p,
   float: left;
   clear: left;
   font-family: var(--font-cm);
-  font-size: 1.62rem;
+  font-size: 1.55rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   opacity: 1 !important;
   text-decoration: none;
-  margin-right: 0.72rem;
-  margin-bottom: 0.15rem;
-  line-height: 1.15;
+  margin-right: 0.65rem;
+  margin-bottom: -0.5rem;
+  line-height: 1.05;
   transform-origin: left center;
   transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
   will-change: transform;

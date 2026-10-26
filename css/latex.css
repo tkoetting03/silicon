@@ -677,7 +677,7 @@ ul, ol {
   transform: translateX(-3px);
 }
 
-/* PDF Download Link: 50% Opacity Playfair Display, Full Opacity on Hover */
+/* PDF Download Link: 50% Opacity Playfair Display (Non-Italicized), Full Opacity on Hover */
 .pdf-download-link {
   display: inline-flex;
   align-items: center;
@@ -685,7 +685,7 @@ ul, ol {
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 600;
-  font-style: italic;
+  font-style: normal;
   color: var(--text-primary);
   opacity: 0.5;
   text-decoration: none;

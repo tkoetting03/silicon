@@ -302,28 +302,27 @@ h3 + p,
   text-decoration: underline;
 }
 
-/* Project File Download Link: Playfair Display */
+/* Project File Download Link: Styled like GitHub links (Bitter, non-italic, text-muted) */
 .project-download-link,
 .download-link {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  font-style: italic;
-  color: var(--accent-link);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-bitter), "Bitter", Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--text-muted);
+  text-decoration: none;
   margin-top: 0.75rem;
-  transform-origin: left center;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
-  will-change: transform;
+  transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .project-download-link:hover,
 .download-link:hover {
-  color: #0550ae;
-  transform: scale(1.04);
+  color: var(--accent-link);
+  text-decoration: underline;
 }
 
 /* Op Amp Expandable Accordion */

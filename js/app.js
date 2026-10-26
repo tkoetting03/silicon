@@ -299,7 +299,7 @@ function initSectionTitleHover() {
 }
 
 /* ==========================================================================
-   7. Smooth Scroll Handler for "Resume" in-page anchor (RAF-driven easeInOut)
+   7. Smooth Scroll Handler for "CV" / "Resume" in-page anchor (RAF-driven easeInOut)
    ========================================================================== */
 function initSmoothResumeScroll() {
   let activeRafId = null;
@@ -366,7 +366,7 @@ function initSmoothResumeScroll() {
         cleanup();
         // Update URL hash only AFTER smooth scroll reaches destination to prevent Safari instant-jump
         if (history.pushState) {
-          history.pushState(null, '', '#resume');
+          history.pushState(null, '', '#' + (target.id || 'cv'));
         }
       }
     }
@@ -376,10 +376,10 @@ function initSmoothResumeScroll() {
 
   // Handle both delegated clicks and direct listeners
   document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href="#resume"], a[href$="#resume"]');
+    const link = e.target.closest('a[href="#cv"], a[href="#resume"], a[href$="#cv"], a[href$="#resume"]');
     if (!link) return;
 
-    const target = document.getElementById('resume');
+    const target = document.getElementById('cv') || document.getElementById('resume');
     if (target) {
       e.preventDefault();
       smoothScrollToElement(target, 750);

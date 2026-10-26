@@ -256,20 +256,21 @@ h3 + p,
   opacity: 1 !important;
 }
 
-/* Primary Section Titles: "Projects" and "Resume" (Full size & 100% opacity) */
+/* Primary Section Titles: "Projects" and "CV" (Full size & 100% opacity) */
 .flow-highlight-link[data-section="projects"],
+.flow-highlight-link[data-section="cv"],
 .flow-highlight-link[data-section="resume"] {
   font-size: 1.55rem;
   opacity: 1 !important;
 }
 
 /* Secondary Section Titles: slightly smaller and lower opacity (100% on hover) */
-.flow-highlight-link:not([data-section="projects"]):not([data-section="resume"]) {
+.flow-highlight-link:not([data-section="projects"]):not([data-section="cv"]):not([data-section="resume"]) {
   font-size: 1.34rem;
   opacity: 0.65 !important;
 }
 
-.flow-highlight-link:not([data-section="projects"]):not([data-section="resume"]):hover {
+.flow-highlight-link:not([data-section="projects"]):not([data-section="cv"]):not([data-section="resume"]):hover {
   opacity: 1 !important;
   color: var(--accent-link);
   transform: scale(1.05);

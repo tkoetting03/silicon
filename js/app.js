@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBibTeXModal();
   initTerminalRecompile();
   initOpampAccordion();
+  initSmoothResumeScroll();
   initSectionTitleHover();
 });
 
@@ -209,7 +210,7 @@ function initOpampAccordion() {
 }
 
 /* ==========================================================================
-   6. Section Title Hover: Precomputed Spatial Proximity Map (Zero Layout Thrashing)
+   6. Section Title Hover: Precomputed Spatial Proximity Map with Fallback
    ========================================================================== */
 function initSectionTitleHover() {
   const prose = document.querySelector('.latex-cohesive-prose');
@@ -219,74 +220,101 @@ function initSectionTitleHover() {
   const words = Array.from(prose.querySelectorAll('.lorem-phrase'));
   if (!links.length || !words.length) return;
 
-  // Distance thresholds in pixels
-  const DIST_ABOVE = 36;
-  const DIST_BELOW = 36;
-  const DIST_RIGHT = 220;
-  const HORIZ_PAD  = 60;
-
   // Cached map of link element -> array of nearby word elements
   const proximityMap = new Map();
 
+  function computeForLink(link) {
+    const titleRect = link.getBoundingClientRect();
+    const titleCenterY = (titleRect.top + titleRect.bottom) / 2;
+    const nearWords = [];
+
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+      const wRect = word.getBoundingClientRect();
+      if (wRect.width === 0 && wRect.height === 0) continue;
+
+      const wCenterX = (wRect.left + wRect.right) / 2;
+      const wCenterY = (wRect.top + wRect.bottom) / 2;
+      const diffY = wCenterY - titleCenterY;
+
+      // 1. Same line: to the right of the section title
+      const isSameLine = Math.abs(diffY) <= 16;
+      const isRight = isSameLine && (wRect.left >= titleRect.right - 12) && (wRect.left <= titleRect.right + 250);
+
+      // 2. Line directly above (within 1 line height above title)
+      const isAbove = (diffY >= -44 && diffY < -14) &&
+                      (wRect.right >= titleRect.left - 15) && (wRect.left <= titleRect.right + 75);
+
+      // 3. Line directly below (within 1 line height below title)
+      const isBelow = (diffY > 14 && diffY <= 44) &&
+                      (wRect.right >= titleRect.left - 15) && (wRect.left <= titleRect.right + 75);
+
+      if (isRight || isAbove || isBelow) {
+        nearWords.push(word);
+      }
+    }
+    return nearWords;
+  }
+
   function computeLayoutMap() {
     proximityMap.clear();
-
-    const wordMetrics = words.map(word => ({
-      el: word,
-      rect: word.getBoundingClientRect()
-    }));
-
     links.forEach(link => {
-      const titleRect = link.getBoundingClientRect();
-      const nearWords = [];
-
-      wordMetrics.forEach(({ el, rect: wRect }) => {
-        if (wRect.width === 0 && wRect.height === 0) return;
-
-        const wCenterX = (wRect.left + wRect.right) / 2;
-        const wCenterY = (wRect.top + wRect.bottom) / 2;
-
-        // 1. To the right on the same line:
-        const isSameLine = (wCenterY >= titleRect.top - 6) && (wCenterY <= titleRect.bottom + 6);
-        const isRight = isSameLine && (wRect.left >= titleRect.right - 8) && (wRect.left <= titleRect.right + DIST_RIGHT);
-
-        // 2. Directly above (line above the title):
-        const isAbove = (wCenterY < titleRect.top - 2) && (wCenterY >= titleRect.top - DIST_ABOVE) &&
-                        (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD);
-
-        // 3. Directly below (line below the title):
-        const isBelow = (wCenterY > titleRect.bottom + 2) && (wCenterY <= titleRect.bottom + DIST_BELOW) &&
-                        (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD);
-
-        if (isRight || isAbove || isBelow) {
-          nearWords.push(el);
-        }
-      });
-
-      proximityMap.set(link, nearWords);
+      proximityMap.set(link, computeForLink(link));
     });
   }
 
   // Precompute on load
   computeLayoutMap();
 
-  // Recompute only on debounced window resize
+  // Recompute when web fonts finish loading & rendering
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(computeLayoutMap);
+  }
+
+  // Recompute when window fully loads
+  window.addEventListener('load', computeLayoutMap);
+
+  // Recompute on debounced window resize
   let resizeTimer = null;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(computeLayoutMap, 150);
   }, { passive: true });
 
-  // Pure O(1) class toggle on hover: 0 getBoundingClientRect calls during interaction!
+  // Attach hover listeners
   links.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const targets = proximityMap.get(link) || [];
+      let targets = proximityMap.get(link);
+      if (!targets || targets.length === 0) {
+        targets = computeForLink(link);
+        proximityMap.set(link, targets);
+      }
       targets.forEach(w => w.classList.add('dimmed'));
     });
 
     link.addEventListener('mouseleave', () => {
-      const targets = proximityMap.get(link) || [];
-      targets.forEach(w => w.classList.remove('dimmed'));
+      words.forEach(w => w.classList.remove('dimmed'));
+    });
+  });
+}
+
+/* ==========================================================================
+   7. Smooth Scroll Handler for "Resume" in-page anchor
+   ========================================================================== */
+function initSmoothResumeScroll() {
+  const resumeLinks = document.querySelectorAll('a[href="#resume"]');
+  resumeLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.getElementById('resume');
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (history.pushState) {
+          history.pushState(null, '', '#resume');
+        } else {
+          location.hash = '#resume';
+        }
+      }
     });
   });
 }

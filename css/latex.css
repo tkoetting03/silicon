@@ -672,6 +672,7 @@ ul, ol {
   padding-top: 2rem;
   border-top: 1.5px solid var(--rule-color);
   text-align: left;
+  scroll-margin-top: 2.5rem;
 }
 
 .resume-header {

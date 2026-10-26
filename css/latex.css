@@ -233,6 +233,132 @@ h3 + p,
   text-decoration: none;
 }
 
+/* ==========================================================================
+   Project List & Expandable Monograph
+   ========================================================================== */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.project-entry {
+  border-bottom: 1px solid var(--rule-light);
+  padding-bottom: 1.4rem;
+  text-align: left;
+}
+
+.project-header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.project-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.project-title a,
+.project-title span {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
+  will-change: transform;
+}
+
+.project-title a:hover {
+  color: var(--accent-link);
+  transform: scale(1.04);
+  text-decoration: none;
+}
+
+.project-github-link {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.project-github-link:hover {
+  color: var(--accent-link);
+  text-decoration: underline;
+}
+
+/* Op Amp Expandable Accordion */
+.opamp-accordion {
+  border-bottom: 1px solid var(--rule-light);
+  padding-bottom: 1.4rem;
+  text-align: left;
+}
+
+.opamp-summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.opamp-summary::-webkit-details-marker,
+.opamp-summary::marker {
+  display: none;
+}
+
+.opamp-summary:focus-visible {
+  outline: 2px solid var(--accent-link);
+  outline-offset: 4px;
+}
+
+.opamp-summary:hover .project-title span {
+  color: var(--accent-link);
+  transform: scale(1.04);
+}
+
+.opamp-toggle-badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.opamp-summary:hover .opamp-toggle-badge,
+.opamp-accordion[open] .opamp-toggle-badge {
+  color: var(--accent-link);
+}
+
+.opamp-expanded-content {
+  margin-top: 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px dashed var(--rule-light);
+  animation: fadeInAccordion 0.25s ease-out;
+}
+
+@keyframes fadeInAccordion {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .subsection-header {
   font-size: 1.1rem;
   font-weight: 750;

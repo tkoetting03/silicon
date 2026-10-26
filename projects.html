@@ -50,54 +50,182 @@
       <hr style="border:0; border-bottom:1.5px solid var(--rule-color); margin: 2rem 0 1.5rem 0;">
 
       <!-- Project Entries (Left Aligned) -->
-      <div class="monograph-body">
+      <div class="projects-list">
 
-        <h2 class="section-header">
-          <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank" rel="noopener">
-            32-Bit RISC-V Microcontroller
-          </a>
-        </h2>
-        <p>
-          Synthesizable 32-bit RISC-V architecture implemented in Verilog with pipelined execution stages and testbenches. Available on GitHub at <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank" rel="noopener">tkoetting03/32-bit-risc-mcu</a>.
-        </p>
+        <!-- 1. 32-Bit RISC-V Microcontroller -->
+        <div class="project-entry">
+          <div class="project-header-row">
+            <h2 class="project-title">
+              <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank" rel="noopener">
+                32-Bit RISC-V Microcontroller
+              </a>
+            </h2>
+            <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank" rel="noopener" class="project-github-link">
+              github.com/tkoetting03/32-bit-risc-mcu &nearr;
+            </a>
+          </div>
+        </div>
 
-        <h2 class="section-header">
-          <a href="https://github.com/tkoetting03/server-utilities" target="_blank" rel="noopener">
-            Server Utilities Minecraft Mod
-          </a>
-        </h2>
-        <p>
-          Server management and utility modifications for Minecraft servers. Available on GitHub at <a href="https://github.com/tkoetting03/server-utilities" target="_blank" rel="noopener">tkoetting03/server-utilities</a>.
-        </p>
+        <!-- 2. Server Utilities Minecraft Mod -->
+        <div class="project-entry">
+          <div class="project-header-row">
+            <h2 class="project-title">
+              <a href="https://github.com/tkoetting03/server-utilities" target="_blank" rel="noopener">
+                Server Utilities Minecraft Mod
+              </a>
+            </h2>
+            <a href="https://github.com/tkoetting03/server-utilities" target="_blank" rel="noopener" class="project-github-link">
+              github.com/tkoetting03/server-utilities &nearr;
+            </a>
+          </div>
+        </div>
 
-        <h2 class="section-header">
-          <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank" rel="noopener">
-            PID Controller in C
-          </a>
-        </h2>
-        <p>
-          Discrete closed-loop proportional-integral-derivative control algorithm implemented in C for embedded targets. Available on GitHub at <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank" rel="noopener">tkoetting03/PID-Tuner</a>.
-        </p>
+        <!-- 3. PID Controller in C -->
+        <div class="project-entry">
+          <div class="project-header-row">
+            <h2 class="project-title">
+              <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank" rel="noopener">
+                PID Controller in C
+              </a>
+            </h2>
+            <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank" rel="noopener" class="project-github-link">
+              github.com/tkoetting03/PID-Tuner &nearr;
+            </a>
+          </div>
+        </div>
 
-        <h2 class="section-header">
-          <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank" rel="noopener">
-            Ring Buffer in C
-          </a>
-        </h2>
-        <p>
-          Circular FIFO queue buffer implementation written in C for real-time data streaming and interrupt-safe communications. Available on GitHub at <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank" rel="noopener">tkoetting03/Ring-Buffer</a>.
-        </p>
+        <!-- 4. Ring Buffer in C -->
+        <div class="project-entry">
+          <div class="project-header-row">
+            <h2 class="project-title">
+              <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank" rel="noopener">
+                Ring Buffer in C
+              </a>
+            </h2>
+            <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank" rel="noopener" class="project-github-link">
+              github.com/tkoetting03/Ring-Buffer &nearr;
+            </a>
+          </div>
+        </div>
 
-        <h2 class="section-header">
-          <a href="opamp.html">
-            Op Amp
-          </a>
-        </h2>
-        <p>
-          Operational amplifier modeling and behavioral synthesis in Verilog, including Yosys netlists and MinecraftHDL redstone logic gates. <a href="opamp.html">Read full monograph &rarr;</a>
-        </p>
+        <!-- 5. Op Amp (Inline Expandable Monograph) -->
+        <details class="project-entry opamp-accordion" id="opamp-details">
+          <summary class="opamp-summary">
+            <div class="project-header-row">
+              <h2 class="project-title">
+                <span>Op Amp</span>
+              </h2>
+              <span class="opamp-toggle-badge" id="opamp-toggle-text">[Click to expand monograph &darr;]</span>
+            </div>
+          </summary>
 
-      </div><!-- /.monograph-body -->
+          <div class="opamp-expanded-content">
+            <p>
+              In my quest to make verilog models out of a multitude of different SSI and MSI semiconductor products, I have now gotten to the operational amplifier. My primary inspiration for this design is the OPA4H199-SP from Texas Instruments. First I started with the basic function of an opamp which is the amplification of a signal by multiplying the voltage by the gain.
+            </p>
+
+            <!-- Code Block 1 -->
+            <div style="margin: 1.2rem 0;">
+              <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:var(--text-secondary); border-bottom:1px solid var(--interactive-border); padding:0.25rem 0.5rem; background:var(--tag-bg);">
+                <span>Listing 1: Ideal Behavioral Op-Amp in Verilog</span>
+                <span>Verilog</span>
+              </div>
+              <pre style="margin:0; border-top:none;"><code class="language-verilog">module OpAmp(
+    input wire [x:0] Vin,
+    output wire [x:0] Vout,
+    input wire [x:0] Gain
+);
+
+    assign Vout = Gain * Vin;
+
+endmodule</code></pre>
+            </div>
+
+            <p style="font-size: 0.9rem;">
+              <sup id="opamp-ref-fn-1"><a href="#opamp-footnote-1" style="color:var(--accent-link); font-weight:bold;">[1]</a></sup>
+            </p>
+
+            <p>
+              This is an <em>ideal</em> and <em>general</em> opamp that has no resistance, slew, feedback, or added complexity to achieve specific results. During creation I asked myself whether I wanted an opamp that would be created in perfect immitation of the real deal or one which is the <em>perfect abstract model</em>. I settled upon the latter, as immitating real world constraints with test benches and design features was not my goal in creating the verilog opamp.
+            </p>
+
+            <p>
+              We have to consider, then, ideal variables for the opamp as to create the <em>perfect abstract model</em> as I have discussed. Finding the characteristics and specifications turned out to be easier than I thought thanks to documentation from many different power semiconductor manufacturers like <a href="https://www.ti.com.cn/cn/lit/an/slaa068b/slaa068b.pdf" target="_blank" rel="noopener">Texas Instruments</a> and <a href="https://toshiba.semicon-storage.com/us/semiconductor/knowledge/faq/linear_opamp/what-is-the-ideal-op-amp.html" target="_blank" rel="noopener">Toshiba</a>, along with my very own <a href="http://www.ittc.ku.edu/~jstiles/412/handouts/2.1%20The%20ideal%20op-amp/The%20Ideal%20Operational%20Amplifier%20lecture.pdf" target="_blank" rel="noopener">University of Kansas</a>.
+            </p>
+
+            <p>
+              In order to get closer to the real silicon in my design abstraction, I shall remove the * multiplication operator and replace it with an always loop which takes a particularly inneficient but easy to design in terms of understanding. Essentially working as any formulaic loop, it takes an iterative variable i, and compares it to the maximum gain outlined as a constant parameter. If i is less than the maximum gain, the output voltage is increased by the input voltage, and this is repeated until i reaches its threshold of eight iterations, essentially replicating multiplication through brute force addition.
+            </p>
+
+            <!-- Code Block 2 -->
+            <div style="margin: 1.2rem 0;">
+              <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:var(--text-secondary); border-bottom:1px solid var(--interactive-border); padding:0.25rem 0.5rem; background:var(--tag-bg);">
+                <span>Listing 2: Iterative Addition Accumulator Loop</span>
+                <span>Verilog</span>
+              </div>
+              <pre style="margin:0; border-top:none;"><code class="language-verilog">module OpAmp(
+    input wire Vin, 
+    input wire Gain,  
+    output reg Vout  
+);
+
+    parameter GAINMAX = 8; 
+    integer i;               
+
+    always @(*) begin
+        Vout = 0; 
+        for (i = 0; i &lt; MAX_GAIN; i = i + 1) begin
+            if (i &lt; Gain)  
+                Vout = Vout + Vin;
+        end
+    end
+
+endmodule</code></pre>
+            </div>
+
+            <p>
+              The <a href="https://github.com/YosysHQ/yosys" target="_blank" rel="noopener">yosys</a> digital logic diagram is given below:
+            </p>
+
+            <!-- Authentic Image 1: yosya.jpg (Left Aligned) -->
+            <figure class="latex-figure" style="margin: 1.6rem 0;">
+              <div style="border: 1px solid var(--interactive-border); padding: 0.5rem; background: var(--bg-page); display: inline-block; max-width: 100%;">
+                <img src="assets/img/yosya.jpg" alt="Yosys Digital Logic Synthesis" style="max-width: 100%; height: auto; display: block;" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>Fig. 1.</strong> Yosys digital logic synthesis diagram.
+              </figcaption>
+            </figure>
+
+            <p>
+              The iterative variables are given by the memory blocks 0x0-7, with the multiplexer selectors being the comparison 0xA &lt; Gain (A representing any value 0-7). The initial 0 mux input is 0, with each following mux 0 input being the output of the previous mux. The initial 1 mux input is the addition of the iterative variable and the input voltage. The final product that goes to the output voltage register being the last mux output.
+            </p>
+
+            <p>
+              Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but due to the help of the amazing <a href="https://github.com/itsfrank/MinecraftHDL" target="_blank" rel="noopener">MinecraftHDL</a> project.
+            </p>
+
+            <!-- Authentic Image 2: redstone.jpg (Left Aligned) -->
+            <figure class="latex-figure" style="margin: 1.6rem 0;">
+              <div style="border: 1px solid var(--interactive-border); padding: 0.5rem; background: var(--bg-page); display: inline-block; max-width: 100%;">
+                <img src="assets/img/redstone.jpg" alt="MinecraftHDL Redstone Circuit" style="max-width: 100%; height: auto; display: block;" loading="lazy">
+              </div>
+              <figcaption>
+                <strong>Fig. 2.</strong> Minecraft redstone circuit generated via MinecraftHDL.
+              </figcaption>
+            </figure>
+
+            <!-- Footnotes -->
+            <hr style="border:0; border-bottom:1px solid var(--rule-light); margin: 2rem 0 1rem 0;">
+            <div style="font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+              <div id="opamp-footnote-1">
+                <span style="font-weight:bold;">[1]</span> I chose to represent an arbitrary amount of bits with variable x. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.
+              </div>
+            </div>
+          </div>
+        </details>
+
+      </div><!-- /.projects-list -->
 
       <div style="margin-top: 2.5rem;">
         <a href="index.html" class="tex-back-link">&larr; Back</a>

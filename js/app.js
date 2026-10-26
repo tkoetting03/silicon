@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initKaTeXAutoRender();
   initBibTeXModal();
   initTerminalRecompile();
+  initOpampAccordion();
 });
 
 /* ==========================================================================
@@ -150,4 +151,27 @@ function initTerminalRecompile() {
   modal.addEventListener('click', (e) => {
     if (e.target === modal) modal.classList.remove('open');
   });
+}
+
+/* ==========================================================================
+   5. Expandable Op Amp Accordion Badge & Hash Handler
+   ========================================================================== */
+function initOpampAccordion() {
+  const details = document.getElementById('opamp-details');
+  const badge = document.getElementById('opamp-toggle-text');
+  if (!details || !badge) return;
+
+  const updateBadge = () => {
+    badge.textContent = details.open ? '[Collapse monograph \u2191]' : '[Click to expand monograph \u2193]';
+  };
+
+  details.addEventListener('toggle', updateBadge);
+
+  if (window.location.hash === '#opamp' || window.location.hash === '#opamp-details') {
+    details.open = true;
+    updateBadge();
+    setTimeout(() => {
+      details.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
 }

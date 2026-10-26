@@ -463,22 +463,36 @@ figcaption strong {
   color: var(--text-primary);
 }
 
-/* Quotes of Note: Left-Aligned */
+/* Quotes of Note: Individual Backing Boxes with Light Background */
 blockquote {
   margin: 1.6rem 0;
-  padding-left: 1.2rem;
-  border-left: 3px solid var(--rule-color);
-  font-size: 0.98rem;
-  line-height: 1.58;
+  padding: 1.35rem 1.6rem;
+  background-color: #ededed;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  font-size: 1rem;
+  line-height: 1.62;
   text-align: left;
+}
+
+blockquote p {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.62;
 }
 
 blockquote cite {
   display: block;
-  font-size: 0.85rem;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  margin-top: 0.35rem;
+  margin-top: 0.6rem;
   font-style: normal;
+}
+
+blockquote cite strong {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 /* Lists: Left-Aligned */

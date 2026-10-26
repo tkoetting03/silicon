@@ -5,11 +5,12 @@
    Computer Modern Serif & JetBrains Mono, Inspired by LaTeX & 'Distance'
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* CSS Variables: Pure White Clean Minimalist Palette with Merriweather Typography */
+/* CSS Variables: Pure White Clean Minimalist Palette with Merriweather & Playfair Display */
 :root {
   --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-sans: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", Courier, monospace;
 
@@ -337,30 +338,36 @@ ul, ol {
   color: var(--text-primary);
 }
 
-/* Back Link: Left-Aligned Minimalist Pill with Hover Scale */
-.tex-back-link {
+/* Back Button: 50% Opacity Text in Playfair Display, Full Opacity on Hover */
+.tex-back-link,
+.back-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-primary);
+  opacity: 0.5;
   text-decoration: none;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
   margin-bottom: 2rem;
-  padding: 0.25rem 0.6rem;
-  border: 1px solid var(--interactive-border);
-  border-radius: 2px;
-  background: var(--tag-bg);
-  transform-origin: left center;
-  transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), background 0.15s ease, color 0.15s ease;
-  will-change: transform;
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+  will-change: opacity, transform;
 }
 
-.tex-back-link:hover {
-  background: var(--text-primary);
-  color: #ffffff;
-  border-color: var(--text-primary);
-  transform: scale(1.03);
+.tex-back-link:hover,
+.back-link:hover {
+  opacity: 1;
+  color: var(--text-primary);
+  background: none !important;
+  border: none !important;
+  text-decoration: none;
+  transform: translateX(-3px);
 }
 
 /* Table of Contents: Left-Aligned */

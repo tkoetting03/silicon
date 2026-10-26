@@ -162,7 +162,7 @@ function initOpampAccordion() {
   if (!details || !badge) return;
 
   const updateBadge = () => {
-    badge.textContent = details.open ? '[Collapse monograph \u2191]' : '[Click to expand monograph \u2193]';
+    badge.textContent = details.open ? 'Close' : 'Read';
   };
 
   details.addEventListener('toggle', updateBadge);

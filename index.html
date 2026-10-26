@@ -10,7 +10,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/img/thumbnail.png">
 
-  <!-- Computer Modern & Academic Typography -->
+  <!-- Google Fonts: Merriweather & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -37,107 +37,29 @@
         <div class="article-authors">
           Thomas Koetting
         </div>
-        <div class="article-meta-links">
-          <span><a href="https://github.com/tkoetting03" target="_blank" rel="noopener">github.com/tkoetting03</a></span>
-          <span>&bull;</span>
-          <span><a href="socials.html">Socials</a></span>
-        </div>
       </div>
 
-      <!-- LaTeX Table of Contents (Left Aligned) -->
-      <nav class="latex-toc" aria-label="Index">
-        <div class="latex-toc-title">
-          Table of Contents
-        </div>
-        <ul class="latex-toc-list">
-          <li class="latex-toc-item">
-            <a href="projects.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 1</span>
-              <span>Projects</span>
-            </a>
-          </li>
-
-          <li class="latex-toc-item">
-            <a href="quotes.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 2</span>
-              <span>Quotes of Note</span>
-            </a>
-          </li>
-
-          <li class="latex-toc-item">
-            <a href="favorites.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 3</span>
-              <span>Favorites</span>
-            </a>
-          </li>
-
-          <li class="latex-toc-item">
-            <a href="paper.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 4</span>
-              <span>Research Paper</span>
-            </a>
-          </li>
-
-          <li class="latex-toc-item">
-            <a href="projectfiles.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 5</span>
-              <span>Project Files</span>
-            </a>
-          </li>
-
-          <li class="latex-toc-item">
-            <a href="socials.html" class="latex-toc-link">
-              <span class="latex-toc-secnum">&sect; 6</span>
-              <span>Socials</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Section Index Listings with Direct Authentic Links -->
-      <div class="monograph-body">
-        <h2 class="section-header">
-          <a href="projects.html">&sect; 1. Projects</a>
-        </h2>
-        <p>
-          Hardware implementations, embedded controls, and software tools. Includes 32-bit RISC-V microcontroller, Server Utilities Minecraft mod, PID controller in C, Ring Buffer in C, and operational amplifier in Verilog.
-        </p>
-
-        <h2 class="section-header">
-          <a href="quotes.html">&sect; 2. Quotes of Note</a>
-        </h2>
-        <p>
-          Collected quotations on science, leadership, literature, thermodynamics, and philosophy.
-        </p>
-
-        <h2 class="section-header">
-          <a href="favorites.html">&sect; 3. Favorites</a>
-        </h2>
-        <p>
-          Curated collection of books, music, movies, paintings, architecture, news, and engineering newsletters.
-        </p>
-
-        <h2 class="section-header">
-          <a href="paper.html">&sect; 4. Research Paper</a>
-        </h2>
-        <p>
-          <em>Can Non-Cooperative Game Theory Assist Modeling Security Implementation for Back-End Web App Development?</em>
-        </p>
-
-        <h2 class="section-header">
-          <a href="projectfiles.html">&sect; 5. Project Files</a>
-        </h2>
-        <p>
-          Transistor project assets and downloadable archives.
-        </p>
-
-        <h2 class="section-header">
-          <a href="socials.html">&sect; 6. Socials</a>
-        </h2>
-        <p>
-          External links to GitHub, LinkedIn, Instagram, Tidal, and YouTube.
-        </p>
-      </div>
+      <!-- List of Pages (No Table of Contents, No Descriptions) -->
+      <ul class="pages-list" aria-label="Pages">
+        <li class="pages-list-item">
+          <a href="projects.html" class="pages-list-link">Projects</a>
+        </li>
+        <li class="pages-list-item">
+          <a href="quotes.html" class="pages-list-link">Quotes of Note</a>
+        </li>
+        <li class="pages-list-item">
+          <a href="favorites.html" class="pages-list-link">Favorites</a>
+        </li>
+        <li class="pages-list-item">
+          <a href="paper.html" class="pages-list-link">Research Paper</a>
+        </li>
+        <li class="pages-list-item">
+          <a href="projectfiles.html" class="pages-list-link">Project Files</a>
+        </li>
+        <li class="pages-list-item">
+          <a href="socials.html" class="pages-list-link">Socials</a>
+        </li>
+      </ul>
 
       <!-- Clean Footer -->
       <footer class="site-footer">
@@ -146,40 +68,6 @@
 
     </article>
   </main>
-
-  <!-- BibTeX Modal -->
-  <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
-    <div class="modal-window">
-      <div class="modal-header">
-        <span>BibTeX Academic Citation</span>
-        <button class="modal-close-btn" id="bibtex-close-btn">&times;</button>
-      </div>
-      <div class="modal-content">
-        <pre><code id="bibtex-code">@misc{koetting2026silicon,
-  author    = {Koetting, Thomas},
-  title     = {Silicon},
-  year      = {2026},
-  url       = {https://github.com/tkoetting03/silicon}
-}</code></pre>
-        <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
-          <button class="tex-action-btn" id="bibtex-copy-btn">Copy to Clipboard</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Recompile Modal -->
-  <div class="modal-overlay" id="recompile-modal" role="dialog" aria-modal="true">
-    <div class="modal-window" style="max-width: 650px;">
-      <div class="modal-header">
-        <span>pdfTeX Terminal &mdash; index.tex</span>
-        <button class="modal-close-btn" id="recompile-close-btn">&times;</button>
-      </div>
-      <div class="modal-content" style="padding:0; background:#0d1117;">
-        <div class="terminal-window" id="recompile-log" style="height: 260px; overflow-y: auto;"></div>
-      </div>
-    </div>
-  </div>
 
   <script src="js/app.js"></script>
 </body>

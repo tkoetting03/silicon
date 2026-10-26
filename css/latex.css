@@ -179,6 +179,39 @@ h3 + p,
   text-align: left;
 }
 
+/* Landing Page: List of Different Pages */
+.pages-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 2.8rem 0 3.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.pages-list-item {
+  list-style: none;
+  margin: 0;
+}
+
+.pages-list-link {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
+  will-change: transform;
+}
+
+.pages-list-link:hover {
+  color: var(--accent-link);
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
 /* Clickable Section Titles: Scale Up on Hover */
 .section-header a,
 .monograph-body h2 a,

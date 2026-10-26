@@ -300,6 +300,30 @@ h3 + p,
   text-decoration: underline;
 }
 
+/* Project File Download Link: Playfair Display */
+.project-download-link,
+.download-link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  margin-top: 0.75rem;
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
+  will-change: transform;
+}
+
+.project-download-link:hover,
+.download-link:hover {
+  color: #0550ae;
+  transform: scale(1.04);
+}
+
 /* Op Amp Expandable Accordion */
 .opamp-accordion {
   border-bottom: 1px solid var(--rule-light);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper" data-layout="twocolumn">
+<html lang="en" data-theme="paper" data-layout="onecolumn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
-  <!-- Core LaTeX Monograph Stylesheet -->
+  <!-- Core Stylesheet -->
   <link rel="stylesheet" href="css/latex.css">
 </head>
 <body>
@@ -39,26 +39,12 @@
         <a href="ai.html">AI</a>
         <a href="quotes.html">Quotes</a>
         <a href="favorites.html">Favorites</a>
-        <a href="projectfiles.html">Project Files</a>
+        <a href="projectfiles.html">Files</a>
         <a href="socials.html">Socials</a>
       </nav>
     </div>
 
     <div class="tex-meta-right">
-      <!-- Layout Mode Group -->
-      <div class="tex-btn-group" title="Select Document Layout Mode">
-        <button class="tex-btn active" data-set-layout="twocolumn" title="Two-Column Proceedings">2-Col</button>
-        <button class="tex-btn" data-set-layout="onecolumn" title="Single-Column Manuscript">1-Col</button>
-      </div>
-
-      <!-- Theme Group -->
-      <div class="tex-btn-group" title="Select Paper Tone">
-        <button class="tex-btn active" data-set-theme="paper" title="Classic White Paper">Paper</button>
-        <button class="tex-btn" data-set-theme="parchment" title="Archival Parchment">Parchment</button>
-        <button class="tex-btn" data-set-theme="dark" title="Overleaf Dark">Dark</button>
-      </div>
-
-      <!-- Actions -->
       <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
         Recompile
@@ -68,41 +54,35 @@
         [Cite]
       </button>
 
-      <button class="tex-action-btn" onclick="window.print()" title="Print physical academic paper">
+      <button class="tex-action-btn" onclick="window.print()" title="Print page">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        Print / PDF
+        Print
       </button>
     </div>
   </header>
 
-  <!-- Main Paper Sheet Container -->
-  <div class="paper-outer-wrapper">
+  <!-- Main Content Container -->
+  <main class="paper-outer-wrapper">
     <article class="paper-sheet" id="paper-document">
 
-      <!-- Running Header -->
-      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.5rem; color:var(--text-secondary);">
-        <span>Silicon</span>
-        <span>Thomas Koetting</span>
-      </div>
-
-      <!-- Document Title Block -->
-      <div class="article-header" style="text-align:center; margin-bottom: 2.8rem;">
-        <h1 class="article-title" style="font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.6rem; color: var(--text-primary);">
+      <!-- Document Title Block (Left Aligned) -->
+      <div class="article-header">
+        <h1 class="article-title">
           Silicon
         </h1>
-        <div class="article-authors" style="font-size: 1.12rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem;">
+        <div class="article-authors">
           Thomas Koetting
         </div>
-        <div class="article-meta-links" style="font-size: 0.82rem; color: var(--text-secondary);">
+        <div class="article-meta-links">
           <span><a href="https://github.com/tkoetting03" target="_blank" rel="noopener">github.com/tkoetting03</a></span>
           <span>&bull;</span>
           <span><a href="socials.html">Socials</a></span>
         </div>
       </div>
 
-      <!-- Rigid LaTeX Table of Contents (Direct links from index.md) -->
-      <nav class="latex-toc" aria-label="Index" style="margin: 2rem 0 3.5rem 0;">
-        <div class="latex-toc-title" style="font-size: 1.25rem; font-weight: 800; border-bottom: 1.5px solid var(--rule-color); padding-bottom: 0.45rem; margin-bottom: 1.4rem; letter-spacing: -0.01em;">
+      <!-- LaTeX Table of Contents (Left Aligned) -->
+      <nav class="latex-toc" aria-label="Index">
+        <div class="latex-toc-title">
           Table of Contents
         </div>
         <ul class="latex-toc-list">
@@ -111,7 +91,6 @@
               <span class="latex-toc-secnum">&sect; 1</span>
               <span>Projects</span>
             </a>
-            <span class="latex-toc-dots"></span>
           </li>
 
           <li class="latex-toc-item">
@@ -119,7 +98,6 @@
               <span class="latex-toc-secnum">&sect; 2</span>
               <span>Quotes of Note</span>
             </a>
-            <span class="latex-toc-dots"></span>
           </li>
 
           <li class="latex-toc-item">
@@ -127,7 +105,6 @@
               <span class="latex-toc-secnum">&sect; 3</span>
               <span>Favorites</span>
             </a>
-            <span class="latex-toc-dots"></span>
           </li>
 
           <li class="latex-toc-item">
@@ -135,7 +112,6 @@
               <span class="latex-toc-secnum">&sect; 4</span>
               <span>Research Paper</span>
             </a>
-            <span class="latex-toc-dots"></span>
           </li>
 
           <li class="latex-toc-item">
@@ -143,7 +119,6 @@
               <span class="latex-toc-secnum">&sect; 5</span>
               <span>Project Files</span>
             </a>
-            <span class="latex-toc-dots"></span>
           </li>
 
           <li class="latex-toc-item">
@@ -151,7 +126,6 @@
               <span class="latex-toc-secnum">&sect; 6</span>
               <span>Socials</span>
             </a>
-            <span class="latex-toc-dots"></span>
           </li>
         </ul>
       </nav>
@@ -161,56 +135,53 @@
         <h2 class="section-header">
           <a href="projects.html">&sect; 1. Projects</a>
         </h2>
-        <p style="margin-top:0.3rem;">
+        <p>
           Hardware implementations, embedded controls, and software tools. Includes 32-bit RISC-V microcontroller, Server Utilities Minecraft mod, PID controller in C, Ring Buffer in C, and operational amplifier in Verilog.
         </p>
 
         <h2 class="section-header">
           <a href="quotes.html">&sect; 2. Quotes of Note</a>
         </h2>
-        <p style="margin-top:0.3rem;">
+        <p>
           Collected quotations on science, leadership, literature, thermodynamics, and philosophy.
         </p>
 
         <h2 class="section-header">
           <a href="favorites.html">&sect; 3. Favorites</a>
         </h2>
-        <p style="margin-top:0.3rem;">
+        <p>
           Curated collection of books, music, movies, paintings, architecture, news, and engineering newsletters.
         </p>
 
         <h2 class="section-header">
           <a href="paper.html">&sect; 4. Research Paper</a>
         </h2>
-        <p style="margin-top:0.3rem;">
+        <p>
           <em>Can Non-Cooperative Game Theory Assist Modeling Security Implementation for Back-End Web App Development?</em>
         </p>
 
         <h2 class="section-header">
           <a href="projectfiles.html">&sect; 5. Project Files</a>
         </h2>
-        <p style="margin-top:0.3rem;">
+        <p>
           Transistor project assets and downloadable archives.
         </p>
 
         <h2 class="section-header">
           <a href="socials.html">&sect; 6. Socials</a>
         </h2>
-        <p style="margin-top:0.3rem;">
+        <p>
           External links to GitHub, LinkedIn, Instagram, Tidal, and YouTube.
         </p>
       </div>
 
-      <!-- Page Footer -->
-      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
-        <div class="paper-running-footer">
-          Silicon &bull; Thomas Koetting
-        </div>
-        <div class="paper-page-number">1</div>
+      <!-- Clean Footer -->
+      <footer class="site-footer">
+        Silicon &bull; Thomas Koetting
       </footer>
 
     </article>
-  </div>
+  </main>
 
   <!-- BibTeX Modal -->
   <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">

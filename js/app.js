@@ -1,62 +1,22 @@
 /**
- * SILICON — Minimalist Interactive LaTeX Research Monograph
+ * SILICON — Minimalist Interactive LaTeX Website
  * Author: Thomas Koetting (tkoetting03)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeAndLayout();
+  initDocumentSettings();
   initKaTeXAutoRender();
   initBibTeXModal();
   initTerminalRecompile();
 });
 
 /* ==========================================================================
-   1. Theme & Layout Switcher
+   1. Document Initialization (Pure White Background, Left-Aligned Flow)
    ========================================================================== */
-function initThemeAndLayout() {
+function initDocumentSettings() {
   const root = document.documentElement;
-  
-  // Theme buttons
-  const themeBtns = document.querySelectorAll('[data-set-theme]');
-  const savedTheme = localStorage.getItem('silicon_theme') || 'paper';
-  root.setAttribute('data-theme', savedTheme);
-  updateActiveBtn(themeBtns, savedTheme, 'data-set-theme');
-
-  themeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.getAttribute('data-set-theme');
-      root.setAttribute('data-theme', theme);
-      localStorage.setItem('silicon_theme', theme);
-      updateActiveBtn(themeBtns, theme, 'data-set-theme');
-      window.dispatchEvent(new Event('themechange'));
-    });
-  });
-
-  // Layout buttons
-  const layoutBtns = document.querySelectorAll('[data-set-layout]');
-  const savedLayout = localStorage.getItem('silicon_layout') || 'twocolumn';
-  root.setAttribute('data-layout', savedLayout);
-  updateActiveBtn(layoutBtns, savedLayout, 'data-set-layout');
-
-  layoutBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const layout = btn.getAttribute('data-set-layout');
-      root.setAttribute('data-layout', layout);
-      localStorage.setItem('silicon_layout', layout);
-      updateActiveBtn(layoutBtns, layout, 'data-set-layout');
-      window.dispatchEvent(new Event('resize'));
-    });
-  });
-}
-
-function updateActiveBtn(buttons, value, attr) {
-  buttons.forEach(b => {
-    if (b.getAttribute(attr) === value) {
-      b.classList.add('active');
-    } else {
-      b.classList.remove('active');
-    }
-  });
+  root.setAttribute('data-theme', 'paper');
+  root.setAttribute('data-layout', 'onecolumn');
 }
 
 /* ==========================================================================

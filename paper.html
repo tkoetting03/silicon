@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper" data-layout="twocolumn">
+<html lang="en" data-theme="paper" data-layout="onecolumn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,64 +37,49 @@
     </div>
 
     <div class="tex-meta-right">
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-layout="twocolumn">2-Col</button>
-        <button class="tex-btn" data-set-layout="onecolumn">1-Col</button>
-      </div>
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-theme="paper">Paper</button>
-        <button class="tex-btn" data-set-theme="parchment">Parchment</button>
-        <button class="tex-btn" data-set-theme="dark">Dark</button>
-      </div>
       <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">Recompile</button>
       <button class="tex-action-btn" data-open-bibtex>[Cite]</button>
-      <button class="tex-action-btn" onclick="window.print()">Print / PDF</button>
+      <button class="tex-action-btn" onclick="window.print()">Print</button>
     </div>
   </header>
 
-  <div class="paper-outer-wrapper">
+  <main class="paper-outer-wrapper">
     <article class="paper-sheet">
 
       <!-- Back Navigation Breadcrumbs -->
       <a href="index.html" class="tex-back-link">&larr; Return to Table of Contents</a>
 
-      <!-- Running Header -->
-      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.2rem; color:var(--text-secondary);">
-        <span>T. Koetting</span>
-        <span>Game Theory for Back-End Security</span>
-      </div>
-
-      <!-- Title Block -->
-      <div class="article-header" style="text-align:center; margin-bottom:1.8rem;">
-        <h1 class="article-title" style="font-size:1.85rem; font-weight:800; line-height:1.25; letter-spacing:-0.02em; margin-bottom:0.75rem; color:var(--text-primary);">
+      <!-- Title Block (Left Aligned) -->
+      <div class="article-header">
+        <h1 class="article-title" style="font-size:1.9rem; line-height:1.25;">
           Can Non-Cooperative Game Theory Assist Modeling Security Implementation for Back-End Web App Development?
         </h1>
-        <div class="article-authors" style="font-size:1.15rem; font-weight:600; color:var(--text-primary); margin-bottom:0.3rem;">
+        <div class="article-authors">
           T. Koetting
         </div>
-        <div class="article-affiliation" style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.2rem;">
+        <div class="article-affiliation">
           E–mail: <a href="mailto:tkoettin@stumail.jccc.edu">tkoettin@stumail.jccc.edu</a>
         </div>
 
         <div style="margin: 0.8rem 0 1.2rem 0;">
-          <a href="assets/docs/Can_Non-Cooperative_Game_Theory.pdf" target="_blank" rel="noopener" class="tex-action-btn" style="padding:0.4rem 0.9rem; font-size:0.82rem; font-family:var(--font-mono);">
+          <a href="assets/docs/Can_Non-Cooperative_Game_Theory.pdf" target="_blank" rel="noopener" class="tex-action-btn" style="padding:0.35rem 0.8rem; font-size:0.8rem;">
             &darr; Download Original PDF Document (5 Pages)
           </a>
         </div>
       </div>
 
-      <!-- Authentic Abstract from PDF -->
-      <section class="abstract-block" style="border-top:1px solid var(--rule-color); border-bottom:1px solid var(--rule-color); padding:1rem 0; margin-bottom:2rem;">
-        <p style="font-size:0.88rem; line-height:1.5; margin-bottom:0.6rem; text-align:justify;">
-          <strong style="font-family:var(--font-serif); font-variant:small-caps; letter-spacing:0.04em;">Abstract &mdash;</strong>
+      <!-- Authentic Abstract from PDF (Left Aligned) -->
+      <section class="abstract-block">
+        <p>
+          <strong>Abstract &mdash;</strong>
           In active development environments of web-based applications, back-end engineers and developers are constantly doing battle with bad actors probing for exploits. We explore the potential of non-cooperative game theory as a framework for enhancing back-end web development security and resource management. Most traditional strategies implemented by companies focus on static defense and reactive methods. By adopting a perspective influenced by game theory, we delve into the back and forth nature of the development timeline. We assume that the two exclusive contributors to the game in this framework are the development team and the bad actors. We finally explore whether or not the model being implemented should have characteristics aligned with flexibility or rigidity, and what influence their implementation environment has on the model’s final structure.
         </p>
-        <div style="font-size:0.82rem; color:var(--text-secondary);">
+        <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.4rem;">
           <strong>Key words &mdash;</strong> <em>Game Theory &ndash; Web-App Development &ndash; Development Models</em>
         </div>
       </section>
 
-      <!-- Authentic Paper Body from PDF -->
+      <!-- Authentic Paper Body from PDF (Left Aligned) -->
       <div class="monograph-body">
 
         <h2 class="section-header">1. Introduction</h2>
@@ -119,7 +104,7 @@
           When given the software functionality $Q$ and its second-order derivative $Q''$:
         </p>
 
-        <div class="equation-row" style="text-align:center; margin:1rem 0;">
+        <div class="equation-row">
           $$Q'' = \frac{2}{5M} \left( (V + M) + \sqrt{(V + M)^2 - 5VM} \right) \tag{2}$$
         </div>
 
@@ -127,7 +112,7 @@
           where the payoff of $Q''$ is given by $\pi''$:
         </p>
 
-        <div class="equation-row" style="text-align:center; margin:1rem 0;">
+        <div class="equation-row">
           $$\pi'' = \frac{2M - 8V}{25M} \left( (V + M) + \sqrt{(V + M)^2 - 5VM} \right) - \frac{V}{5} \tag{3}$$
         </div>
 
@@ -143,11 +128,11 @@
           In a dynamic game model with infinite stages $T$, the attacker's and defender's mixed strategies are formulated as:
         </p>
 
-        <div class="equation-row" style="text-align:center; margin:1rem 0;">
+        <div class="equation-row">
           $$(\delta_i, 1 - \delta_i) = \sum_{T=1}^{\infty} \sum_{i} \left( \frac{P_a - C_a^T - C_w^T}{P_a - C_i^T + U_a}, \, \frac{U_a - C_w^T}{P_a - C_i^T + U_a} \right) \tag{8}$$
         </div>
 
-        <div class="equation-row" style="text-align:center; margin:1rem 0;">
+        <div class="equation-row">
           $$(\sigma_i, 1 - \sigma_i) = \sum_{T=1}^{\infty} \sum_{i} \left( \frac{C_m^T}{C_i^T}, \, \frac{C_i^T - C_m^T}{C_i^T} \right) \tag{9}$$
         </div>
 
@@ -155,7 +140,7 @@
           The corresponding payoff of the game model is:
         </p>
 
-        <div class="equation-row" style="text-align:center; margin:1rem 0;">
+        <div class="equation-row">
           $$U_{\text{game}} = \sum_{T=1}^{\infty} \sum_{i=1}^{\lambda} U_I = \sum_{T=1}^{\infty} \sum_{i=1}^{\lambda} \left( C_i^T \theta_i \sigma_i + U_i - C_m^T \theta_i - C_i^T \sigma_i \right) \tag{10}$$
         </div>
 
@@ -165,7 +150,7 @@
         </p>
 
         <h2 class="section-header">References</h2>
-        <ol style="padding-left:1.4rem; font-size:0.8rem; line-height:1.45; color:var(--text-secondary);">
+        <ol style="padding-left:1.4rem; font-size:0.82rem; line-height:1.5; color:var(--text-secondary);">
           <li>X. Liang and Y. Xiao, &ldquo;Game Theory for Network Security,&rdquo; in <em>IEEE Communications Surveys &amp; Tutorials</em>, vol. 15, no. 1, pp. 472&ndash;486, 2013.</li>
           <li>J. E. Kendall, K. E. Kendall, and M. Germonprez, &ldquo;Game theory and open source contribution,&rdquo; <em>J. Organ. Comput. Electron. Com.</em>, 2016.</li>
           <li>N. S. V. Rao, C. Y. T. Ma, F. He, J. Zhuang, and D. K. Y. Yau, &ldquo;Cyber-physical correlations for infrastructure resilience,&rdquo; <em>17th Int. Conf. Info. Fusion</em>, 2014.</li>
@@ -194,15 +179,12 @@
         <a href="index.html" class="tex-back-link">&larr; Back to Contents</a>
       </div>
 
-      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
-        <div class="paper-running-footer">
-          Koetting &bull; Modeling Security Implementation with Game Theory
-        </div>
-        <div class="paper-page-number">4</div>
+      <footer class="site-footer">
+        Silicon &bull; Thomas Koetting
       </footer>
 
     </article>
-  </div>
+  </main>
 
   <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
     <div class="modal-window">

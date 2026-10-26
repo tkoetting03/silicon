@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper" data-layout="twocolumn">
+<html lang="en" data-theme="paper" data-layout="onecolumn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,46 +37,31 @@
     </div>
 
     <div class="tex-meta-right">
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-layout="twocolumn">2-Col</button>
-        <button class="tex-btn" data-set-layout="onecolumn">1-Col</button>
-      </div>
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-theme="paper">Paper</button>
-        <button class="tex-btn" data-set-theme="parchment">Parchment</button>
-        <button class="tex-btn" data-set-theme="dark">Dark</button>
-      </div>
       <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">Recompile</button>
       <button class="tex-action-btn" data-open-bibtex>[Cite]</button>
-      <button class="tex-action-btn" onclick="window.print()">Print / PDF</button>
+      <button class="tex-action-btn" onclick="window.print()">Print</button>
     </div>
   </header>
 
-  <div class="paper-outer-wrapper">
+  <main class="paper-outer-wrapper">
     <article class="paper-sheet">
 
       <!-- Back Navigation Breadcrumb -->
       <a href="index.html" class="tex-back-link">&larr; Return to Table of Contents</a>
 
-      <!-- Running Header -->
-      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.2rem; color:var(--text-secondary);">
-        <span>Silicon &bull; Section 1</span>
-        <span>Projects</span>
-      </div>
-
-      <!-- Title Block -->
-      <div class="article-header" style="text-align:center; margin-bottom:2rem;">
-        <h1 class="article-title" style="font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; color:var(--text-primary);">
+      <!-- Title Block (Left Aligned) -->
+      <div class="article-header">
+        <h1 class="article-title">
           Projects
         </h1>
-        <div class="article-authors" style="font-size:1.1rem; font-weight:600; color:var(--text-primary);">
+        <div class="article-authors">
           Thomas Koetting
         </div>
       </div>
 
-      <!-- YouTube Embed Reel -->
-      <div style="text-align:center; margin: 1.5rem 0 2rem 0;">
-        <div style="position:relative; width:100%; max-width:640px; margin:0 auto; aspect-ratio:16/9; background:#000; border:1px solid var(--border-color); box-shadow: 0 4px 14px var(--shadow-color);">
+      <!-- YouTube Embed Reel (Left Aligned) -->
+      <div style="margin: 1.5rem 0 2rem 0;">
+        <div style="position:relative; width:100%; max-width:640px; aspect-ratio:16/9; background:#000; border:1px solid var(--border-color);">
           <iframe 
             src="https://www.youtube.com/embed/d-_-cdy8ZQc?si=6hTL0Gnz1Q8NPchm" 
             title="YouTube video player" 
@@ -88,9 +73,9 @@
         </div>
       </div>
 
-      <hr style="border:0; border-bottom:1.5px solid var(--rule-color); margin: 2.5rem 0 1.5rem 0;">
+      <hr style="border:0; border-bottom:1.5px solid var(--rule-color); margin: 2rem 0 1.5rem 0;">
 
-      <!-- Project Entries (Bigger and Bolder Distance-inspired typography) -->
+      <!-- Project Entries (Left Aligned) -->
       <div class="monograph-body">
 
         <h2 class="section-header">
@@ -98,7 +83,7 @@
             32-Bit RISC-V Microcontroller
           </a>
         </h2>
-        <p style="margin-top:0.25rem;">
+        <p>
           Synthesizable 32-bit RISC-V architecture implemented in Verilog with pipelined execution stages and testbenches. Available on GitHub at <a href="https://github.com/tkoetting03/32-bit-risc-mcu" target="_blank" rel="noopener">tkoetting03/32-bit-risc-mcu</a>.
         </p>
 
@@ -107,7 +92,7 @@
             Server Utilities Minecraft Mod
           </a>
         </h2>
-        <p style="margin-top:0.25rem;">
+        <p>
           Server management and utility modifications for Minecraft servers. Available on GitHub at <a href="https://github.com/tkoetting03/server-utilities" target="_blank" rel="noopener">tkoetting03/server-utilities</a>.
         </p>
 
@@ -116,7 +101,7 @@
             PID Controller in C
           </a>
         </h2>
-        <p style="margin-top:0.25rem;">
+        <p>
           Discrete closed-loop proportional-integral-derivative control algorithm implemented in C for embedded targets. Available on GitHub at <a href="https://github.com/tkoetting03/PID-Tuner" target="_blank" rel="noopener">tkoetting03/PID-Tuner</a>.
         </p>
 
@@ -125,7 +110,7 @@
             Ring Buffer in C
           </a>
         </h2>
-        <p style="margin-top:0.25rem;">
+        <p>
           Circular FIFO queue buffer implementation written in C for real-time data streaming and interrupt-safe communications. Available on GitHub at <a href="https://github.com/tkoetting03/Ring-Buffer/tree/main" target="_blank" rel="noopener">tkoetting03/Ring-Buffer</a>.
         </p>
 
@@ -134,7 +119,7 @@
             Op Amp
           </a>
         </h2>
-        <p style="margin-top:0.25rem;">
+        <p>
           Operational amplifier modeling and behavioral synthesis in Verilog, including Yosys netlists and MinecraftHDL redstone logic gates. <a href="opamp.html">Read full monograph &rarr;</a>
         </p>
 
@@ -144,15 +129,12 @@
         <a href="index.html" class="tex-back-link">&larr; Back</a>
       </div>
 
-      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
-        <div class="paper-running-footer">
-          Koetting &bull; Projects
-        </div>
-        <div class="paper-page-number">2</div>
+      <footer class="site-footer">
+        Silicon &bull; Thomas Koetting
       </footer>
 
     </article>
-  </div>
+  </main>
 
   <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
     <div class="modal-window">

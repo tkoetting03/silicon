@@ -1,75 +1,37 @@
 /* ==========================================================================
-   SILICON — Minimalist Interactive LaTeX Research Monograph
+   SILICON — Minimalist Interactive LaTeX Website
    Author: Thomas Koetting (tkoetting03)
-   Aesthetic: Authentic LaTeX Proceedings / ACM / IEEE Physical Monograph
+   Aesthetic: Pure White Minimalist Academic Typography, Left-Aligned,
+   Computer Modern Serif & JetBrains Mono, Inspired by LaTeX & 'Distance'
    ========================================================================== */
 
 @import url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css');
 @import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* CSS Variables for Themes */
+/* CSS Variables: Pure White Clean Minimalist Palette */
 :root {
   --font-serif: "Computer Modern Serif", "CMU Serif", "STIX Two Text", "Times New Roman", Times, serif;
   --font-sans: "Computer Modern Sans", "CMU Sans Serif", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "Computer Modern Typewriter", "JetBrains Mono", "Courier New", Courier, monospace;
 
-  /* Classic LaTeX Paper with 'Distance' Editorial Warmth */
-  --bg-desktop: #e3dfd7;
-  --bg-page: #faf8f4;
-  --text-primary: #121316;
-  --text-secondary: #3c3f46;
-  --text-muted: #6e727c;
-  --rule-color: #121316;
-  --rule-light: #d6d1c7;
-  --col-divider: #ddd8ce;
-  --interactive-bg: #f2eee6;
-  --interactive-border: #c9c3b6;
-  --accent-color: #0b1a30;
-  --accent-link: #153258;
-  --tag-bg: #ece7dc;
-  --code-bg: #eee9df;
-  --code-border: #cdc6b8;
-  --page-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --paper-width: 980px;
-}
-
-[data-theme="parchment"] {
-  --bg-desktop: #ded6c8;
-  --bg-page: #f6f1e5;
-  --text-primary: #1f1b17;
-  --text-secondary: #453e37;
-  --text-muted: #72685d;
-  --rule-color: #241e19;
-  --rule-light: #d8cfbf;
-  --col-divider: #dcd3c3;
-  --interactive-bg: #ebe3d3;
-  --interactive-border: #c8bdab;
-  --accent-color: #4a2210;
-  --accent-link: #5c2d16;
-  --tag-bg: #e5dccb;
-  --code-bg: #e8dfce;
-  --code-border: #c9beab;
-  --page-shadow: 0 8px 30px rgba(40, 30, 20, 0.12);
-}
-
-[data-theme="dark"] {
-  /* Distance Minimalist Dark Aesthetic */
-  --bg-desktop: #0e0f12;
-  --bg-page: #16171b;
-  --text-primary: #f0f2f5;
-  --text-secondary: #b6bac2;
-  --text-muted: #7b818d;
-  --rule-color: #464c58;
-  --rule-light: #2c3038;
-  --col-divider: #262a32;
-  --interactive-bg: #1d1f25;
-  --interactive-border: #383c47;
-  --accent-color: #79b8ff;
-  --accent-link: #9ac7ff;
-  --tag-bg: #22252c;
-  --code-bg: #121316;
-  --code-border: #2c3038;
-  --page-shadow: 0 10px 40px rgba(0, 0, 0, 0.65);
+  /* Pure White Background & High Contrast Monochrome */
+  --bg-desktop: #ffffff;
+  --bg-page: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #2f343b;
+  --text-muted: #6e7681;
+  --rule-color: #111111;
+  --rule-light: #e1e4e8;
+  --col-divider: #e1e4e8;
+  --interactive-bg: #f6f8fa;
+  --interactive-border: #d0d7de;
+  --accent-color: #111111;
+  --accent-link: #0969da;
+  --tag-bg: #f3f4f6;
+  --code-bg: #f6f8fa;
+  --code-border: #d0d7de;
+  --border-color: #d0d7de;
+  --container-width: 820px;
 }
 
 /* Reset & Box Sizing */
@@ -82,6 +44,7 @@
 html {
   font-size: 15px;
   scroll-behavior: smooth;
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -89,44 +52,35 @@ html {
 body {
   font-family: var(--font-serif);
   color: var(--text-primary);
-  background-color: var(--bg-desktop);
-  line-height: 1.48;
-  padding: 0 0 4rem 0;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  background-color: #ffffff;
+  line-height: 1.6;
+  padding: 0 0 5rem 0;
+  text-align: left;
 }
 
 /* ==========================================================================
-   TeX Status & Utility Toolbar (Minimalist arXiv / Overleaf header)
+   Minimalist TeX Utility Navigation Bar
    ========================================================================== */
 .tex-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.45rem 1.25rem;
+  padding: 0.6rem 1.5rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-}
-
-[data-theme="parchment"] .tex-toolbar {
-  background-color: rgba(249, 246, 238, 0.96);
-}
-
-[data-theme="dark"] .tex-toolbar {
-  background-color: rgba(21, 24, 30, 0.95);
-  border-bottom-color: var(--rule-light);
 }
 
 .tex-meta-left {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -135,24 +89,27 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.15rem 0.4rem;
+  padding: 0.2rem 0.45rem;
   background: var(--tag-bg);
-  border: 1px solid var(--rule-light);
+  border: 1px solid var(--interactive-border);
   border-radius: 2px;
   font-weight: 500;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
 }
 
 .tex-nav-links {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   list-style: none;
 }
 
 .tex-nav-links a {
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.15rem 0.35rem;
+  padding: 0.2rem 0.45rem;
   border-radius: 2px;
+  font-size: 0.8rem;
   transition: all 0.15s ease;
 }
 
@@ -164,313 +121,132 @@ body {
 .tex-meta-right {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   flex-shrink: 0;
 }
 
-.tex-btn-group {
-  display: flex;
-  border: 1px solid var(--rule-light);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.tex-btn {
-  background: var(--bg-page);
-  border: none;
-  border-right: 1px solid var(--rule-light);
-  color: var(--text-secondary);
-  padding: 0.25rem 0.55rem;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.tex-btn:last-child {
-  border-right: none;
-}
-
-.tex-btn:hover {
-  background: var(--tag-bg);
-  color: var(--text-primary);
-}
-
-.tex-btn.active {
-  background: var(--text-primary);
-  color: var(--bg-page);
-  font-weight: 600;
-}
-
 .tex-action-btn {
-  background: var(--bg-page);
-  border: 1px solid var(--rule-light);
-  border-radius: 3px;
-  color: var(--text-primary);
+  background: #ffffff;
+  border: 1px solid var(--interactive-border);
+  color: var(--text-secondary);
   padding: 0.25rem 0.6rem;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   cursor: pointer;
-  transition: all 0.15s ease;
-  text-decoration: none;
+  border-radius: 2px;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  transition: all 0.15s ease;
 }
 
 .tex-action-btn:hover {
   background: var(--text-primary);
-  color: var(--bg-page);
+  color: #ffffff;
+  border-color: var(--text-primary);
 }
 
 .tex-btn-recompile {
-  border-color: #27ae60;
-  color: #27ae60;
-}
-
-.tex-btn-recompile:hover {
-  background: #27ae60;
-  color: #fff;
+  font-weight: 600;
 }
 
 /* ==========================================================================
-   LaTeX Paper Page Container
+   Clean Web Container (No Page Box, No Shadow, Completely Left-Aligned)
    ========================================================================== */
 .paper-outer-wrapper {
-  max-width: var(--paper-width);
-  margin: 1.8rem auto;
-  padding: 0 1rem;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem 1.5rem;
+  text-align: left;
 }
 
 .paper-sheet {
-  background-color: var(--bg-page);
-  box-shadow: var(--page-shadow);
-  padding: 3.5rem 3.8rem 4rem 3.8rem;
+  background-color: #ffffff;
+  box-shadow: none;
+  border: none;
+  padding: 0;
   position: relative;
-  min-height: 1000px;
-  transition: all 0.25s ease;
+  min-height: auto;
+  text-align: left;
 }
 
-/* Paginated Mode visual page simulation */
-[data-layout="paginated"] .paper-sheet {
-  margin-bottom: 2.5rem;
-  border-top: 1px solid rgba(0,0,0,0.06);
-}
-
-[data-layout="paginated"] .page-break-indicator {
-  display: block;
-  text-align: center;
-  margin: 2.5rem 0 2rem 0;
-  position: relative;
-}
-
-[data-layout="paginated"] .page-break-indicator::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  border-top: 1px dashed var(--rule-light);
-  z-index: 0;
-}
-
-[data-layout="paginated"] .page-break-label {
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-  background: var(--bg-desktop);
-  padding: 0 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
-/* LaTeX Page Header (like Proceedings header in PDF) */
+/* Hide simulated physical page headers, footers & page numbers */
+.paper-running-header,
+.paper-running-footer,
+.paper-page-number,
 .proceedings-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 0.5px solid var(--rule-light);
+  display: none !important;
 }
 
-.proceedings-title {
-  font-size: 0.88rem;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-.proceedings-vol {
-  font-size: 0.78rem;
-  font-variant: small-caps;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
-}
-
-/* Document Title Block */
+/* ==========================================================================
+   Left-Aligned Document Header & Typography
+   ========================================================================== */
 .article-header {
-  text-align: center;
-  margin-bottom: 2rem;
+  text-align: left;
+  margin-bottom: 2.2rem;
 }
 
 .article-title {
-  font-size: 2.15rem;
+  font-size: 2.3rem;
   font-weight: 800;
-  line-height: 1.16;
-  margin-bottom: 1.25rem;
+  line-height: 1.18;
+  margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
   color: var(--text-primary);
+  text-align: left;
 }
 
 .article-authors {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  margin-bottom: 0.35rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+  color: var(--text-primary);
+  text-align: left;
 }
 
 .article-affiliation {
   font-size: 0.9rem;
-  font-style: italic;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
-}
-
-/* 'Distance' Style Minimalist Metadata Grid */
-.distance-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.2rem;
-  padding: 0.9rem 0.5rem;
-  margin: 1.6rem 0 2rem 0;
-  border-top: 1.5px solid var(--rule-color);
-  border-bottom: 1px solid var(--rule-light);
   text-align: left;
 }
 
-.distance-meta-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.distance-meta-label {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.distance-meta-val {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: var(--font-serif);
-}
-
 .article-meta-links {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-family: var(--font-mono);
   color: var(--text-muted);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.5rem;
+  text-align: left;
 }
 
 .article-meta-links a {
   color: var(--accent-link);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--accent-link);
-}
-
-.article-meta-links a:hover {
-  border-bottom-style: solid;
-}
-
-/* Abstract Container (indented, justified, centered) */
-.abstract-block {
-  max-width: 88%;
-  margin: 1.6rem auto 2.4rem auto;
-  font-size: 0.9rem;
-  line-height: 1.52;
-  text-align: justify;
-  text-justify: inter-word;
-  color: var(--text-secondary);
-  padding: 0 0.5rem;
-}
-
-.abstract-block p {
-  text-indent: 0;
-  margin-bottom: 0.6rem;
-}
-
-.abstract-runin {
-  font-weight: 800;
-  font-style: normal;
-  color: var(--text-primary);
-}
-
-.keywords-line {
-  font-size: 0.84rem;
-  margin-top: 0.5rem;
-}
-
-.keywords-runin {
-  font-weight: 800;
-  font-style: normal;
-}
-
-.header-separator {
-  border: none;
-  border-top: 1.5px solid var(--rule-color);
-  margin: 1.8rem 0 2.2rem 0;
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 2px;
 }
 
 /* ==========================================================================
-   LaTeX Two-Column Grid System
+   Body Content & Flow
    ========================================================================== */
 .monograph-body {
-  transition: all 0.2s ease;
+  text-align: left;
+  column-count: 1 !important;
 }
 
-/* Two-column layout (Default matching PDF) */
-[data-layout="twocolumn"] .monograph-body {
-  column-count: 2;
-  column-gap: 2.4rem;
-  column-rule: 0.5px solid var(--col-divider);
-}
-
-/* One-column layout (Reading mode) */
-[data-layout="onecolumn"] .monograph-body {
-  column-count: 1;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Spanning elements across both columns */
-.full-width-span {
-  column-span: all;
-  margin: 1.8rem 0;
-}
-
-/* Paragraph styling */
+/* Paragraph styling: Clean left-aligned, no indent, no justify */
 p {
-  text-align: justify;
-  text-justify: inter-word;
-  text-indent: 1.4em;
-  margin-bottom: 0.45em;
-  line-height: 1.5;
-  hyphens: auto;
+  text-align: left;
+  text-indent: 0;
+  margin-bottom: 1.15rem;
+  line-height: 1.62;
+  color: var(--text-primary);
 }
 
 p:first-of-type,
@@ -481,19 +257,18 @@ h3 + p,
   text-indent: 0;
 }
 
-/* Section Headings (Bigger, Bolder, with 'Distance' Editorial Gravity) */
+/* Section Headings: Distance Inspired Bold Architecture */
 .section-header {
-  font-size: 1.34rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  letter-spacing: -0.018em;
-  line-height: 1.24;
-  margin-top: 2.4rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-top: 2.6rem;
   margin-bottom: 0.85rem;
   color: var(--text-primary);
   border-bottom: 1.5px solid var(--rule-color);
   padding-bottom: 0.35rem;
-  break-after: avoid;
-  page-break-after: avoid;
+  text-align: left;
 }
 
 .section-header a {
@@ -509,15 +284,14 @@ h3 + p,
 }
 
 .subsection-header {
-  font-size: 1.06rem;
+  font-size: 1.1rem;
   font-weight: 750;
   letter-spacing: -0.012em;
   line-height: 1.3;
-  margin-top: 1.6rem;
-  margin-bottom: 0.55rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
   color: var(--text-primary);
-  break-after: avoid;
-  page-break-after: avoid;
+  text-align: left;
 }
 
 /* Links */
@@ -530,40 +304,15 @@ a {
 }
 
 a:hover {
-  color: var(--accent-color);
+  color: #0550ae;
 }
 
-/* Math Display & Equations */
+/* Math Display & Equations: Left-Aligned */
 .equation-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-  padding: 0.4rem 0.5rem;
-  position: relative;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-.equation-math {
+  margin: 1.2rem 0;
+  padding-left: 1.5rem;
+  text-align: left;
   overflow-x: auto;
-  max-width: calc(100% - 3.5rem);
-  text-align: center;
-}
-
-.equation-number {
-  position: absolute;
-  right: 0.5rem;
-  font-size: 0.9rem;
-  font-family: var(--font-serif);
-  color: var(--text-primary);
-  cursor: pointer;
-  user-select: none;
-}
-
-.equation-number:hover {
-  color: var(--accent-color);
-  font-weight: 600;
 }
 
 /* Inline code & code blocks */
@@ -580,13 +329,13 @@ pre {
   background-color: var(--code-bg);
   border: 1px solid var(--code-border);
   border-radius: 2px;
-  padding: 0.85rem;
+  padding: 0.9rem 1.1rem;
   overflow-x: auto;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  line-height: 1.4;
-  margin: 0.8rem 0;
-  break-inside: avoid;
+  font-size: 0.82rem;
+  line-height: 1.48;
+  margin: 1.2rem 0;
+  text-align: left;
 }
 
 pre code {
@@ -595,66 +344,18 @@ pre code {
   padding: 0;
 }
 
-/* LaTeX Booktabs Tables */
-.latex-table-container {
-  margin: 1.2rem 0;
-  overflow-x: auto;
-  break-inside: avoid;
-}
-
-table.booktabs {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.84rem;
-  margin: 0.4rem 0;
-}
-
-table.booktabs th,
-table.booktabs td {
-  padding: 0.4rem 0.6rem;
+/* Figures & Images: Left-Aligned */
+figure.latex-figure {
+  margin: 1.8rem 0;
   text-align: left;
 }
 
-table.booktabs thead th {
-  border-top: 1.5px solid var(--rule-color);
-  border-bottom: 1px solid var(--rule-color);
-  font-weight: 600;
-}
-
-table.booktabs tbody tr:last-child td {
-  border-bottom: 1.5px solid var(--rule-color);
-}
-
-table.booktabs td.numeric,
-table.booktabs th.numeric {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Figures & Captions */
-figure.latex-figure {
-  margin: 1.4rem 0;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-.figure-frame {
-  background: var(--interactive-bg);
-  border: 1px solid var(--interactive-border);
-  border-radius: 2px;
-  padding: 0.75rem;
-  position: relative;
-  overflow: hidden;
-}
-
 figcaption {
-  font-size: 0.82rem;
-  line-height: 1.38;
-  text-align: justify;
-  text-justify: inter-word;
+  font-size: 0.84rem;
+  line-height: 1.4;
   color: var(--text-secondary);
-  margin-top: 0.5rem;
-  padding: 0 0.2rem;
+  margin-top: 0.55rem;
+  text-align: left;
 }
 
 figcaption strong {
@@ -662,474 +363,143 @@ figcaption strong {
   color: var(--text-primary);
 }
 
-/* Citations & Hoverable Links */
-.citation-link {
-  font-size: 0.85em;
-  color: var(--accent-link);
+/* Quotes of Note: Left-Aligned */
+blockquote {
+  margin: 1.6rem 0;
+  padding-left: 1.2rem;
+  border-left: 3px solid var(--rule-color);
+  font-size: 0.98rem;
+  line-height: 1.58;
+  text-align: left;
+}
+
+blockquote cite {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.35rem;
+  font-style: normal;
+}
+
+/* Lists: Left-Aligned */
+ul, ol {
+  text-align: left;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+/* Back Link: Left-Aligned Minimalist Pill */
+.tex-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   text-decoration: none;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 0 1px;
-}
-
-.citation-link:hover {
-  background: var(--tag-bg);
-  border-radius: 2px;
-}
-
-/* Floating Citation Tooltip */
-.tex-tooltip {
-  position: fixed;
-  z-index: 2000;
-  max-width: 320px;
-  background: var(--bg-page);
-  border: 1px solid var(--rule-color);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  padding: 0.75rem 0.9rem;
-  font-size: 0.8rem;
-  line-height: 1.35;
-  border-radius: 2px;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.tex-tooltip.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tex-tooltip-title {
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-  font-size: 0.82rem;
-}
-
-.tex-tooltip-body {
-  color: var(--text-secondary);
-  font-size: 0.76rem;
-}
-
-/* ==========================================================================
-   Interactive Scientific Simulators & Visualizers
-   ========================================================================== */
-
-/* Visualizer Controls Bar */
-.sim-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px dashed var(--rule-light);
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-}
-
-.sim-control-group {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.sim-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  background: var(--interactive-border);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-  width: 90px;
-}
-
-.sim-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 12px;
-  height: 12px;
-  background: var(--text-primary);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.sim-slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: var(--text-primary);
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-}
-
-.sim-btn {
-  background: var(--bg-page);
+  margin-bottom: 1.8rem;
+  padding: 0.25rem 0.6rem;
   border: 1px solid var(--interactive-border);
-  padding: 0.25rem 0.55rem;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
   border-radius: 2px;
-  cursor: pointer;
-  color: var(--text-primary);
-  transition: all 0.15s ease;
-}
-
-.sim-btn:hover {
-  background: var(--text-primary);
-  color: var(--bg-page);
-}
-
-.sim-btn.active {
-  background: var(--text-primary);
-  color: var(--bg-page);
-}
-
-.sim-value-badge {
-  font-weight: 600;
-  min-width: 28px;
-  display: inline-block;
-}
-
-/* Oscilloscope Display (Figure 1: OpAmp) */
-.oscilloscope-canvas-wrapper {
-  position: relative;
-  background: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: 2px;
-  overflow: hidden;
-  height: 180px;
-}
-
-canvas.sim-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.sim-readout-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-}
-
-/* Logic Pipeline Stepper Display (Verilog OpAmp) */
-.logic-steps-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 3px;
-  margin-top: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-align: center;
-}
-
-.logic-step-cell {
-  background: var(--bg-page);
-  border: 1px solid var(--rule-light);
-  padding: 0.25rem 0.1rem;
-  border-radius: 2px;
-  transition: all 0.2s ease;
-}
-
-.logic-step-cell.active-step {
-  background: var(--text-primary);
-  color: var(--bg-page);
-  font-weight: bold;
-  transform: scale(1.05);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.logic-step-cell.accumulated {
-  background: #e8f5e9;
-  border-color: #a5d6a7;
-  color: #1b5e20;
-}
-
-[data-theme="dark"] .logic-step-cell.accumulated {
-  background: #132e18;
-  border-color: #2e7d32;
-  color: #81c784;
-}
-
-/* Circular Ring Buffer Visualizer (Figure 4) */
-.ring-buffer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.5rem 0;
-}
-
-.ring-buffer-slots {
-  display: flex;
-  gap: 4px;
-  margin: 0.8rem 0;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.ring-slot {
-  width: 48px;
-  height: 52px;
-  border: 1.5px solid var(--interactive-border);
-  background: var(--bg-page);
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  font-family: var(--font-mono);
-  transition: all 0.2s ease;
-}
-
-.ring-slot-idx {
-  font-size: 0.6rem;
-  color: var(--text-muted);
-}
-
-.ring-slot-val {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.ring-slot.has-data {
-  background: #e3f2fd;
-  border-color: #90caf9;
-}
-
-[data-theme="dark"] .ring-slot.has-data {
-  background: #102a43;
-  border-color: #243b53;
-}
-
-.ring-slot.is-head::before {
-  content: "W (Head)";
-  position: absolute;
-  top: -16px;
-  font-size: 0.55rem;
-  color: #d32f2f;
-  font-weight: 700;
-}
-
-.ring-slot.is-tail::after {
-  content: "R (Tail)";
-  position: absolute;
-  bottom: -16px;
-  font-size: 0.55rem;
-  color: #1976d2;
-  font-weight: 700;
-}
-
-/* Circuit Image Inspector Tabs */
-.circuit-tabs-nav {
-  display: flex;
-  border-bottom: 1px solid var(--rule-light);
-  margin-bottom: 0.6rem;
-}
-
-.circuit-tab-btn {
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 0.35rem 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.circuit-tab-btn.active {
-  border-bottom-color: var(--text-primary);
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.circuit-tab-pane {
-  display: none;
-  text-align: center;
-}
-
-.circuit-tab-pane.active {
-  display: block;
-}
-
-.circuit-img-frame {
-  max-width: 100%;
-  max-height: 280px;
-  object-fit: contain;
-  border: 1px solid var(--rule-light);
-  border-radius: 2px;
-  background: #fff;
-  cursor: zoom-in;
-  transition: transform 0.2s ease;
-}
-
-/* Scholarly Epigraph Block (Quotes of Note) */
-.epigraph-card {
-  margin: 1.2rem 0;
-  padding: 0.85rem 1.1rem;
-  border-left: 2.5px solid var(--text-primary);
   background: var(--tag-bg);
-  break-inside: avoid;
-}
-
-.epigraph-quote {
-  font-style: italic;
-  font-size: 0.92rem;
-  line-height: 1.45;
-  color: var(--text-primary);
-  margin-bottom: 0.4rem;
-}
-
-.epigraph-author {
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-align: right;
-  color: var(--text-secondary);
-}
-
-.epigraph-author strong {
-  color: var(--text-primary);
-}
-
-/* Curated Academic Catalog (Favorites) */
-.catalog-filter-bar {
-  display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
-.catalog-pill {
-  border: 1px solid var(--rule-light);
-  background: var(--bg-page);
-  padding: 0.2rem 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  cursor: pointer;
-  border-radius: 2px;
-  color: var(--text-secondary);
   transition: all 0.15s ease;
 }
 
-.catalog-pill:hover,
-.catalog-pill.active {
+.tex-back-link:hover {
   background: var(--text-primary);
-  color: var(--bg-page);
-}
-
-.catalog-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.6rem;
-}
-
-[data-layout="onecolumn"] .catalog-grid {
-  grid-template-columns: 1fr 1fr;
-}
-
-.catalog-item {
-  border: 1px solid var(--rule-light);
-  background: var(--bg-page);
-  padding: 0.65rem 0.85rem;
-  border-radius: 2px;
-  transition: all 0.15s ease;
-}
-
-.catalog-item:hover {
+  color: #ffffff;
   border-color: var(--text-primary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.catalog-item-header {
+/* Table of Contents: Left-Aligned */
+.latex-toc {
+  margin: 1.8rem 0 2.5rem 0;
+  border-top: 1.5px solid var(--rule-color);
+  border-bottom: 1.5px solid var(--rule-color);
+  padding: 1.4rem 0;
+  text-align: left;
+}
+
+.latex-toc-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+.latex-toc-list {
+  list-style: none;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-left: 0;
+  text-align: left;
+}
+
+.latex-toc-item {
+  display: flex;
   align-items: baseline;
-  margin-bottom: 0.2rem;
+  text-align: left;
 }
 
-.catalog-item-title {
-  font-size: 0.88rem;
+.latex-toc-link {
+  font-size: 1.05rem;
   font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  transition: color 0.15s ease;
 }
 
-.catalog-item-type {
+.latex-toc-link:hover {
+  color: var(--accent-link);
+  text-decoration: underline;
+}
+
+.latex-toc-secnum {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  text-transform: uppercase;
+  font-size: 0.85rem;
   color: var(--text-muted);
-}
-
-.catalog-item-detail {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  font-style: italic;
-  margin-bottom: 0.25rem;
-}
-
-.catalog-item-links {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-}
-
-/* Footnotes Section (LaTeX standard) */
-.footnotes-container {
-  margin-top: 2.5rem;
-  padding-top: 1rem;
-  border-top: 0.5px solid var(--rule-light);
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  break-inside: avoid;
-}
-
-.footnote-item {
-  margin-bottom: 0.4rem;
-  text-indent: 0;
-}
-
-.footnote-marker {
-  font-weight: bold;
-  cursor: pointer;
-  margin-right: 0.3rem;
-}
-
-/* Page Footer (Page number centered at bottom: like '1057', '1058' in PDF) */
-.paper-footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 0.5px solid var(--rule-light);
-  font-size: 0.88rem;
-  color: var(--text-primary);
-}
-
-.paper-page-number {
   font-weight: 600;
-  letter-spacing: 0.05em;
 }
 
-.paper-running-footer {
-  font-size: 0.75rem;
-  font-style: italic;
+/* Abstract Container: Left-Aligned */
+.abstract-block {
+  text-align: left;
+  margin: 1.5rem 0 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule-color);
+  border-bottom: 1px solid var(--rule-color);
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.abstract-block p {
+  text-align: left;
+  text-indent: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Clean Web Site Footer */
+.site-footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--rule-light);
+  padding-top: 1.2rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  margin-top: 0.2rem;
+  text-align: left;
 }
 
-/* ==========================================================================
-   Modals: BibTeX & LaTeX Terminal Compilation
-   ========================================================================== */
+/* Modals: BibTeX & Terminal */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 3000;
   display: flex;
@@ -1147,15 +517,16 @@ canvas.sim-canvas {
 }
 
 .modal-window {
-  background: var(--bg-page);
+  background: #ffffff;
   border: 1px solid var(--rule-color);
   max-width: 600px;
   width: 100%;
   border-radius: 3px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .modal-header {
@@ -1183,273 +554,54 @@ canvas.sim-canvas {
 }
 
 .modal-content {
-  padding: 1.2rem;
-  max-height: 75vh;
-  overflow-y: auto;
+  padding: 1rem;
+  background: #ffffff;
 }
 
-/* Terminal Recompile Modal Styling */
 .terminal-window {
   background: #0d1117;
   color: #c9d1d9;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 1.2rem;
-  line-height: 1.5;
-  border-radius: 4px;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
-.terminal-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 14px;
-  background: #58a6ff;
-  vertical-align: middle;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* YouTube Embedded Frame */
-.video-responsive-frame {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border: 1px solid var(--rule-light);
-  border-radius: 2px;
-}
-
-.video-responsive-frame iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* ==========================================================================
-   Print Stylesheet (Rigid IEEE / Academic Physical Print)
-   ========================================================================== */
+/* Print Stylesheet */
 @media print {
-  @page {
-    size: letter portrait;
-    margin: 0.7in 0.6in;
+  .tex-toolbar,
+  .tex-back-link,
+  .modal-overlay {
+    display: none !important;
   }
 
   body {
     background: #ffffff !important;
-    color: #000000 !important;
     padding: 0 !important;
-  }
-
-  .tex-toolbar,
-  .sim-controls,
-  .circuit-tabs-nav,
-  .catalog-filter-bar,
-  .modal-overlay,
-  .tex-tooltip {
-    display: none !important;
   }
 
   .paper-outer-wrapper {
     max-width: 100% !important;
+    padding: 0 !important;
     margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .paper-sheet {
-    box-shadow: none !important;
-    padding: 0 !important;
-    min-height: auto !important;
-  }
-
-  .monograph-body {
-    column-count: 2 !important;
-    column-gap: 2rem !important;
   }
 
   a {
     color: #000000 !important;
     text-decoration: none !important;
   }
-
-  .equation-row,
-  figure.latex-figure,
-  pre {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
 }
 
-/* ==========================================================================
-   Responsive Breakpoints for Mobile
-   ========================================================================== */
-@media (max-width: 860px) {
-  .paper-sheet {
-    padding: 2rem 1.5rem;
-  }
-
-  [data-layout="twocolumn"] .monograph-body {
-    column-count: 1;
-  }
-
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
   .tex-meta-left .tex-nav-links {
     display: none;
   }
-
-  .tex-toolbar {
-    padding: 0.4rem 0.75rem;
+  .paper-outer-wrapper {
+    padding: 1.8rem 1.2rem;
   }
-
   .article-title {
-    font-size: 1.35rem;
+    font-size: 1.85rem;
   }
-
-  .abstract-block {
-    max-width: 100%;
-  }
-
-  .logic-steps-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-
-/* ==========================================================================
-   LaTeX Table of Contents & Multi-Page Navigation Additions
-   ========================================================================== */
-.tex-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  margin-bottom: 1.4rem;
-  padding: 0.25rem 0.6rem;
-  border: 1px solid var(--rule-light);
-  border-radius: 2px;
-  background: var(--tag-bg);
-  transition: all 0.15s ease;
-}
-
-.tex-back-link:hover {
-  background: var(--text-primary);
-  color: var(--bg-page);
-  border-color: var(--text-primary);
-}
-
-.latex-toc {
-  margin: 1.8rem 0 2.2rem 0;
-  border-top: 1.5px solid var(--rule-color);
-  border-bottom: 1.5px solid var(--rule-color);
-  padding: 1.5rem 0.5rem;
-}
-
-.latex-toc-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  margin-bottom: 1.4rem;
-  text-align: center;
-  color: var(--text-primary);
-}
-
-.latex-toc-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.latex-toc-item {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.latex-toc-link {
-  font-size: 1.08rem;
-  font-weight: 750;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  background: var(--bg-page);
-  padding-right: 0.5rem;
-  position: relative;
-  z-index: 1;
-  transition: color 0.15s ease;
-}
-
-.latex-toc-link:hover {
-  color: var(--accent-link);
-  text-decoration: underline;
-}
-
-.latex-toc-secnum {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.latex-toc-dots {
-  flex-grow: 1;
-  border-bottom: 1.5px dotted var(--rule-light);
-  margin: 0 0.5rem;
-  height: 0.7em;
-}
-
-.latex-toc-page {
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  background: var(--bg-page);
-  padding-left: 0.5rem;
-  position: relative;
-  z-index: 1;
-}
-
-.latex-toc-desc {
-  font-size: 0.86rem;
-  line-height: 1.45;
-  color: var(--text-secondary);
-  margin-top: 0.2rem;
-  padding-left: 2.2rem;
-}
-
-/* 'Distance' Morse Code Signal Motif */
-.morse-signal-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  margin: 2.2rem 0;
-  user-select: none;
-  opacity: 0.65;
-}
-
-.morse-dot {
-  width: 5px;
-  height: 5px;
-  background-color: var(--text-primary);
-  border-radius: 1px;
-}
-
-.morse-dash {
-  width: 16px;
-  height: 5px;
-  background-color: var(--text-primary);
-  border-radius: 1px;
 }

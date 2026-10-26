@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper" data-layout="twocolumn">
+<html lang="en" data-theme="paper" data-layout="onecolumn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,48 +37,32 @@
     </div>
 
     <div class="tex-meta-right">
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-layout="twocolumn">2-Col</button>
-        <button class="tex-btn" data-set-layout="onecolumn">1-Col</button>
-      </div>
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-theme="paper">Paper</button>
-        <button class="tex-btn" data-set-theme="parchment">Parchment</button>
-        <button class="tex-btn" data-set-theme="dark">Dark</button>
-      </div>
       <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">Recompile</button>
       <button class="tex-action-btn" data-open-bibtex>[Cite]</button>
-      <button class="tex-action-btn" onclick="window.print()">Print / PDF</button>
+      <button class="tex-action-btn" onclick="window.print()">Print</button>
     </div>
   </header>
 
-  <div class="paper-outer-wrapper">
+  <main class="paper-outer-wrapper">
     <article class="paper-sheet">
 
       <!-- Back Navigation Breadcrumbs -->
       <div style="display:flex; gap:0.5rem; margin-bottom:1.4rem;">
         <a href="index.html" class="tex-back-link" style="margin-bottom:0;">&larr; Contents</a>
-        <span style="color:var(--text-muted);">&bull;</span>
         <a href="projects.html" class="tex-back-link" style="margin-bottom:0;">&larr; Projects</a>
       </div>
 
-      <!-- Running Header -->
-      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.2rem; color:var(--text-secondary);">
-        <span>Silicon &bull; Section 2</span>
-        <span>Operational Amplifier</span>
-      </div>
-
-      <!-- Title Block -->
-      <div class="article-header" style="text-align:center; margin-bottom:2.5rem;">
-        <h1 class="article-title" style="font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; color:var(--text-primary);">
+      <!-- Title Block (Left Aligned) -->
+      <div class="article-header">
+        <h1 class="article-title">
           Operational Amplifier
         </h1>
-        <div class="article-authors" style="font-size:1.1rem; font-weight:600; color:var(--text-primary); margin-bottom:0.3rem;">
+        <div class="article-authors">
           Thomas Koetting
         </div>
       </div>
 
-      <!-- Authentic Monograph Body -->
+      <!-- Authentic Monograph Body (Left Aligned) -->
       <div class="monograph-body">
 
         <p>
@@ -86,12 +70,12 @@
         </p>
 
         <!-- Code Block 1 -->
-        <div class="tex-code-listing" style="margin: 1.2rem 0;">
-          <div class="tex-code-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:var(--text-secondary); border-bottom:1px solid var(--border-color); padding:0.25rem 0.5rem; background:rgba(0,0,0,0.03);">
+        <div style="margin: 1.2rem 0;">
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:var(--text-secondary); border-bottom:1px solid var(--interactive-border); padding:0.25rem 0.5rem; background:var(--tag-bg);">
             <span>Listing 1: Ideal Behavioral Op-Amp in Verilog</span>
             <span>Verilog</span>
           </div>
-          <pre style="margin:0; padding:0.8rem; background:var(--code-bg); border:1px solid var(--border-color); border-top:none; overflow-x:auto;"><code class="language-verilog" style="font-family:var(--font-mono); font-size:0.82rem; line-height:1.45;">module OpAmp(
+          <pre style="margin:0; border-top:none;"><code class="language-verilog">module OpAmp(
     input wire [x:0] Vin,
     output wire [x:0] Vout,
     input wire [x:0] Gain
@@ -102,7 +86,7 @@
 endmodule</code></pre>
         </div>
 
-        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+        <p style="font-size: 0.9rem;">
           <sup id="ref-fn-1"><a href="#footnote-1" style="color:var(--link-color); font-weight:bold;">[1]</a></sup>
         </p>
 
@@ -119,12 +103,12 @@ endmodule</code></pre>
         </p>
 
         <!-- Code Block 2 -->
-        <div class="tex-code-listing" style="margin: 1.2rem 0;">
-          <div class="tex-code-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:var(--text-secondary); border-bottom:1px solid var(--border-color); padding:0.25rem 0.5rem; background:rgba(0,0,0,0.03);">
+        <div style="margin: 1.2rem 0;">
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-family:var(--font-mono); color:var(--text-secondary); border-bottom:1px solid var(--interactive-border); padding:0.25rem 0.5rem; background:var(--tag-bg);">
             <span>Listing 2: Iterative Addition Accumulator Loop</span>
             <span>Verilog</span>
           </div>
-          <pre style="margin:0; padding:0.8rem; background:var(--code-bg); border:1px solid var(--border-color); border-top:none; overflow-x:auto;"><code class="language-verilog" style="font-family:var(--font-mono); font-size:0.82rem; line-height:1.45;">module OpAmp(
+          <pre style="margin:0; border-top:none;"><code class="language-verilog">module OpAmp(
     input wire Vin, 
     input wire Gain,  
     output reg Vout  
@@ -148,12 +132,12 @@ endmodule</code></pre>
           The <a href="https://github.com/YosysHQ/yosys" target="_blank" rel="noopener">yosys</a> digital logic diagram is given below:
         </p>
 
-        <!-- Authentic Image 1: yosya.jpg -->
-        <figure class="latex-figure" style="margin: 1.6rem 0; text-align: center;">
-          <div style="border: 1px solid var(--border-color); padding: 0.5rem; background: var(--card-bg); display: inline-block; max-width: 100%;">
-            <img src="assets/img/yosya.jpg" alt="Yosys Digital Logic Synthesis" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" loading="lazy">
+        <!-- Authentic Image 1: yosya.jpg (Left Aligned) -->
+        <figure class="latex-figure" style="margin: 1.6rem 0;">
+          <div style="border: 1px solid var(--interactive-border); padding: 0.5rem; background: #ffffff; display: inline-block; max-width: 100%;">
+            <img src="assets/img/yosya.jpg" alt="Yosys Digital Logic Synthesis" style="max-width: 100%; height: auto; display: block;" loading="lazy">
           </div>
-          <figcaption style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; text-align: center;">
+          <figcaption>
             <strong>Fig. 1.</strong> Yosys digital logic synthesis diagram.
           </figcaption>
         </figure>
@@ -166,21 +150,21 @@ endmodule</code></pre>
           Of course, we could not create a verilog circuit if we didn't also model it with minecraft redstone as well. With the ability to do this being none of my own but due to the help of the amazing <a href="https://github.com/itsfrank/MinecraftHDL" target="_blank" rel="noopener">MinecraftHDL</a> project.
         </p>
 
-        <!-- Authentic Image 2: redstone.jpg -->
-        <figure class="latex-figure" style="margin: 1.6rem 0; text-align: center;">
-          <div style="border: 1px solid var(--border-color); padding: 0.5rem; background: var(--card-bg); display: inline-block; max-width: 100%;">
-            <img src="assets/img/redstone.jpg" alt="MinecraftHDL Redstone Circuit" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" loading="lazy">
+        <!-- Authentic Image 2: redstone.jpg (Left Aligned) -->
+        <figure class="latex-figure" style="margin: 1.6rem 0;">
+          <div style="border: 1px solid var(--interactive-border); padding: 0.5rem; background: #ffffff; display: inline-block; max-width: 100%;">
+            <img src="assets/img/redstone.jpg" alt="MinecraftHDL Redstone Circuit" style="max-width: 100%; height: auto; display: block;" loading="lazy">
           </div>
-          <figcaption style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; text-align: center;">
+          <figcaption>
             <strong>Fig. 2.</strong> Minecraft redstone circuit generated via MinecraftHDL.
           </figcaption>
         </figure>
 
         <!-- Footnotes -->
-        <hr style="border:0; border-bottom:1px solid var(--rule-color); margin: 2.5rem 0 1rem 0;">
-        <div class="footnotes-container" style="font-size: 0.78rem; line-height: 1.45; color: var(--text-secondary);">
-          <div class="footnote-item" id="footnote-1">
-            <span class="footnote-marker">[1]</span> I chose to represent an arbitrary amount of bits with variable x. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.
+        <hr style="border:0; border-bottom:1px solid var(--rule-light); margin: 2.5rem 0 1rem 0;">
+        <div style="font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+          <div id="footnote-1">
+            <span style="font-weight:bold;">[1]</span> I chose to represent an arbitrary amount of bits with variable x. I was not sure how large the buses needed to be in designing this first simplest model, so I decided to leave it up to my later discretion.
           </div>
         </div>
 
@@ -190,15 +174,12 @@ endmodule</code></pre>
         <a href="projects.html" class="tex-back-link">&larr; Back to Projects</a>
       </div>
 
-      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
-        <div class="paper-running-footer">
-          Koetting &bull; Operational Amplifier
-        </div>
-        <div class="paper-page-number">3</div>
+      <footer class="site-footer">
+        Silicon &bull; Thomas Koetting
       </footer>
 
     </article>
-  </div>
+  </main>
 
   <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
     <div class="modal-window">

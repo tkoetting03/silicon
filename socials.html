@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper" data-layout="twocolumn">
+<html lang="en" data-theme="paper" data-layout="onecolumn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,44 +37,29 @@
     </div>
 
     <div class="tex-meta-right">
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-layout="twocolumn">2-Col</button>
-        <button class="tex-btn" data-set-layout="onecolumn">1-Col</button>
-      </div>
-      <div class="tex-btn-group">
-        <button class="tex-btn active" data-set-theme="paper">Paper</button>
-        <button class="tex-btn" data-set-theme="parchment">Parchment</button>
-        <button class="tex-btn" data-set-theme="dark">Dark</button>
-      </div>
       <button class="tex-action-btn tex-btn-recompile" data-recompile-tex title="Trigger pdfTeX recompile simulation">Recompile</button>
       <button class="tex-action-btn" data-open-bibtex>[Cite]</button>
-      <button class="tex-action-btn" onclick="window.print()">Print / PDF</button>
+      <button class="tex-action-btn" onclick="window.print()">Print</button>
     </div>
   </header>
 
-  <div class="paper-outer-wrapper">
+  <main class="paper-outer-wrapper">
     <article class="paper-sheet">
 
       <!-- Back Navigation Breadcrumbs -->
       <a href="index.html" class="tex-back-link">&larr; Return to Table of Contents</a>
 
-      <!-- Running Header -->
-      <div class="paper-running-header" style="display:flex; justify-content:space-between; font-size:0.75rem; font-variant:small-caps; letter-spacing:0.08em; border-bottom:1px solid var(--rule-color); padding-bottom:0.35rem; margin-bottom:2.2rem; color:var(--text-secondary);">
-        <span>Silicon</span>
-        <span>Socials</span>
-      </div>
-
-      <!-- Title Block -->
-      <div class="article-header" style="text-align:center; margin-bottom:2.5rem;">
-        <h1 class="article-title" style="font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; color:var(--text-primary);">
+      <!-- Title Block (Left Aligned) -->
+      <div class="article-header">
+        <h1 class="article-title">
           Socials
         </h1>
-        <div class="article-authors" style="font-size:1.1rem; font-weight:600; color:var(--text-primary); margin-bottom:0.3rem;">
+        <div class="article-authors">
           Thomas Koetting
         </div>
       </div>
 
-      <!-- Authentic Social Links Body -->
+      <!-- Authentic Social Links Body (Left Aligned) -->
       <div class="monograph-body">
 
         <ul style="list-style: none; padding-left: 0; line-height: 2.2; font-size: 1.05rem;">
@@ -116,15 +101,12 @@
         <a href="index.html" class="tex-back-link">&larr; Back to Contents</a>
       </div>
 
-      <footer class="paper-footer" style="margin-top: 3.5rem; border-top: 1px solid var(--rule-color); padding-top: 0.6rem; display:flex; justify-content:space-between; font-size: 0.75rem; color: var(--text-muted);">
-        <div class="paper-running-footer">
-          Koetting &bull; Socials
-        </div>
-        <div class="paper-page-number">9</div>
+      <footer class="site-footer">
+        Silicon &bull; Thomas Koetting
       </footer>
 
     </article>
-  </div>
+  </main>
 
   <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
     <div class="modal-window">

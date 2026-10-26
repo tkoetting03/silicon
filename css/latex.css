@@ -701,6 +701,15 @@ ul, ol {
   border-top: 1px solid var(--color-divider-subtle);
   text-align: left;
   scroll-margin-top: 2.5rem;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  will-change: opacity;
+}
+
+.resume-section.is-revealed,
+.resume-section:hover,
+.resume-section:focus-within {
+  opacity: 1;
 }
 
 /* Subtle flex utility header row at top of #resume */

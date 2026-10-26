@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initOpampAccordion();
   initSmoothResumeScroll();
   initSectionTitleHover();
+  initCvScrollReveal();
 });
 
 /* ==========================================================================
@@ -382,7 +383,30 @@ function initSmoothResumeScroll() {
     const target = document.getElementById('cv') || document.getElementById('resume');
     if (target) {
       e.preventDefault();
+      target.classList.add('is-revealed');
       smoothScrollToElement(target, 750);
     }
   });
+}
+
+/* ==========================================================================
+   8. Bottom CV Scroll-Reveal Opacity Handler (50% Idle -> 100% On Scroll)
+   ========================================================================== */
+function initCvScrollReveal() {
+  const cvSection = document.getElementById('cv') || document.querySelector('.resume-section');
+  if (!cvSection) return;
+
+  const SCROLL_THRESHOLD = 50;
+
+  function updateCvOpacity() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollY > SCROLL_THRESHOLD) {
+      cvSection.classList.add('is-revealed');
+    } else {
+      cvSection.classList.remove('is-revealed');
+    }
+  }
+
+  window.addEventListener('scroll', updateCvOpacity, { passive: true });
+  updateCvOpacity();
 }

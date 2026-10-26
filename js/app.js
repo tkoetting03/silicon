@@ -427,6 +427,86 @@ const scrollPositions = new Map();
 let isTransitioning = false;
 let lastActiveSection = null;
 
+function normalizePath(urlOrPath) {
+  try {
+    const url = new URL(urlOrPath, window.location.href);
+    let p = url.pathname;
+    if (p === '/' || p.endsWith('/index.html') || p.endsWith('/')) {
+      return '/index.html';
+    }
+    return p;
+  } catch (e) {
+    if (urlOrPath === '/' || (typeof urlOrPath === 'string' && urlOrPath.endsWith('/index.html'))) {
+      return '/index.html';
+    }
+    return urlOrPath;
+  }
+}
+
+async function syncHeadAssets(newDoc) {
+  const promises = [];
+
+  // 1. Sync Stylesheets (e.g. KaTeX css)
+  const newLinks = newDoc.querySelectorAll('link[rel="stylesheet"]');
+  newLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const exists = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(l => l.getAttribute('href') === href);
+    if (!exists) {
+      const cloned = document.createElement('link');
+      cloned.rel = 'stylesheet';
+      cloned.href = href;
+      document.head.appendChild(cloned);
+    }
+  });
+
+  // 2. Sync External Scripts (e.g. KaTeX js & auto-render)
+  const newScripts = newDoc.querySelectorAll('script[src]');
+  newScripts.forEach(script => {
+    const src = script.getAttribute('src');
+    if (!src) return;
+    const exists = Array.from(document.querySelectorAll('script[src]')).some(s => s.getAttribute('src') === src);
+    if (!exists) {
+      const p = new Promise(resolve => {
+        const s = document.createElement('script');
+        s.src = src;
+        if (script.defer) s.defer = true;
+        s.onload = () => resolve();
+        s.onerror = () => resolve();
+        document.head.appendChild(s);
+      });
+      promises.push(p);
+    }
+  });
+
+  if (promises.length > 0) {
+    await Promise.all(promises);
+  }
+}
+
+function prefetchPage(urlStr) {
+  try {
+    const url = new URL(urlStr, window.location.href);
+    if (url.origin !== window.location.origin) return;
+    const normPath = normalizePath(url.pathname);
+    if (pageCache.has(normPath)) return;
+    fetch(url.href)
+      .then(res => res.ok ? res.text() : null)
+      .then(html => {
+        if (html) pageCache.set(normPath, html);
+      })
+      .catch(() => {});
+  } catch (e) {}
+}
+
+function prewarmSubpages() {
+  const links = ['favorites.html', 'projectfiles.html', 'projects.html', 'quotes.html', 'paper.html', 'socials.html', 'index.html'];
+  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 800));
+  idleCallback(() => {
+    links.forEach(href => prefetchPage(href));
+  });
+}
+
 function reinitializePageComponents() {
   initDocumentSettings();
   initKaTeXAutoRender();
@@ -451,29 +531,14 @@ function getSectionNameFromUrl(urlStr) {
   return null;
 }
 
-function prefetchPage(urlStr) {
-  try {
-    const url = new URL(urlStr, window.location.href);
-    if (url.origin !== window.location.origin) return;
-    const path = url.pathname;
-    if (pageCache.has(path)) return;
-    fetch(url.href)
-      .then(res => res.ok ? res.text() : null)
-      .then(html => {
-        if (html) pageCache.set(path, html);
-      })
-      .catch(() => {});
-  } catch (e) {}
-}
-
 async function navigateToPage(targetUrl, options = {}) {
   if (isTransitioning) return;
 
-  const targetPath = new URL(targetUrl, window.location.href).pathname;
-  const currentPath = window.location.pathname;
-  if (targetPath === currentPath) return;
+  const targetNormPath = normalizePath(targetUrl);
+  const currentNormPath = normalizePath(window.location.href);
+  if (targetNormPath === currentNormPath && !options.isPopState) return;
 
-  const isBack = options.isBack || targetPath.endsWith('index.html') || targetPath === '/' || targetPath.endsWith('/');
+  const isBack = options.isBack || targetNormPath === '/index.html';
   const isPopState = options.isPopState || false;
 
   // Determine active section name for shared element morph
@@ -487,16 +552,16 @@ async function navigateToPage(targetUrl, options = {}) {
   }
 
   isTransitioning = true;
-  scrollPositions.set(currentPath, window.scrollY);
+  scrollPositions.set(currentNormPath, window.scrollY);
 
   try {
     // 1. Fetch HTML from cache or network
-    let html = pageCache.get(targetPath);
+    let html = pageCache.get(targetNormPath);
     if (!html) {
       const res = await fetch(targetUrl);
       if (!res.ok) throw new Error('Fetch failed: ' + res.status);
       html = await res.text();
-      pageCache.set(targetPath, html);
+      pageCache.set(targetNormPath, html);
     }
 
     // 2. Parse destination document
@@ -509,6 +574,9 @@ async function navigateToPage(targetUrl, options = {}) {
       window.location.href = targetUrl;
       return;
     }
+
+    // Synchronize missing head assets (e.g. KaTeX stylesheets, scripts) before DOM render
+    await syncHeadAssets(newDoc);
 
     if (section) {
       lastActiveSection = section;
@@ -567,12 +635,16 @@ async function navigateToPage(targetUrl, options = {}) {
           currentMain.replaceWith(newMain);
         }
 
-        const targetScrollY = isBack ? (scrollPositions.get(targetPath) || 0) : 0;
+        const targetScrollY = isBack ? (scrollPositions.get(targetNormPath) || 0) : 0;
         window.scrollTo(0, targetScrollY);
         reinitializePageComponents();
       });
 
-      await transition.finished;
+      try {
+        await transition.finished;
+      } catch (vtErr) {
+        // Handled if transition was skipped or aborted
+      }
 
       // Clean up temporary inline viewTransitionNames, reverting to stylesheet
       document.querySelectorAll('[data-section]').forEach(el => {
@@ -605,7 +677,7 @@ async function navigateToPage(targetUrl, options = {}) {
       let clone = null;
       if (sourceElem && srcRect && typeof sourceElem.animate === 'function') {
         clone = document.createElement('div');
-        clone.textContent = sourceElem.textContent;
+        clone.textContent = sourceElem.textContent.trim();
         clone.className = 'transition-heading-clone';
         Object.assign(clone.style, {
           position: 'fixed',
@@ -640,7 +712,7 @@ async function navigateToPage(targetUrl, options = {}) {
         history.pushState({ path: targetUrl, section }, '', targetUrl);
       }
 
-      const targetScrollY = isBack ? (scrollPositions.get(targetPath) || 0) : 0;
+      const targetScrollY = isBack ? (scrollPositions.get(targetNormPath) || 0) : 0;
       window.scrollTo(0, targetScrollY);
       reinitializePageComponents();
 
@@ -651,19 +723,19 @@ async function navigateToPage(targetUrl, options = {}) {
 
         const deltaX = destRect.left - srcRect.left;
         const deltaY = destRect.top - srcRect.top;
-        const scaleX = destRect.width / srcRect.width;
-        const scaleY = destRect.height / srcRect.height;
+        // Uniform scale maintains authentic typographic letterforms without distortion
+        const scale = (srcRect.height > 0 && destRect.height > 0) ? (destRect.height / srcRect.height) : 1;
 
         const cloneAnim = clone.animate([
-          { transform: 'translate(0px, 0px) scale(1, 1)', opacity: 1 },
-          { transform: `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`, opacity: 1 }
+          { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
+          { transform: `translate(${deltaX}px, ${deltaY}px) scale(${scale})`, opacity: 1 }
         ], {
           duration: 380,
           easing: 'cubic-bezier(0.2, 0, 0, 1)',
           fill: 'forwards'
         });
 
-        newMain.animate([
+        const mainAnim = newMain.animate([
           { opacity: 0 },
           { opacity: 1 }
         ], {
@@ -672,12 +744,16 @@ async function navigateToPage(targetUrl, options = {}) {
           fill: 'forwards'
         });
 
-        await cloneAnim.finished;
-        clone.remove();
-        destElem.style.visibility = '';
-        newMain.style.opacity = '1';
-        destElem.setAttribute('tabindex', '-1');
-        destElem.focus({ preventScroll: true });
+        try {
+          await Promise.all([cloneAnim.finished, mainAnim.finished]);
+        } catch (e) {
+        } finally {
+          clone.remove();
+          destElem.style.visibility = '';
+          newMain.style.opacity = '1';
+          destElem.setAttribute('tabindex', '-1');
+          destElem.focus({ preventScroll: true });
+        }
       } else {
         if (clone) clone.remove();
         newMain.style.opacity = '1';
@@ -697,13 +773,37 @@ async function navigateToPage(targetUrl, options = {}) {
 }
 
 function initPageTransitions() {
+  const currentPath = normalizePath(window.location.pathname);
   if (document.documentElement) {
-    pageCache.set(window.location.pathname, document.documentElement.outerHTML);
+    pageCache.set(currentPath, document.documentElement.outerHTML);
   }
 
   const currentH1 = document.querySelector('.article-title');
   if (currentH1 && currentH1.dataset.section) {
     lastActiveSection = currentH1.dataset.section;
+  }
+
+  if (history.replaceState && !history.state) {
+    history.replaceState({ path: window.location.href, section: lastActiveSection }, '', window.location.href);
+  }
+
+  // Pre-warm subpages during idle time
+  prewarmSubpages();
+
+  // Tier 1 Native MPA Cross-Document Accessibility Routing
+  if ('onpagereveal' in window) {
+    window.addEventListener('pagereveal', async (e) => {
+      if (e.viewTransition) {
+        try {
+          await e.viewTransition.ready;
+          const h1 = document.querySelector('.article-title');
+          if (h1) {
+            h1.setAttribute('tabindex', '-1');
+            h1.focus({ preventScroll: true });
+          }
+        } catch (err) {}
+      }
+    });
   }
 
   document.addEventListener('mouseover', (e) => {
@@ -753,8 +853,8 @@ function initPageTransitions() {
   });
 
   window.addEventListener('popstate', (e) => {
-    const currentPath = window.location.pathname;
-    const isTargetIndex = currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/');
+    const normPath = normalizePath(window.location.pathname);
+    const isTargetIndex = normPath === '/index.html';
     const section = (e.state && e.state.section) || lastActiveSection || getSectionNameFromUrl(window.location.href);
     navigateToPage(window.location.href, {
       isPopState: true,

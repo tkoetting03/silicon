@@ -178,23 +178,62 @@ function initOpampAccordion() {
 }
 
 /* ==========================================================================
-   6. Section Title Hover: Fade surrounding filler text to 10% opacity
+   6. Section Title Hover: Fade words within a small fixed distance
+      (above, below, and to the right) to 10% opacity
    ========================================================================== */
 function initSectionTitleHover() {
   const prose = document.querySelector('.latex-cohesive-prose');
   if (!prose) return;
 
   const links = prose.querySelectorAll('.flow-highlight-link');
-  links.forEach(link => {
-    const sec = link.getAttribute('data-section');
-    if (!sec) return;
+  const words = prose.querySelectorAll('.lorem-phrase');
+  if (!links.length || !words.length) return;
 
+  // Small fixed spatial distance thresholds in pixels
+  const DIST_ABOVE = 36;  // up to 1 line height above the title
+  const DIST_BELOW = 36;  // up to 1 line height below the title
+  const DIST_RIGHT = 220; // small fixed horizontal distance to the right on the same line
+  const HORIZ_PAD  = 60;  // horizontal extension past title right edge for above/below lines
+
+  links.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      prose.setAttribute('data-hover-section', sec);
+      const titleRect = link.getBoundingClientRect();
+
+      words.forEach(word => {
+        const wRect = word.getBoundingClientRect();
+        if (wRect.width === 0 && wRect.height === 0) return;
+
+        const wCenterX = (wRect.left + wRect.right) / 2;
+        const wCenterY = (wRect.top + wRect.bottom) / 2;
+
+        let isNear = false;
+
+        // 1. To the right on the same line:
+        const isSameLine = (wCenterY >= titleRect.top - 6) && (wCenterY <= titleRect.bottom + 6);
+        if (isSameLine && (wRect.left >= titleRect.right - 8) && (wRect.left <= titleRect.right + DIST_RIGHT)) {
+          isNear = true;
+        }
+
+        // 2. Directly above (line above the title):
+        const isAbove = (wCenterY < titleRect.top - 2) && (wCenterY >= titleRect.top - DIST_ABOVE);
+        if (isAbove && (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD)) {
+          isNear = true;
+        }
+
+        // 3. Directly below (line below the title):
+        const isBelow = (wCenterY > titleRect.bottom + 2) && (wCenterY <= titleRect.bottom + DIST_BELOW);
+        if (isBelow && (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD)) {
+          isNear = true;
+        }
+
+        if (isNear) {
+          word.classList.add('dimmed');
+        }
+      });
     });
 
     link.addEventListener('mouseleave', () => {
-      prose.removeAttribute('data-hover-section');
+      words.forEach(word => word.classList.remove('dimmed'));
     });
   });
 }

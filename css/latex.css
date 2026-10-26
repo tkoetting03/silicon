@@ -258,31 +258,22 @@ h3 + p,
 }
 
 .lorem-ghost {
-  opacity: 1;
   color: var(--text-primary);
   user-select: text;
   font-size: 1.02rem;
   line-height: 1.82;
 }
 
-.lorem-ghost:not(.tokens-ready) {
-  opacity: 0.22;
-}
-
-.lorem-token {
+.lorem-phrase {
+  display: inline;
   opacity: 0.22;
   transition: opacity 0.22s cubic-bezier(0.2, 0, 0, 1);
-  display: inline;
+  cursor: default;
 }
 
-/* Local area hover & proximity highlight */
-.lorem-token:hover,
-.lorem-token.proximity-core {
-  opacity: 0.55 !important;
-}
-
-.lorem-token.proximity-soft {
-  opacity: 0.38 !important;
+/* Localized area hover: only this specific local phrase brightens */
+.lorem-phrase:hover {
+  opacity: 0.55;
 }
 
 /* Clickable Section Titles: Scale Up on Hover */

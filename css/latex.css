@@ -325,6 +325,11 @@ h3 + p,
   text-decoration: underline;
 }
 
+.project-header-row .project-download-link,
+.project-header-row .download-link {
+  margin-top: 0;
+}
+
 /* Op Amp Expandable Accordion */
 .opamp-accordion {
   border-bottom: 1px solid var(--rule-light);

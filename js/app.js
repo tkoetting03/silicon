@@ -299,22 +299,90 @@ function initSectionTitleHover() {
 }
 
 /* ==========================================================================
-   7. Smooth Scroll Handler for "Resume" in-page anchor
+   7. Smooth Scroll Handler for "Resume" in-page anchor (RAF-driven easeInOut)
    ========================================================================== */
 function initSmoothResumeScroll() {
-  const resumeLinks = document.querySelectorAll('a[href="#resume"]');
-  resumeLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const target = document.getElementById('resume');
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  let activeRafId = null;
+  let activeCancelCleanup = null;
+
+  function smoothScrollToElement(target, duration = 750) {
+    if (!target) return;
+
+    // Cancel any ongoing smooth scroll animation
+    if (activeRafId) {
+      cancelAnimationFrame(activeRafId);
+      activeRafId = null;
+    }
+    if (activeCancelCleanup) {
+      activeCancelCleanup();
+      activeCancelCleanup = null;
+    }
+
+    const startY = window.pageYOffset || document.documentElement.scrollTop;
+    const targetY = Math.max(0, target.getBoundingClientRect().top + startY - 24);
+    const diff = targetY - startY;
+    if (Math.abs(diff) < 2) return;
+
+    // Temporarily bypass CSS scroll-behavior so RAF steps are not double-smoothed
+    const prevScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    const startTime = performance.now();
+    let isCancelled = false;
+
+    // Cancel animation gracefully if user manually interacts with wheel, touch, or keys
+    const cancelEvents = ['wheel', 'touchmove', 'keydown'];
+    const onUserCancel = () => {
+      isCancelled = true;
+      cleanup();
+    };
+
+    const cleanup = () => {
+      document.documentElement.style.scrollBehavior = prevScrollBehavior;
+      cancelEvents.forEach(evt => window.removeEventListener(evt, onUserCancel));
+      activeRafId = null;
+      activeCancelCleanup = null;
+    };
+
+    activeCancelCleanup = cleanup;
+    cancelEvents.forEach(evt => window.addEventListener(evt, onUserCancel, { passive: true, once: true }));
+
+    // Custom cubic ease-in-out curve
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function step(currentTime) {
+      if (isCancelled) return;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, Math.round(startY + diff * ease));
+
+      if (progress < 1) {
+        activeRafId = requestAnimationFrame(step);
+      } else {
+        cleanup();
+        // Update URL hash only AFTER smooth scroll reaches destination to prevent Safari instant-jump
         if (history.pushState) {
           history.pushState(null, '', '#resume');
-        } else {
-          location.hash = '#resume';
         }
       }
-    });
+    }
+
+    activeRafId = requestAnimationFrame(step);
+  }
+
+  // Handle both delegated clicks and direct listeners
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href="#resume"], a[href$="#resume"]');
+    if (!link) return;
+
+    const target = document.getElementById('resume');
+    if (target) {
+      e.preventDefault();
+      smoothScrollToElement(target, 750);
+    }
   });
 }

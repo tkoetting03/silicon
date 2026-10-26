@@ -6,15 +6,10 @@
   <title>Artificial Intelligence — Thomas Koetting</title>
   <link rel="icon" type="image/png" href="assets/img/thumbnail.png">
 
-  <!-- Fonts & KaTeX -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    <!-- Computer Modern Web Font -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap">
   <link rel="stylesheet" href="css/latex.css">
 </head>
 <body>
@@ -23,17 +18,19 @@
     <article class="paper-sheet">
 
       <!-- Back Navigation Breadcrumbs -->
-      <a href="index.html" class="tex-back-link">&larr; Back</a>
+      <nav aria-label="Navigation">
+        <a href="index.html" class="tex-back-link">&larr; Back</a>
+      </nav>
 
       <!-- Title Block (Left Aligned) -->
-      <div class="article-header">
+      <header class="article-header">
         <h1 class="article-title">
           Artificial Intelligence
         </h1>
         <div class="article-authors">
           Thomas Koetting
         </div>
-      </div>
+      </header>
 
       <!-- Authentic Essay Body (Left Aligned) -->
       <div class="monograph-body">
@@ -70,38 +67,6 @@
 
     </article>
   </main>
-
-  <div class="modal-overlay" id="bibtex-modal" role="dialog" aria-modal="true">
-    <div class="modal-window">
-      <div class="modal-header">
-        <span>BibTeX Academic Citation</span>
-        <button class="modal-close-btn" id="bibtex-close-btn">&times;</button>
-      </div>
-      <div class="modal-content">
-        <pre><code id="bibtex-code">@misc{koetting2026ai,
-  author    = {Koetting, Thomas},
-  title     = {Artificial Intelligence},
-  year      = {2026},
-  url       = {https://github.com/tkoetting03/silicon}
-}</code></pre>
-        <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
-          <button class="tex-action-btn" id="bibtex-copy-btn">Copy to Clipboard</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="recompile-modal" role="dialog" aria-modal="true">
-    <div class="modal-window" style="max-width: 650px;">
-      <div class="modal-header">
-        <span>pdfTeX Terminal &mdash; ai.tex</span>
-        <button class="modal-close-btn" id="recompile-close-btn">&times;</button>
-      </div>
-      <div class="modal-content" style="padding:0; background:#0d1117;">
-        <div class="terminal-window" id="recompile-log" style="height: 260px; overflow-y: auto;"></div>
-      </div>
-    </div>
-  </div>
 
   <script src="js/app.js"></script>
 </body>

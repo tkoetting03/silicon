@@ -22,9 +22,16 @@ function initDocumentSettings() {
 }
 
 /* ==========================================================================
-   2. KaTeX Auto-Render Initializer
+   2. KaTeX Auto-Render Initializer (Bounded Retries & Math Detection)
    ========================================================================== */
-function initKaTeXAutoRender() {
+function initKaTeXAutoRender(retries = 0) {
+  const MAX_RETRIES = 20;
+
+  // Only run if the document actually contains math delimiters or elements
+  const bodyText = document.body ? document.body.textContent : '';
+  const hasPotentialMath = bodyText.includes('$') || bodyText.includes('\\(') || bodyText.includes('\\[');
+  if (!hasPotentialMath) return;
+
   if (typeof renderMathInElement === 'function') {
     renderMathInElement(document.body, {
       delimiters: [
@@ -35,13 +42,13 @@ function initKaTeXAutoRender() {
       ],
       throwOnError: false
     });
-  } else {
-    setTimeout(initKaTeXAutoRender, 150);
+  } else if (retries < MAX_RETRIES) {
+    setTimeout(() => initKaTeXAutoRender(retries + 1), 150);
   }
 }
 
 /* ==========================================================================
-   3. BibTeX Modal & Copy Action
+   3. BibTeX Modal & Copy Action (Guarded Clipboard & Escape Handling)
    ========================================================================== */
 function initBibTeXModal() {
   const modal = document.getElementById('bibtex-modal');
@@ -52,6 +59,8 @@ function initBibTeXModal() {
 
   if (!modal) return;
 
+  const closeModal = () => modal.classList.remove('open');
+
   openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -59,27 +68,35 @@ function initBibTeXModal() {
     });
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-  }
-
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('open');
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
   });
 
   if (copyBtn && codeElem) {
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(codeElem.textContent).then(() => {
-        const origText = copyBtn.textContent;
-        copyBtn.textContent = '✓ Copied to Clipboard';
-        setTimeout(() => { copyBtn.textContent = origText; }, 2000);
-      });
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(codeElem.textContent)
+        .then(() => {
+          const origText = copyBtn.textContent;
+          copyBtn.textContent = '✓ Copied to Clipboard';
+          setTimeout(() => { copyBtn.textContent = origText; }, 2000);
+        })
+        .catch(err => {
+          console.warn('Clipboard write rejected:', err);
+        });
     });
   }
 }
 
 /* ==========================================================================
-   4. TeX Terminal Compilation Simulator ("Recompile")
+   4. TeX Terminal Compilation Simulator (Cancellable Timer Leak Fix)
    ========================================================================== */
 function initTerminalRecompile() {
   const recompileBtns = document.querySelectorAll('[data-recompile-tex]');
@@ -88,6 +105,16 @@ function initTerminalRecompile() {
   const closeBtn = document.getElementById('recompile-close-btn');
 
   if (!modal || !logElem) return;
+
+  let activeTimer = null;
+
+  const stopCompilation = () => {
+    if (activeTimer) {
+      clearTimeout(activeTimer);
+      activeTimer = null;
+    }
+    modal.classList.remove('open');
+  };
 
   const LOG_LINES = [
     "This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2026/Mac)",
@@ -115,6 +142,7 @@ function initTerminalRecompile() {
 
   recompileBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      stopCompilation();
       modal.classList.add('open');
       logElem.innerHTML = '';
       let lineIdx = 0;
@@ -126,7 +154,7 @@ function initTerminalRecompile() {
           logElem.appendChild(div);
           logElem.scrollTop = logElem.scrollHeight;
           lineIdx++;
-          setTimeout(printNextLine, lineIdx > 16 ? 40 : 25);
+          activeTimer = setTimeout(printNextLine, lineIdx > 16 ? 40 : 25);
         } else {
           const finished = document.createElement('div');
           finished.style.color = '#58a6ff';
@@ -137,7 +165,7 @@ function initTerminalRecompile() {
           const sheet = document.querySelector('.paper-sheet');
           if (sheet) {
             sheet.style.opacity = '0.4';
-            setTimeout(() => { sheet.style.opacity = '1'; }, 180);
+            activeTimer = setTimeout(() => { sheet.style.opacity = '1'; }, 180);
           }
         }
       }
@@ -145,12 +173,15 @@ function initTerminalRecompile() {
     });
   });
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-  }
-
+  if (closeBtn) closeBtn.addEventListener('click', stopCompilation);
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('open');
+    if (e.target === modal) stopCompilation();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      stopCompilation();
+    }
   });
 }
 
@@ -178,62 +209,84 @@ function initOpampAccordion() {
 }
 
 /* ==========================================================================
-   6. Section Title Hover: Fade words within a small fixed distance
-      (above, below, and to the right) to 10% opacity
+   6. Section Title Hover: Precomputed Spatial Proximity Map (Zero Layout Thrashing)
    ========================================================================== */
 function initSectionTitleHover() {
   const prose = document.querySelector('.latex-cohesive-prose');
   if (!prose) return;
 
-  const links = prose.querySelectorAll('.flow-highlight-link');
-  const words = prose.querySelectorAll('.lorem-phrase');
+  const links = Array.from(prose.querySelectorAll('.flow-highlight-link'));
+  const words = Array.from(prose.querySelectorAll('.lorem-phrase'));
   if (!links.length || !words.length) return;
 
-  // Small fixed spatial distance thresholds in pixels
-  const DIST_ABOVE = 36;  // up to 1 line height above the title
-  const DIST_BELOW = 36;  // up to 1 line height below the title
-  const DIST_RIGHT = 220; // small fixed horizontal distance to the right on the same line
-  const HORIZ_PAD  = 60;  // horizontal extension past title right edge for above/below lines
+  // Distance thresholds in pixels
+  const DIST_ABOVE = 36;
+  const DIST_BELOW = 36;
+  const DIST_RIGHT = 220;
+  const HORIZ_PAD  = 60;
 
-  links.forEach(link => {
-    link.addEventListener('mouseenter', () => {
+  // Cached map of link element -> array of nearby word elements
+  const proximityMap = new Map();
+
+  function computeLayoutMap() {
+    proximityMap.clear();
+
+    const wordMetrics = words.map(word => ({
+      el: word,
+      rect: word.getBoundingClientRect()
+    }));
+
+    links.forEach(link => {
       const titleRect = link.getBoundingClientRect();
+      const nearWords = [];
 
-      words.forEach(word => {
-        const wRect = word.getBoundingClientRect();
+      wordMetrics.forEach(({ el, rect: wRect }) => {
         if (wRect.width === 0 && wRect.height === 0) return;
 
         const wCenterX = (wRect.left + wRect.right) / 2;
         const wCenterY = (wRect.top + wRect.bottom) / 2;
 
-        let isNear = false;
-
         // 1. To the right on the same line:
         const isSameLine = (wCenterY >= titleRect.top - 6) && (wCenterY <= titleRect.bottom + 6);
-        if (isSameLine && (wRect.left >= titleRect.right - 8) && (wRect.left <= titleRect.right + DIST_RIGHT)) {
-          isNear = true;
-        }
+        const isRight = isSameLine && (wRect.left >= titleRect.right - 8) && (wRect.left <= titleRect.right + DIST_RIGHT);
 
         // 2. Directly above (line above the title):
-        const isAbove = (wCenterY < titleRect.top - 2) && (wCenterY >= titleRect.top - DIST_ABOVE);
-        if (isAbove && (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD)) {
-          isNear = true;
-        }
+        const isAbove = (wCenterY < titleRect.top - 2) && (wCenterY >= titleRect.top - DIST_ABOVE) &&
+                        (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD);
 
         // 3. Directly below (line below the title):
-        const isBelow = (wCenterY > titleRect.bottom + 2) && (wCenterY <= titleRect.bottom + DIST_BELOW);
-        if (isBelow && (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD)) {
-          isNear = true;
-        }
+        const isBelow = (wCenterY > titleRect.bottom + 2) && (wCenterY <= titleRect.bottom + DIST_BELOW) &&
+                        (wCenterX >= titleRect.left - 20) && (wRect.left <= titleRect.right + HORIZ_PAD);
 
-        if (isNear) {
-          word.classList.add('dimmed');
+        if (isRight || isAbove || isBelow) {
+          nearWords.push(el);
         }
       });
+
+      proximityMap.set(link, nearWords);
+    });
+  }
+
+  // Precompute on load
+  computeLayoutMap();
+
+  // Recompute only on debounced window resize
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(computeLayoutMap, 150);
+  }, { passive: true });
+
+  // Pure O(1) class toggle on hover: 0 getBoundingClientRect calls during interaction!
+  links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      const targets = proximityMap.get(link) || [];
+      targets.forEach(w => w.classList.add('dimmed'));
     });
 
     link.addEventListener('mouseleave', () => {
-      words.forEach(word => word.classList.remove('dimmed'));
+      const targets = proximityMap.get(link) || [];
+      targets.forEach(w => w.classList.remove('dimmed'));
     });
   });
 }

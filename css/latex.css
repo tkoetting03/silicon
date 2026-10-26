@@ -5,12 +5,8 @@
    Computer Modern Serif & JetBrains Mono, Inspired by LaTeX & 'Distance'
    ========================================================================== */
 
-@import url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css');
-@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
-/* ==========================================================================
-   Authentic Computer Modern Web Fonts (@font-face)
-   ========================================================================== */
+/* Authentic Computer Modern Web Fonts (@font-face)
+   Self-hosted WOFF assets with CDN fallback — zero blocking @import */
 @font-face {
   font-family: 'Computer Modern';
   src: url('../assets/fonts/cmunrm.woff') format('woff'),
@@ -147,15 +143,6 @@ body {
   text-align: left;
 }
 
-/* Hide simulated physical page headers, footers & toolbar */
-.tex-toolbar,
-.paper-running-header,
-.paper-running-footer,
-.paper-page-number,
-.proceedings-header {
-  display: none !important;
-}
-
 /* ==========================================================================
    Left-Aligned Document Header & Typography
    ========================================================================== */
@@ -182,33 +169,6 @@ body {
   margin-bottom: 0.3rem;
   color: var(--text-primary);
   text-align: left;
-}
-
-.article-affiliation {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
-  text-align: left;
-}
-
-.article-meta-links {
-  font-size: 0.85rem;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  text-align: left;
-}
-
-.article-meta-links a {
-  color: var(--accent-link);
-  text-decoration: underline;
-  text-decoration-thickness: 0.5px;
-  text-underline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -249,40 +209,6 @@ h3 + p,
   border-bottom: 1.5px solid var(--rule-color);
   padding-bottom: 0.35rem;
   text-align: left;
-}
-
-/* Landing Page: List of Different Pages */
-.pages-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 2.8rem 0 3.5rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.35rem;
-}
-
-.pages-list-item {
-  list-style: none;
-  margin: 0;
-}
-
-.pages-list-link {
-  font-family: var(--font-cm);
-  font-size: 1.55rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  text-decoration: none;
-  display: inline-block;
-  transform-origin: left center;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
-  will-change: transform;
-}
-
-.pages-list-link:hover {
-  color: var(--accent-link);
-  transform: scale(1.05);
-  text-decoration: none;
 }
 
 /* ==========================================================================
@@ -525,18 +451,6 @@ h3 + p,
   }
 }
 
-.subsection-header {
-  font-family: var(--font-cm);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.012em;
-  line-height: 1.3;
-  margin-top: 1.8rem;
-  margin-bottom: 0.6rem;
-  color: var(--text-primary);
-  text-align: left;
-}
-
 /* Links */
 a {
   color: var(--accent-link);
@@ -709,69 +623,6 @@ ul, ol {
   transform: translateX(3px);
 }
 
-/* Table of Contents: Left-Aligned */
-.latex-toc {
-  margin: 1.8rem 0 2.5rem 0;
-  border-top: 1.5px solid var(--rule-color);
-  border-bottom: 1.5px solid var(--rule-color);
-  padding: 1.4rem 0;
-  text-align: left;
-}
-
-.latex-toc-title {
-  font-family: var(--font-cm);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  margin-bottom: 1.2rem;
-  text-align: left;
-  color: var(--text-primary);
-}
-
-.latex-toc-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  padding-left: 0;
-  text-align: left;
-}
-
-.latex-toc-item {
-  display: flex;
-  align-items: baseline;
-  text-align: left;
-}
-
-/* Clickable TOC Link: Scales Up on Hover */
-.latex-toc-link {
-  font-family: var(--font-cm);
-  font-size: 1.12rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  transform-origin: left center;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
-  will-change: transform;
-}
-
-.latex-toc-link:hover {
-  color: var(--accent-link);
-  transform: scale(1.045);
-  text-decoration: none;
-}
-
-.latex-toc-secnum {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
 /* Abstract Container: Left-Aligned */
 .abstract-block {
   text-align: left;
@@ -896,9 +747,21 @@ ul, ol {
   overflow-y: auto;
 }
 
+/* Accessibility: Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Print Stylesheet */
 @media print {
-  .tex-toolbar,
   .tex-back-link,
   .modal-overlay {
     display: none !important;

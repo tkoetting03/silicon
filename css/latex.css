@@ -827,9 +827,11 @@ ul, ol {
   font-weight: 600;
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
-  background: #f1e5f5;
-  color: #7b2cbf;
-  border: 1px solid #d8b4e2;
+  background: var(--tag-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--interactive-border);
+  opacity: 0.7;
+  cursor: default;
 }
 
 .resume-bullet-list {

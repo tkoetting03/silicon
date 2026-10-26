@@ -326,13 +326,23 @@ h3 + p,
   display: inline;
   font-family: var(--font-cm);
   opacity: 0.22;
-  transition: opacity 0.22s cubic-bezier(0.2, 0, 0, 1);
+  transition: opacity 0.25s cubic-bezier(0.2, 0, 0, 1);
   cursor: default;
 }
 
 /* Localized area hover: only this specific local phrase brightens */
 .lorem-phrase:hover {
-  opacity: 0.55;
+  opacity: 0.55 !important;
+}
+
+/* When hovering over a section title, the filler text around it fades to 10% opacity */
+.latex-cohesive-prose[data-hover-section="projects"] .lorem-phrase[data-section="projects"],
+.latex-cohesive-prose[data-hover-section="quotes"] .lorem-phrase[data-section="quotes"],
+.latex-cohesive-prose[data-hover-section="favorites"] .lorem-phrase[data-section="favorites"],
+.latex-cohesive-prose[data-hover-section="paper"] .lorem-phrase[data-section="paper"],
+.latex-cohesive-prose[data-hover-section="projectfiles"] .lorem-phrase[data-section="projectfiles"],
+.latex-cohesive-prose[data-hover-section="socials"] .lorem-phrase[data-section="socials"] {
+  opacity: 0.1 !important;
 }
 
 /* Clickable Section Titles: Scale Up on Hover */

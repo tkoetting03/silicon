@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBibTeXModal();
   initTerminalRecompile();
   initOpampAccordion();
+  initSectionTitleHover();
 });
 
 /* ==========================================================================
@@ -174,4 +175,26 @@ function initOpampAccordion() {
       details.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   }
+}
+
+/* ==========================================================================
+   6. Section Title Hover: Fade surrounding filler text to 10% opacity
+   ========================================================================== */
+function initSectionTitleHover() {
+  const prose = document.querySelector('.latex-cohesive-prose');
+  if (!prose) return;
+
+  const links = prose.querySelectorAll('.flow-highlight-link');
+  links.forEach(link => {
+    const sec = link.getAttribute('data-section');
+    if (!sec) return;
+
+    link.addEventListener('mouseenter', () => {
+      prose.setAttribute('data-hover-section', sec);
+    });
+
+    link.addEventListener('mouseleave', () => {
+      prose.removeAttribute('data-hover-section');
+    });
+  });
 }

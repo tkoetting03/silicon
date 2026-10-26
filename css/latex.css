@@ -221,7 +221,7 @@ h3 + p,
   margin: 2.8rem 0 3.5rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 0;
   text-align: left;
 }
 
@@ -230,6 +230,8 @@ h3 + p,
   line-height: 1.82;
   font-family: var(--font-serif);
   font-size: 1.05rem;
+  margin: 0;
+  padding: 0;
 }
 
 .flow-highlight-link {

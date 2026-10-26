@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothResumeScroll();
   initSectionTitleHover();
   initCvScrollReveal();
+  initPageTransitions();
 });
 
 /* ==========================================================================
@@ -213,6 +214,9 @@ function initOpampAccordion() {
 /* ==========================================================================
    6. Section Title Hover: Precomputed Spatial Proximity Map with Fallback
    ========================================================================== */
+let proseResizeListenerAttached = false;
+let activeProseCompute = null;
+
 function initSectionTitleHover() {
   const prose = document.querySelector('.latex-cohesive-prose');
   if (!prose) return;
@@ -264,23 +268,23 @@ function initSectionTitleHover() {
     });
   }
 
-  // Precompute on load
+  activeProseCompute = computeLayoutMap;
   computeLayoutMap();
 
   // Recompute when web fonts finish loading & rendering
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(computeLayoutMap);
+    document.fonts.ready.then(() => activeProseCompute && activeProseCompute());
   }
 
-  // Recompute when window fully loads
-  window.addEventListener('load', computeLayoutMap);
-
   // Recompute on debounced window resize
-  let resizeTimer = null;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(computeLayoutMap, 150);
-  }, { passive: true });
+  if (!proseResizeListenerAttached) {
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => activeProseCompute && activeProseCompute(), 150);
+    }, { passive: true });
+    proseResizeListenerAttached = true;
+  }
 
   // Attach hover listeners
   links.forEach(link => {
@@ -302,14 +306,17 @@ function initSectionTitleHover() {
 /* ==========================================================================
    7. Smooth Scroll Handler for "CV" / "Resume" in-page anchor (RAF-driven easeInOut)
    ========================================================================== */
+let smoothScrollListenerAttached = false;
 function initSmoothResumeScroll() {
+  if (smoothScrollListenerAttached) return;
+  smoothScrollListenerAttached = true;
+
   let activeRafId = null;
   let activeCancelCleanup = null;
 
   function smoothScrollToElement(target, duration = 750) {
     if (!target) return;
 
-    // Cancel any ongoing smooth scroll animation
     if (activeRafId) {
       cancelAnimationFrame(activeRafId);
       activeRafId = null;
@@ -324,14 +331,12 @@ function initSmoothResumeScroll() {
     const diff = targetY - startY;
     if (Math.abs(diff) < 2) return;
 
-    // Temporarily bypass CSS scroll-behavior so RAF steps are not double-smoothed
     const prevScrollBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = 'auto';
 
     const startTime = performance.now();
     let isCancelled = false;
 
-    // Cancel animation gracefully if user manually interacts with wheel, touch, or keys
     const cancelEvents = ['wheel', 'touchmove', 'keydown'];
     const onUserCancel = () => {
       isCancelled = true;
@@ -348,7 +353,6 @@ function initSmoothResumeScroll() {
     activeCancelCleanup = cleanup;
     cancelEvents.forEach(evt => window.addEventListener(evt, onUserCancel, { passive: true, once: true }));
 
-    // Custom cubic ease-in-out curve
     function easeInOutCubic(t) {
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
@@ -365,7 +369,6 @@ function initSmoothResumeScroll() {
         activeRafId = requestAnimationFrame(step);
       } else {
         cleanup();
-        // Update URL hash only AFTER smooth scroll reaches destination to prevent Safari instant-jump
         if (history.pushState) {
           history.pushState(null, '', '#' + (target.id || 'cv'));
         }
@@ -375,7 +378,6 @@ function initSmoothResumeScroll() {
     activeRafId = requestAnimationFrame(step);
   }
 
-  // Handle both delegated clicks and direct listeners
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href="#cv"], a[href="#resume"], a[href$="#cv"], a[href$="#resume"]');
     if (!link) return;
@@ -392,6 +394,7 @@ function initSmoothResumeScroll() {
 /* ==========================================================================
    8. Bottom CV Scroll-Reveal Opacity Handler (50% Idle -> 100% On Scroll)
    ========================================================================== */
+let cvScrollListenerAttached = false;
 function initCvScrollReveal() {
   const cvSection = document.getElementById('cv') || document.querySelector('.resume-section');
   if (!cvSection) return;
@@ -399,14 +402,365 @@ function initCvScrollReveal() {
   const SCROLL_THRESHOLD = 50;
 
   function updateCvOpacity() {
+    const sec = document.getElementById('cv') || document.querySelector('.resume-section');
+    if (!sec) return;
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollY > SCROLL_THRESHOLD) {
-      cvSection.classList.add('is-revealed');
+      sec.classList.add('is-revealed');
     } else {
-      cvSection.classList.remove('is-revealed');
+      sec.classList.remove('is-revealed');
     }
   }
 
-  window.addEventListener('scroll', updateCvOpacity, { passive: true });
+  if (!cvScrollListenerAttached) {
+    window.addEventListener('scroll', updateCvOpacity, { passive: true });
+    cvScrollListenerAttached = true;
+  }
   updateCvOpacity();
 }
+
+/* ==========================================================================
+   9. Seamless Shared-Element Page Transitions (Hybrid Tier 1 & Tier 2)
+   ========================================================================== */
+const pageCache = new Map();
+const scrollPositions = new Map();
+let isTransitioning = false;
+let lastActiveSection = null;
+
+function reinitializePageComponents() {
+  initDocumentSettings();
+  initKaTeXAutoRender();
+  initBibTeXModal();
+  initTerminalRecompile();
+  initOpampAccordion();
+  initSectionTitleHover();
+  initCvScrollReveal();
+}
+
+function getSectionNameFromUrl(urlStr) {
+  try {
+    const url = new URL(urlStr, window.location.href);
+    const filename = url.pathname.split('/').pop().toLowerCase();
+    if (filename === 'favorites.html') return 'favorites';
+    if (filename === 'projectfiles.html') return 'projectfiles';
+    if (filename === 'projects.html') return 'projects';
+    if (filename === 'quotes.html') return 'quotes';
+    if (filename === 'paper.html') return 'paper';
+    if (filename === 'socials.html') return 'socials';
+  } catch (e) {}
+  return null;
+}
+
+function prefetchPage(urlStr) {
+  try {
+    const url = new URL(urlStr, window.location.href);
+    if (url.origin !== window.location.origin) return;
+    const path = url.pathname;
+    if (pageCache.has(path)) return;
+    fetch(url.href)
+      .then(res => res.ok ? res.text() : null)
+      .then(html => {
+        if (html) pageCache.set(path, html);
+      })
+      .catch(() => {});
+  } catch (e) {}
+}
+
+async function navigateToPage(targetUrl, options = {}) {
+  if (isTransitioning) return;
+
+  const targetPath = new URL(targetUrl, window.location.href).pathname;
+  const currentPath = window.location.pathname;
+  if (targetPath === currentPath) return;
+
+  const isBack = options.isBack || targetPath.endsWith('index.html') || targetPath === '/' || targetPath.endsWith('/');
+  const isPopState = options.isPopState || false;
+
+  // Determine active section name for shared element morph
+  let section = options.section || null;
+  if (!section) {
+    if (isBack) {
+      section = lastActiveSection || getSectionNameFromUrl(window.location.href) || document.querySelector('.article-title')?.dataset.section || null;
+    } else {
+      section = getSectionNameFromUrl(targetUrl);
+    }
+  }
+
+  isTransitioning = true;
+  scrollPositions.set(currentPath, window.scrollY);
+
+  try {
+    // 1. Fetch HTML from cache or network
+    let html = pageCache.get(targetPath);
+    if (!html) {
+      const res = await fetch(targetUrl);
+      if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+      html = await res.text();
+      pageCache.set(targetPath, html);
+    }
+
+    // 2. Parse destination document
+    const parser = new DOMParser();
+    const newDoc = parser.parseFromString(html, 'text/html');
+    const newMain = newDoc.querySelector('main.paper-outer-wrapper');
+    const newTitle = newDoc.title || document.title;
+
+    if (!newMain) {
+      window.location.href = targetUrl;
+      return;
+    }
+
+    if (section) {
+      lastActiveSection = section;
+    }
+
+    // 3. Execution via View Transitions API (Tier 1 & Tier 2 Primary)
+    const supportsViewTransition = typeof document.startViewTransition === 'function';
+
+    if (supportsViewTransition) {
+      // Dynamic scoping: Ensure ONLY the active section pair has view-transition-name
+      // so other links fade naturally with the surrounding editorial prose
+      const currentLinks = document.querySelectorAll('.flow-highlight-link[data-section]');
+      currentLinks.forEach(link => {
+        if (section && link.dataset.section === section) {
+          link.style.viewTransitionName = `section-heading-${section}`;
+        } else {
+          link.style.viewTransitionName = 'none';
+        }
+      });
+
+      const currentH1 = document.querySelector('.article-title');
+      if (currentH1) {
+        if (section && (currentH1.dataset.section === section || (!currentH1.dataset.section && isBack))) {
+          currentH1.style.viewTransitionName = `section-heading-${section}`;
+        } else {
+          currentH1.style.viewTransitionName = 'none';
+        }
+      }
+
+      // Prepare destination DOM elements
+      const newLinks = newMain.querySelectorAll('.flow-highlight-link[data-section]');
+      newLinks.forEach(link => {
+        if (section && link.dataset.section === section) {
+          link.style.viewTransitionName = `section-heading-${section}`;
+        } else {
+          link.style.viewTransitionName = 'none';
+        }
+      });
+
+      const newH1 = newMain.querySelector('.article-title');
+      if (newH1) {
+        if (section && (newH1.dataset.section === section || !isBack)) {
+          newH1.style.viewTransitionName = `section-heading-${section}`;
+        } else {
+          newH1.style.viewTransitionName = 'none';
+        }
+      }
+
+      const transition = document.startViewTransition(() => {
+        document.title = newTitle;
+        if (!isPopState) {
+          history.pushState({ path: targetUrl, section }, '', targetUrl);
+        }
+        const currentMain = document.querySelector('main.paper-outer-wrapper');
+        if (currentMain) {
+          currentMain.replaceWith(newMain);
+        }
+
+        const targetScrollY = isBack ? (scrollPositions.get(targetPath) || 0) : 0;
+        window.scrollTo(0, targetScrollY);
+        reinitializePageComponents();
+      });
+
+      await transition.finished;
+
+      // Clean up temporary inline viewTransitionNames, reverting to stylesheet
+      document.querySelectorAll('[data-section]').forEach(el => {
+        el.style.viewTransitionName = '';
+      });
+
+      // Accessibility focus routing
+      const targetFocusElem = isBack
+        ? (section ? document.querySelector(`.flow-highlight-link[data-section="${section}"]`) : null) || document.querySelector('.article-title')
+        : document.querySelector('.article-title');
+
+      if (targetFocusElem) {
+        targetFocusElem.setAttribute('tabindex', '-1');
+        targetFocusElem.focus({ preventScroll: true });
+      }
+
+    } else {
+      // Tier 2 Fallback: FLIP / Clone Transition for browsers without View Transitions API
+      const sourceElem = isBack
+        ? document.querySelector('.article-title')
+        : (section ? document.querySelector(`.flow-highlight-link[data-section="${section}"]`) : null);
+
+      const targetSelector = isBack
+        ? (section ? `.flow-highlight-link[data-section="${section}"]` : '.article-title')
+        : '.article-title';
+
+      const srcRect = sourceElem ? sourceElem.getBoundingClientRect() : null;
+      const srcStyle = sourceElem ? window.getComputedStyle(sourceElem) : null;
+
+      let clone = null;
+      if (sourceElem && srcRect && typeof sourceElem.animate === 'function') {
+        clone = document.createElement('div');
+        clone.textContent = sourceElem.textContent;
+        clone.className = 'transition-heading-clone';
+        Object.assign(clone.style, {
+          position: 'fixed',
+          top: srcRect.top + 'px',
+          left: srcRect.left + 'px',
+          width: srcRect.width + 'px',
+          height: srcRect.height + 'px',
+          fontFamily: srcStyle.fontFamily,
+          fontSize: srcStyle.fontSize,
+          fontWeight: srcStyle.fontWeight,
+          letterSpacing: srcStyle.letterSpacing,
+          lineHeight: srcStyle.lineHeight,
+          color: srcStyle.color,
+          margin: '0',
+          padding: '0',
+          zIndex: '10000',
+          pointerEvents: 'none',
+          transformOrigin: 'top left',
+          boxSizing: 'border-box'
+        });
+        document.body.appendChild(clone);
+        sourceElem.style.visibility = 'hidden';
+      }
+
+      newMain.style.opacity = '0';
+      const currentMain = document.querySelector('main.paper-outer-wrapper');
+      if (currentMain) {
+        currentMain.replaceWith(newMain);
+      }
+      document.title = newTitle;
+      if (!isPopState) {
+        history.pushState({ path: targetUrl, section }, '', targetUrl);
+      }
+
+      const targetScrollY = isBack ? (scrollPositions.get(targetPath) || 0) : 0;
+      window.scrollTo(0, targetScrollY);
+      reinitializePageComponents();
+
+      const destElem = document.querySelector(targetSelector);
+      if (clone && destElem && typeof destElem.animate === 'function') {
+        const destRect = destElem.getBoundingClientRect();
+        destElem.style.visibility = 'hidden';
+
+        const deltaX = destRect.left - srcRect.left;
+        const deltaY = destRect.top - srcRect.top;
+        const scaleX = destRect.width / srcRect.width;
+        const scaleY = destRect.height / srcRect.height;
+
+        const cloneAnim = clone.animate([
+          { transform: 'translate(0px, 0px) scale(1, 1)', opacity: 1 },
+          { transform: `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})`, opacity: 1 }
+        ], {
+          duration: 380,
+          easing: 'cubic-bezier(0.2, 0, 0, 1)',
+          fill: 'forwards'
+        });
+
+        newMain.animate([
+          { opacity: 0 },
+          { opacity: 1 }
+        ], {
+          duration: 320,
+          easing: 'cubic-bezier(0.2, 0, 0, 1)',
+          fill: 'forwards'
+        });
+
+        await cloneAnim.finished;
+        clone.remove();
+        destElem.style.visibility = '';
+        newMain.style.opacity = '1';
+        destElem.setAttribute('tabindex', '-1');
+        destElem.focus({ preventScroll: true });
+      } else {
+        if (clone) clone.remove();
+        newMain.style.opacity = '1';
+        if (destElem) {
+          destElem.setAttribute('tabindex', '-1');
+          destElem.focus({ preventScroll: true });
+        }
+      }
+    }
+
+  } catch (err) {
+    console.error('Transition error, falling back to standard navigation:', err);
+    window.location.href = targetUrl;
+  } finally {
+    isTransitioning = false;
+  }
+}
+
+function initPageTransitions() {
+  if (document.documentElement) {
+    pageCache.set(window.location.pathname, document.documentElement.outerHTML);
+  }
+
+  const currentH1 = document.querySelector('.article-title');
+  if (currentH1 && currentH1.dataset.section) {
+    lastActiveSection = currentH1.dataset.section;
+  }
+
+  document.addEventListener('mouseover', (e) => {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.origin === window.location.origin) {
+      prefetchPage(link.href);
+    }
+  }, { passive: true });
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+      return;
+    }
+
+    if (link.hasAttribute('download') || link.getAttribute('target') === '_blank') {
+      return;
+    }
+
+    if (!link.href.startsWith('http://') && !link.href.startsWith('https://')) {
+      return;
+    }
+
+    const url = new URL(link.href, window.location.href);
+
+    if (url.origin !== window.location.origin) {
+      return;
+    }
+
+    if (url.pathname === window.location.pathname && url.hash) {
+      return;
+    }
+
+    const isTargetIndex = url.pathname.endsWith('index.html') || url.pathname === '/' || url.pathname.endsWith('/');
+    const isCurrentIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+    const targetSection = getSectionNameFromUrl(url.href);
+
+    if ((isCurrentIndex && targetSection) || (!isCurrentIndex && isTargetIndex) || targetSection) {
+      e.preventDefault();
+      const isBack = link.classList.contains('tex-back-link') || isTargetIndex;
+      const section = link.dataset.section || targetSection || lastActiveSection;
+      navigateToPage(link.href, { isBack, section });
+    }
+  });
+
+  window.addEventListener('popstate', (e) => {
+    const currentPath = window.location.pathname;
+    const isTargetIndex = currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/');
+    const section = (e.state && e.state.section) || lastActiveSection || getSectionNameFromUrl(window.location.href);
+    navigateToPage(window.location.href, {
+      isPopState: true,
+      isBack: isTargetIndex,
+      section
+    });
+  });
+}
+

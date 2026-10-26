@@ -305,19 +305,19 @@ h3 + p,
   opacity: 1 !important;
 }
 
-/* Favorites Category Entries: Smaller text so they blend in and look natural in cohesive prose */
+/* Favorites Category Entries: Sized to match body text (1.05rem) so they blend in naturally */
 .favorite-entry-link {
   float: left;
   clear: left;
   font-family: var(--font-cm);
-  font-size: 1.15rem !important;
+  font-size: 1.05rem !important;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--text-primary);
   opacity: 1 !important;
   text-decoration: none;
   margin-right: 0.55rem;
-  margin-bottom: -0.2rem;
+  margin-bottom: -0.15rem;
   line-height: 1.25;
   transform-origin: left center;
   transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
@@ -333,9 +333,11 @@ h3 + p,
   opacity: 1 !important;
 }
 
-.favorite-flow-row {
-  display: block;
-  clear: both;
+.favorites-category-prose {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  margin: 1.2rem 0 2.2rem 0;
 }
 
 /* Authentic LaTeX Table of Contents with Dotted Leaders */

@@ -541,6 +541,38 @@ ul, ol {
   transform: translateX(-3px);
 }
 
+/* PDF Download Link: 50% Opacity Playfair Display, Full Opacity on Hover */
+.pdf-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-primary);
+  opacity: 0.5;
+  text-decoration: none;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0.8rem 0 1.6rem 0;
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+  will-change: opacity, transform;
+}
+
+.pdf-download-link:hover {
+  opacity: 1;
+  color: var(--text-primary);
+  background: none !important;
+  border: none !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transform: translateX(3px);
+}
+
 /* Table of Contents: Left-Aligned */
 .latex-toc {
   margin: 1.8rem 0 2.5rem 0;

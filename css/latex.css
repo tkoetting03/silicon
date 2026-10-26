@@ -14,22 +14,22 @@
   --font-sans: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", Courier, monospace;
 
-  /* Pure White Background & High Contrast Monochrome */
-  --bg-desktop: #ffffff;
-  --bg-page: #ffffff;
+  /* #F8F8F8 Background & High Contrast Monochrome */
+  --bg-desktop: #F8F8F8;
+  --bg-page: #F8F8F8;
   --text-primary: #111111;
   --text-secondary: #2f343b;
   --text-muted: #6e7681;
   --rule-color: #111111;
   --rule-light: #e1e4e8;
   --col-divider: #e1e4e8;
-  --interactive-bg: #f6f8fa;
+  --interactive-bg: #ececec;
   --interactive-border: #d0d7de;
   --accent-color: #111111;
   --accent-link: #0969da;
-  --tag-bg: #f3f4f6;
-  --code-bg: #f6f8fa;
-  --code-border: #d0d7de;
+  --tag-bg: #ececec;
+  --code-bg: #eeeeee;
+  --code-border: #d5d5d5;
   --border-color: #d0d7de;
   --container-width: 820px;
 }
@@ -44,7 +44,7 @@
 html {
   font-size: 15px;
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: #F8F8F8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -52,7 +52,7 @@ html {
 body {
   font-family: var(--font-serif);
   color: var(--text-primary);
-  background-color: #ffffff;
+  background-color: #F8F8F8;
   line-height: 1.6;
   padding: 0 0 5rem 0;
   text-align: left;
@@ -69,7 +69,7 @@ body {
 }
 
 .paper-sheet {
-  background-color: #ffffff;
+  background-color: #F8F8F8;
   box-shadow: none;
   border: none;
   padding: 0;
@@ -450,7 +450,7 @@ ul, ol {
 
 /* Action Button */
 .tex-action-btn {
-  background: #ffffff;
+  background: #F8F8F8;
   border: 1px solid var(--interactive-border);
   color: var(--text-secondary);
   padding: 0.3rem 0.75rem;
@@ -467,7 +467,7 @@ ul, ol {
 
 .tex-action-btn:hover {
   background: var(--text-primary);
-  color: #ffffff;
+  color: #F8F8F8;
   border-color: var(--text-primary);
   transform: scale(1.03);
 }
@@ -504,7 +504,7 @@ ul, ol {
 }
 
 .modal-window {
-  background: #ffffff;
+  background: #F8F8F8;
   border: 1px solid var(--rule-color);
   max-width: 600px;
   width: 100%;
@@ -542,7 +542,7 @@ ul, ol {
 
 .modal-content {
   padding: 1rem;
-  background: #ffffff;
+  background: #F8F8F8;
 }
 
 .terminal-window {

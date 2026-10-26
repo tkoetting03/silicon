@@ -215,50 +215,52 @@ h3 + p,
 }
 
 /* ==========================================================================
-   Landing Page: LaTeX Prose Flow with Highlighted Interactive Titles
+   Landing Page: Left-Aligned Titles with Flowing Low-Opacity LaTeX Text
    ========================================================================== */
 .latex-prose-container {
   margin: 2.8rem 0 3.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
   text-align: left;
 }
 
-.latex-flow-p {
+.latex-flow-item {
+  text-align: left;
+  line-height: 1.82;
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  line-height: 1.82;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
-  text-align: left;
-}
-
-.lorem-ghost {
-  opacity: 0.22;
-  color: var(--text-primary);
-  user-select: text;
 }
 
 .flow-highlight-link {
   display: inline-block;
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   opacity: 1 !important;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
-  margin: 0 0.25rem;
+  text-decoration: none;
+  margin-right: 0.55rem;
+  vertical-align: baseline;
   transform-origin: left center;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease, text-decoration-color 0.15s ease;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
   will-change: transform;
   cursor: pointer;
 }
 
 .flow-highlight-link:hover {
   color: var(--accent-link);
-  text-decoration-color: var(--accent-link);
-  transform: scale(1.06);
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+.lorem-ghost {
+  opacity: 0.22;
+  color: var(--text-primary);
+  user-select: text;
+  font-size: 1.02rem;
+  line-height: 1.8;
 }
 
 /* Clickable Section Titles: Scale Up on Hover */

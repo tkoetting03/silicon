@@ -215,20 +215,23 @@ h3 + p,
 }
 
 /* ==========================================================================
-   Landing Page: Continuous LaTeX Text with Highlighted Interactive Titles
+   Landing Page: Left-Aligned Titles with Filled Continuous LaTeX Prose
    ========================================================================== */
 .latex-prose-container {
   margin: 2.8rem 0 3.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   text-align: left;
 }
 
-.latex-flow-p {
+.latex-flow-item {
   text-align: left;
-  line-height: 1.88;
+  line-height: 1.82;
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  color: var(--text-primary);
   margin: 0;
+  padding: 0;
 }
 
 .flow-highlight-link {
@@ -240,17 +243,12 @@ h3 + p,
   color: var(--text-primary);
   opacity: 1 !important;
   text-decoration: none;
-  margin: 0 0.45rem 0 0.45rem;
+  margin-right: 0.55rem;
   vertical-align: baseline;
-  transform-origin: center center;
+  transform-origin: left center;
   transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
   will-change: transform;
   cursor: pointer;
-}
-
-.flow-highlight-link:first-child {
-  margin-left: 0;
-  transform-origin: left center;
 }
 
 .flow-highlight-link:hover {
@@ -264,7 +262,7 @@ h3 + p,
   color: var(--text-primary);
   user-select: text;
   font-size: 1.02rem;
-  line-height: 1.88;
+  line-height: 1.82;
 }
 
 /* Clickable Section Titles: Scale Up on Hover */

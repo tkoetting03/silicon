@@ -289,26 +289,130 @@ h3 + p,
   transform: scale(1.05);
 }
 
-/* Subpages (Favorites, Socials, Projects): All titles uniform size (1.55rem) and full 100% opacity */
-.subpage-prose .flow-highlight-link,
-.latex-cohesive-prose.uniform-titles .flow-highlight-link,
-.latex-cohesive-prose:not(.landing-prose) .flow-highlight-link {
+/* Subpages (Socials, Projects): All section titles uniform size (1.55rem) and full 100% opacity */
+.subpage-prose .flow-highlight-link:not(.favorite-entry-link),
+.latex-cohesive-prose.uniform-titles .flow-highlight-link:not(.favorite-entry-link),
+.latex-cohesive-prose:not(.landing-prose) .flow-highlight-link:not(.favorite-entry-link) {
   font-size: 1.55rem !important;
   opacity: 1 !important;
 }
 
-.subpage-prose .flow-highlight-link:hover,
-.latex-cohesive-prose.uniform-titles .flow-highlight-link:hover,
-.latex-cohesive-prose:not(.landing-prose) .flow-highlight-link:hover {
+.subpage-prose .flow-highlight-link:not(.favorite-entry-link):hover,
+.latex-cohesive-prose.uniform-titles .flow-highlight-link:not(.favorite-entry-link):hover,
+.latex-cohesive-prose:not(.landing-prose) .flow-highlight-link:not(.favorite-entry-link):hover {
   color: var(--accent-link);
   transform: scale(1.05);
   opacity: 1 !important;
 }
 
-/* Favorites Directory Prose: Exactly one line of filler text separating each left-aligned title */
-.favorites-directory-prose .flow-section-row {
+/* Favorites Category Entries: Smaller text so they blend in and look natural in cohesive prose */
+.favorite-entry-link {
+  float: left;
+  clear: left;
+  font-family: var(--font-cm);
+  font-size: 1.15rem !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  opacity: 1 !important;
+  text-decoration: none;
+  margin-right: 0.55rem;
+  margin-bottom: -0.2rem;
+  line-height: 1.25;
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.15s ease;
+  will-change: transform;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.favorite-entry-link:hover {
+  color: var(--accent-link);
+  transform: scale(1.04);
+  text-decoration: none;
+  opacity: 1 !important;
+}
+
+.favorite-flow-row {
   display: block;
   clear: both;
+}
+
+/* Authentic LaTeX Table of Contents with Dotted Leaders */
+.latex-toc {
+  margin: 2rem 0 3.2rem 0;
+  font-family: var(--font-cm);
+  text-align: left;
+}
+
+.latex-toc-header {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+}
+
+.latex-toc-page-col {
+  text-align: right;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.latex-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.latex-toc-entry {
+  margin-bottom: 0.45rem;
+  line-height: 1.35;
+}
+
+.latex-toc-link {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: color 0.15s ease;
+}
+
+.latex-toc-link:hover {
+  color: var(--accent-link);
+}
+
+.latex-toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.latex-toc-dots {
+  flex-grow: 1;
+  margin: 0 0.5rem;
+  border-bottom: 1px dotted var(--text-muted);
+  opacity: 0.55;
+  height: 1px;
+  transform: translateY(-3px);
+}
+
+.latex-toc-link:hover .latex-toc-dots {
+  opacity: 0.9;
+  border-bottom-color: var(--accent-link);
+}
+
+.latex-toc-page {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  color: inherit;
+  font-variant-numeric: tabular-nums;
 }
 
 .lorem-phrase {

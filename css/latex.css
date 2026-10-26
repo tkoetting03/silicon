@@ -5,13 +5,81 @@
    Computer Modern Serif & JetBrains Mono, Inspired by LaTeX & 'Distance'
    ========================================================================== */
 
+@import url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css');
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* CSS Variables: Pure White Clean Minimalist Palette with Merriweather & Playfair Display */
+/* ==========================================================================
+   Authentic Computer Modern Web Fonts (@font-face)
+   ========================================================================== */
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunrm.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunrm.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunbx.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunbx.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunbx.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunbx.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunbx.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunbx.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunti.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunti.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunbi.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunbi.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern';
+  src: url('../assets/fonts/cmunbi.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/font/Serif/cmunbi.woff') format('woff');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* CSS Variables: Pure White Clean Minimalist Palette with Computer Modern */
 :root {
-  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-cm: "Computer Modern", "Computer Modern Serif", "CMU Serif", "KaTeX_Main", "Latin Modern Roman", serif;
+  --font-serif: "Computer Modern", "Computer Modern Serif", "CMU Serif", "KaTeX_Main", "Latin Modern Roman", "Merriweather", serif;
   --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-sans: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Computer Modern", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", Courier, monospace;
   --font-bitter: "Bitter", Georgia, "Times New Roman", serif;
 
@@ -97,8 +165,9 @@ body {
 }
 
 .article-title {
-  font-size: 2.4rem;
-  font-weight: 800;
+  font-family: var(--font-cm);
+  font-size: 2.5rem;
+  font-weight: 700;
   line-height: 1.16;
   margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
@@ -169,8 +238,9 @@ h3 + p,
 
 /* Section Headings: Distance Inspired Bold Architecture with Hover Scale */
 .section-header {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-family: var(--font-cm);
+  font-size: 1.55rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
   margin-top: 2.6rem;
@@ -197,7 +267,8 @@ h3 + p,
 }
 
 .pages-list-link {
-  font-size: 1.45rem;
+  font-family: var(--font-cm);
+  font-size: 1.55rem;
   font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--text-primary);
@@ -222,21 +293,21 @@ h3 + p,
   display: flow-root;
   text-align: left;
   line-height: 1.82;
-  font-family: var(--font-serif);
+  font-family: var(--font-cm);
   font-size: 1.05rem;
 }
 
 .flow-highlight-link {
   float: left;
   clear: left;
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  font-weight: 800;
+  font-family: var(--font-cm);
+  font-size: 1.62rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   opacity: 1 !important;
   text-decoration: none;
-  margin-right: 0.65rem;
+  margin-right: 0.72rem;
   margin-bottom: 0.15rem;
   line-height: 1.15;
   transform-origin: left center;
@@ -253,6 +324,7 @@ h3 + p,
 
 .lorem-phrase {
   display: inline;
+  font-family: var(--font-cm);
   opacity: 0.22;
   transition: opacity 0.22s cubic-bezier(0.2, 0, 0, 1);
   cursor: default;
@@ -309,8 +381,9 @@ h3 + p,
 }
 
 .project-title {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-family: var(--font-cm);
+  font-size: 1.55rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
   margin: 0;
@@ -444,8 +517,9 @@ h3 + p,
 }
 
 .subsection-header {
-  font-size: 1.1rem;
-  font-weight: 750;
+  font-family: var(--font-cm);
+  font-size: 1.25rem;
+  font-weight: 700;
   letter-spacing: -0.012em;
   line-height: 1.3;
   margin-top: 1.8rem;
@@ -543,8 +617,8 @@ blockquote p {
 
 blockquote cite {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
+  font-family: var(--font-cm);
+  font-size: 0.95rem;
   color: var(--text-secondary);
   margin-top: 0.6rem;
   font-style: normal;
@@ -636,8 +710,9 @@ ul, ol {
 }
 
 .latex-toc-title {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-family: var(--font-cm);
+  font-size: 1.35rem;
+  font-weight: 700;
   letter-spacing: -0.015em;
   margin-bottom: 1.2rem;
   text-align: left;
@@ -661,7 +736,8 @@ ul, ol {
 
 /* Clickable TOC Link: Scales Up on Hover */
 .latex-toc-link {
-  font-size: 1.08rem;
+  font-family: var(--font-cm);
+  font-size: 1.12rem;
   font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--text-primary);

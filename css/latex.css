@@ -1361,15 +1361,15 @@ ul, ol {
 
 .writing-section-heading {
   font-family: var(--font-cm);
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  font-variant: small-caps;
-  color: var(--accent-blue);
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  border-bottom: 1.5px solid var(--rule-color);
+  padding-bottom: 0.35rem;
   margin-top: 2.8rem;
   margin-bottom: 0.85rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 0.8px solid var(--rule-light);
   clear: both;
   text-align: left;
 }
@@ -1475,7 +1475,7 @@ ul, ol {
   font-size: 0.78rem;
   vertical-align: super;
   text-decoration: none;
-  color: var(--accent-blue);
+  color: var(--accent-link);
   font-weight: 600;
   padding: 0 1px;
 }
@@ -1487,7 +1487,7 @@ ul, ol {
 .writing-footnotes {
   margin-top: 3.5rem;
   padding-top: 1.5rem;
-  border-top: 1.5px solid var(--accent-blue);
+  border-top: 1.5px solid var(--rule-color);
   font-size: 0.88rem;
   line-height: 1.58;
   color: var(--text-secondary);
@@ -1496,12 +1496,14 @@ ul, ol {
 
 .writing-footnotes-title {
   font-family: var(--font-cm);
-  font-size: 1.1rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  color: var(--accent-blue);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  border-bottom: 1.5px solid var(--rule-color);
+  padding-bottom: 0.35rem;
   margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   text-align: left;
 }
 
@@ -1516,7 +1518,7 @@ ul, ol {
 .footnote-number {
   font-family: var(--font-cm);
   font-weight: 700;
-  color: var(--accent-blue);
+  color: var(--text-primary);
   margin-right: 0.6rem;
   flex-shrink: 0;
 }
@@ -1526,8 +1528,11 @@ ul, ol {
 }
 
 .footnote-backref {
-  color: var(--accent-blue);
+  color: var(--accent-link);
   text-decoration: none;
+  margin-left: 0.3rem;
+  font-weight: 700;
+}
   margin-left: 0.3rem;
   font-weight: 700;
 }

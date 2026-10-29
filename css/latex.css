@@ -1241,6 +1241,21 @@ ul, ol {
   view-transition-name: section-heading-socials;
 }
 
+.flow-highlight-link[data-section="writings"],
+.article-title[data-section="writings"] {
+  view-transition-name: section-heading-writings;
+}
+
+.flow-highlight-link[data-section="religious-journey"],
+.article-title[data-section="religious-journey"] {
+  view-transition-name: section-heading-religious-journey;
+}
+
+.flow-highlight-link[data-section="you-can-see-everything"],
+.article-title[data-section="you-can-see-everything"] {
+  view-transition-name: section-heading-you-can-see-everything;
+}
+
 /* Root transitions: Smooth cross-fade of document body & layout */
 ::view-transition-old(root) {
   animation: 320ms cubic-bezier(0.2, 0, 0, 1) both vt-fade-out;
@@ -1266,7 +1281,10 @@ ul, ol {
 ::view-transition-group(section-heading-projects),
 ::view-transition-group(section-heading-quotes),
 ::view-transition-group(section-heading-paper),
-::view-transition-group(section-heading-socials) {
+::view-transition-group(section-heading-socials),
+::view-transition-group(section-heading-writings),
+::view-transition-group(section-heading-religious-journey),
+::view-transition-group(section-heading-you-can-see-everything) {
   animation-duration: 380ms;
   animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
   z-index: 1000;
@@ -1278,7 +1296,9 @@ ul, ol {
 ::view-transition-old(section-heading-quotes),
 ::view-transition-old(section-heading-paper),
 ::view-transition-old(section-heading-socials),
-::view-transition-old(section-heading-writings) {
+::view-transition-old(section-heading-writings),
+::view-transition-old(section-heading-religious-journey),
+::view-transition-old(section-heading-you-can-see-everything) {
   animation-duration: 380ms;
   animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
   height: 100%;
@@ -1291,7 +1311,9 @@ ul, ol {
 ::view-transition-new(section-heading-quotes),
 ::view-transition-new(section-heading-paper),
 ::view-transition-new(section-heading-socials),
-::view-transition-new(section-heading-writings) {
+::view-transition-new(section-heading-writings),
+::view-transition-new(section-heading-religious-journey),
+::view-transition-new(section-heading-you-can-see-everything) {
   animation-duration: 380ms;
   animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
   height: 100%;

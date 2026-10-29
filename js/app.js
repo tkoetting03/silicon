@@ -540,6 +540,9 @@ function getSectionNameFromUrl(urlStr) {
     if (filename === 'quotes.html') return 'quotes';
     if (filename === 'paper.html') return 'paper';
     if (filename === 'socials.html') return 'socials';
+    if (filename === 'writings.html') return 'writings';
+    if (filename === 'religious-journey.html') return 'religious-journey';
+    if (filename === 'you-can-see-everything.html') return 'you-can-see-everything';
   } catch (e) {}
   return null;
 }

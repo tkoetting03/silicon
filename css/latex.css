@@ -1277,7 +1277,8 @@ ul, ol {
 ::view-transition-old(section-heading-projects),
 ::view-transition-old(section-heading-quotes),
 ::view-transition-old(section-heading-paper),
-::view-transition-old(section-heading-socials) {
+::view-transition-old(section-heading-socials),
+::view-transition-old(section-heading-writings) {
   animation-duration: 380ms;
   animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
   height: 100%;
@@ -1289,11 +1290,232 @@ ul, ol {
 ::view-transition-new(section-heading-projects),
 ::view-transition-new(section-heading-quotes),
 ::view-transition-new(section-heading-paper),
-::view-transition-new(section-heading-socials) {
+::view-transition-new(section-heading-socials),
+::view-transition-new(section-heading-writings) {
   animation-duration: 380ms;
   animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
   height: 100%;
   width: 100%;
+}
+
+/* ==========================================================================
+   Writings & Long-Form Essay Typography
+   ========================================================================== */
+:root {
+  --accent-blue: #234b7d;
+}
+
+.writing-monograph-entry {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.writing-main-header {
+  text-align: center;
+  margin: 2.2rem 0 2.5rem 0;
+}
+
+.writing-main-title {
+  font-family: var(--font-cm);
+  font-size: 2.1rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  color: var(--accent-blue);
+  letter-spacing: 0.03em;
+  margin: 0.8rem 0 0.5rem 0;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.writing-main-author {
+  font-family: var(--font-cm);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.writing-section-heading {
+  font-family: var(--font-cm);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  color: var(--accent-blue);
+  letter-spacing: 0.04em;
+  margin-top: 2.8rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 0.8px solid var(--rule-light);
+  clear: both;
+  text-align: left;
+}
+
+.writing-section-subtitle {
+  font-family: var(--font-cm);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: -0.4rem;
+  margin-bottom: 1.1rem;
+  text-align: left;
+}
+
+.writing-paragraph {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 1.15rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.writing-list {
+  margin: 1rem 0 1.4rem 1.8rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.writing-list li {
+  margin-bottom: 0.5rem;
+}
+
+.art-plate-wrap {
+  float: right;
+  width: 44%;
+  max-width: 340px;
+  margin: 0.3rem 0 1.2rem 1.6rem;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  padding: 0.45rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  clear: right;
+}
+
+.art-plate-wrap.art-plate-left {
+  float: left;
+  margin: 0.3rem 1.6rem 1.2rem 0;
+  clear: left;
+}
+
+.art-plate-wrap.art-plate-right {
+  float: right;
+  margin: 0.3rem 0 1.2rem 1.6rem;
+  clear: right;
+}
+
+@media (max-width: 720px) {
+  .art-plate-wrap {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 1.4rem 0;
+  }
+}
+
+.art-plate-image-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.art-plate-caption {
+  font-family: var(--font-cm);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-top: 0.45rem;
+  text-align: left;
+}
+
+.styledquote {
+  border-left: 3px solid #8c96a5;
+  background-color: #f4f6f9;
+  padding: 0.85rem 1.2rem;
+  margin: 1.4rem 0;
+  border-radius: 0 4px 4px 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  line-height: 1.62;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.styledquote p {
+  margin: 0;
+}
+
+.footnote-ref a {
+  font-size: 0.78rem;
+  vertical-align: super;
+  text-decoration: none;
+  color: var(--accent-blue);
+  font-weight: 600;
+  padding: 0 1px;
+}
+
+.footnote-ref a:hover {
+  text-decoration: underline;
+}
+
+.writing-footnotes {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1.5px solid var(--accent-blue);
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: var(--text-secondary);
+  clear: both;
+}
+
+.writing-footnotes-title {
+  font-family: var(--font-cm);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.footnote-item {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.8rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.footnote-number {
+  font-family: var(--font-cm);
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+}
+
+.footnote-text {
+  flex-grow: 1;
+}
+
+.footnote-backref {
+  color: var(--accent-blue);
+  text-decoration: none;
+  margin-left: 0.3rem;
+  font-weight: 700;
+}
+
+.footnote-backref:hover {
+  text-decoration: underline;
+}
+
+.tex-sc {
+  font-variant: small-caps;
 }
 
 /* Accessibility: Respect user reduced motion preference */
